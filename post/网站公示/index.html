@@ -1,0 +1,185 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    
+<meta charset="utf-8" >
+
+<title>网站公示 | Gridea</title>
+<meta name="description" content="温故而知新">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="http://localhost:4000/favicon.ico?v=1571315590484">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="http://localhost:4000/styles/main.css">
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+
+
+  </head>
+  <body>
+    <div id="app" class="main">
+      <div class="site-header-container">
+  <div class="site-header">
+    <div class="left">
+      <a href="http://localhost:4000">
+        <img class="avatar" src="http://localhost:4000/images/avatar.png?v=1571315590484" alt="" width="32px" height="32px">
+      </a>
+      <a href="http://localhost:4000">
+        <h1 class="site-title">Gridea</h1>
+      </a>
+    </div>
+    <div class="right">
+      <transition name="fade">
+        <i class="icon" :class="{ 'icon-close-outline': menuVisible, 'icon-menu-outline': !menuVisible }" @click="menuVisible = !menuVisible"></i>
+      </transition>
+    </div>
+  </div>
+</div>
+
+<transition name="fade">
+  <div class="menu-container" style="display: none;" v-show="menuVisible">
+    <div class="menu-list">
+      
+        
+          <a href="http://localhost:4000/" class="menu purple-link">
+            首页
+          </a>
+        
+      
+        
+          <a href="http://localhost:4000/archives" class="menu purple-link">
+            归档
+          </a>
+        
+      
+        
+          <a href="http://localhost:4000/tags" class="menu purple-link">
+            标签
+          </a>
+        
+      
+        
+          <a href="http://localhost:4000/post/about" class="menu purple-link">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+</transition>
+
+
+      <div class="content-container">
+        <div class="post-detail">
+          
+          <h2 class="post-title">网站公示</h2>
+          <div class="post-info post-detail-info">
+            <span><i class="icon-calendar-outline"></i> 2019-10-16</span>
+            
+              <span>
+                <i class="icon-pricetags-outline"></i>
+                
+                  <a href="http://localhost:4000/tag/y9glcuisx">
+                    实用
+                    
+                  </a>
+                
+              </span>
+            
+          </div>
+          <div class="post-content">
+            <p>以后有什么更新会写在里面：</p>
+<p>2019/8/2：添加音乐播放器。</p>
+<p>2019/8/4：添加评论系统。</p>
+<p>2019/8/5：修复了图标。</p>
+<p>2019/8/8：新增BZOJ离线题库，点击<a href="https://gaisaiyuno.github.io/bzojch/">这里访问</a>，可以参考<a href="https://gaisaiyuno.github.io/archives/a8911f80.html">这篇博客</a>自己搭建。</p>
+<p>2019/8/8：修复离线图库的图标，原来是字体崩了。</p>
+<p>2019/8/10：稳定外链get，基本是320kbps，感谢www.missevan.com。</p>
+<p>2019/8/10：添加2048。</p>
+<p>2019/8/11：修复标题。</p>
+<p>2019/8/20：修复歌单滚动条。</p>
+<p>2019/8/30：添加新的404界面。</p>
+<p>2019/8/31：重大更新：</p>
+<p>1.主题换成<a href="https://xaoxuu.com/wiki/material-x/">Material X</a></p>
+<p>2.Aplayer改成侧边栏</p>
+<p>3.优化搜索功能</p>
+<p>4.新的背景图片</p>
+<p>2019/9/2：增加自定义域名http://stevenmhy.tk/</p>
+<p>2019/9/13：添加在线Markdown编辑器，虽然bug很多</p>
+<p>2019/9/21：添加实验室功能。</p>
+<p>2019/9/24：添加点赞功能。感谢https://widgetpack.com/</p>
+<p>2019/9/28：增添最新评论功能，由大佬<a href="https://removeif.github.io/2019/09/13/%E5%8D%9A%E5%AE%A2%E4%B8%ADgitalk%E6%9C%80%E6%96%B0%E8%AF%84%E8%AE%BA%E7%9A%84%E8%8E%B7%E5%8F%96.html">辣椒の酱</a>友情提供。（由于本人不会配色，所以显得很挫）</p>
+<p>2019/10/9：添加留言板功能。</p>
+<hr>
+<p>todo list:</p>
+<p>添加pjax支持</p>
+<p>去掉aplayer两个按钮</p>
+<hr>
+<p>9月访问量统计（刚刚接入Cloudflare）：</p>
+<figure data-type="image" tabindex="1"><img src="https://cdn.jsdelivr.net/gh/GaisaiYuno/imghost/20190930230715.PNG" alt=""></figure>
+<figure data-type="image" tabindex="2"><img src="https://cdn.jsdelivr.net/gh/GaisaiYuno/imghost/20190930230830.PNG" alt=""></figure>
+<figure data-type="image" tabindex="3"><img src="https://cdn.jsdelivr.net/gh/GaisaiYuno/imghost/20190930230747.PNG" alt=""></figure>
+<figure data-type="image" tabindex="4"><img src="https://cdn.jsdelivr.net/gh/GaisaiYuno/imghost/20190930230917.PNG" alt=""></figure>
+
+          </div>
+        </div>
+
+        
+          <div class="next-post">
+            <a class="purple-link" href="http://localhost:4000/post/SP6779 GSS7 - Can you answer these queries VII">
+              <h3 class="post-title">
+                下一篇：SP6779 GSS7 - Can you answer these queries VII 树链剖分
+              </h3>
+            </a>
+          </div>
+          
+      </div>
+
+      
+
+      <div class="site-footer">
+  <div class="slogan">温故而知新</div>
+  <div class="social-container">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="http://localhost:4000/atom.xml" target="_blank">RSS</a>
+</div>
+
+
+    </div>
+    <script type="application/javascript">
+
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+
+
+  </body>
+</html>

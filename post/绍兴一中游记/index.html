@@ -1,0 +1,212 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    
+<meta charset="utf-8" >
+
+<title>绍兴一中游记 | Gridea</title>
+<meta name="description" content="温故而知新">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="http://localhost:4000/favicon.ico?v=1571315590484">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="http://localhost:4000/styles/main.css">
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+
+
+  </head>
+  <body>
+    <div id="app" class="main">
+      <div class="site-header-container">
+  <div class="site-header">
+    <div class="left">
+      <a href="http://localhost:4000">
+        <img class="avatar" src="http://localhost:4000/images/avatar.png?v=1571315590484" alt="" width="32px" height="32px">
+      </a>
+      <a href="http://localhost:4000">
+        <h1 class="site-title">Gridea</h1>
+      </a>
+    </div>
+    <div class="right">
+      <transition name="fade">
+        <i class="icon" :class="{ 'icon-close-outline': menuVisible, 'icon-menu-outline': !menuVisible }" @click="menuVisible = !menuVisible"></i>
+      </transition>
+    </div>
+  </div>
+</div>
+
+<transition name="fade">
+  <div class="menu-container" style="display: none;" v-show="menuVisible">
+    <div class="menu-list">
+      
+        
+          <a href="http://localhost:4000/" class="menu purple-link">
+            首页
+          </a>
+        
+      
+        
+          <a href="http://localhost:4000/archives" class="menu purple-link">
+            归档
+          </a>
+        
+      
+        
+          <a href="http://localhost:4000/tags" class="menu purple-link">
+            标签
+          </a>
+        
+      
+        
+          <a href="http://localhost:4000/post/about" class="menu purple-link">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+</transition>
+
+
+      <div class="content-container">
+        <div class="post-detail">
+          
+          <h2 class="post-title">绍兴一中游记</h2>
+          <div class="post-info post-detail-info">
+            <span><i class="icon-calendar-outline"></i> 2019-07-13</span>
+            
+          </div>
+          <div class="post-content">
+            <blockquote>
+<p>本游记从7.16开始更新</p>
+</blockquote>
+<h3 id="典型的绍兴一中一天">典型的绍兴一中一天</h3>
+<p>早上：模拟赛</p>
+<p>中午：买快乐水+颓</p>
+<p>下午：听讲解，绝对听不懂</p>
+<p>典型的讲解过程：</p>
+<p>绿衣/红衣/蓝衣大佬上台讲课，听不懂也要鼓掌。</p>
+<p>下午划水+写题解</p>
+<p>晚上继续颓。</p>
+<h1 id="716">7.16</h1>
+<p>试着出了一道数学题，自以为很水。。。</p>
+<p>NOI<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>D</mi><mi>a</mi><mi>y</mi><mn>1</mn></mrow><annotation encoding="application/x-tex">Day1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8777699999999999em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">D</span><span class="mord mathdefault">a</span><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span class="mord">1</span></span></span></span>爆零，第一题敲了一个<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>D</mi><mi>i</mi><mi>j</mi><mi>k</mi><mi>s</mi><mi>t</mi><mi>r</mi><mi>a</mi></mrow><annotation encoding="application/x-tex">Dijkstra</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">D</span><span class="mord mathdefault">i</span><span class="mord mathdefault" style="margin-right:0.05724em;">j</span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span><span class="mord mathdefault">s</span><span class="mord mathdefault">t</span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mord mathdefault">a</span></span></span></span>，应该能拿<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>70</mn></mrow><annotation encoding="application/x-tex">70</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">7</span><span class="mord">0</span></span></span></span>分。第二题敲了一个大暴力，第三题敲的是记忆化搜索，自以为能过几个点，然鹅第二个大数据就<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>W</mi><mi>A</mi></mrow><annotation encoding="application/x-tex">WA</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">W</span><span class="mord mathdefault">A</span></span></span></span>了，开始自闭</p>
+<h1 id="717">7.17</h1>
+<p>讲数论，一开始还能听懂，后面逐渐掉线，最后讲到拉格朗日插值法，心里一万只cnm奔腾而过。<br>
+（提高组会考这个毒瘤？）</p>
+<p>下午，被<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>y</mi><mi>p</mi><mi>y</mi></mrow><annotation encoding="application/x-tex">ypy</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span class="mord mathdefault">p</span><span class="mord mathdefault" style="margin-right:0.03588em;">y</span></span></span></span>大佬拉着强推数学公式，感觉越推越糊涂。</p>
+<h1 id="718">7.18</h1>
+<p>打NOI比赛，<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>T</mi><mn>1</mn></mrow><annotation encoding="application/x-tex">T1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">T</span><span class="mord">1</span></span></span></span>敲了一个打暴力，发现时限没有爆，但是内存爆了（自闭），<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>T</mi><mn>2</mn></mrow><annotation encoding="application/x-tex">T2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">T</span><span class="mord">2</span></span></span></span><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>T</mi><mn>3</mn></mrow><annotation encoding="application/x-tex">T3</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">T</span><span class="mord">3</span></span></span></span>不可做。<br>
+<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>y</mi><mi>p</mi><mi>y</mi></mrow><annotation encoding="application/x-tex">ypy</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span class="mord mathdefault">p</span><span class="mord mathdefault" style="margin-right:0.03588em;">y</span></span></span></span>巨佬说他有一个线段树建图的方法，可以拿到<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>72</mn></mrow><annotation encoding="application/x-tex">72</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">7</span><span class="mord">2</span></span></span></span>分，<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mi>r</mi><mi>z</mi></mrow><annotation encoding="application/x-tex">Orz</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mord mathdefault" style="margin-right:0.04398em;">z</span></span></span></span><br>
+本来说下午再交，结果下午NOI网站上不了，更加自闭，然后Day2就爆0了。</p>
+<p>下午，一道题也没A，只是写了写题解，刷了刷知乎，感觉蜃是颓废。</p>
+<p>本来相加一个评论系统，结果加了以后网站变成德语，害怕。</p>
+<h1 id="719">7.19</h1>
+<p>上午开始打模拟赛，<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>T</mi><mn>1</mn></mrow><annotation encoding="application/x-tex">T1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">T</span><span class="mord">1</span></span></span></span>敲了一个玄学随机化，一对拍，发现竟然过了，<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>T</mi><mn>2</mn></mrow><annotation encoding="application/x-tex">T2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">T</span><span class="mord">2</span></span></span></span>打的是指数级暴力，<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>T</mi><mn>3</mn></mrow><annotation encoding="application/x-tex">T3</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">T</span><span class="mord">3</span></span></span></span>题目很迷，感觉意思理解错了。</p>
+<p>下午发现爆零了，<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>T</mi><mn>1</mn></mrow><annotation encoding="application/x-tex">T1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">T</span><span class="mord">1</span></span></span></span>竟然没有被卡，拿了<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>100</mn></mrow><annotation encoding="application/x-tex">100</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord">0</span><span class="mord">0</span></span></span></span>，<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>T</mi><mn>2</mn></mrow><annotation encoding="application/x-tex">T2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">T</span><span class="mord">2</span></span></span></span>就是正常暴力分数——<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>20</mn></mrow><annotation encoding="application/x-tex">20</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">2</span><span class="mord">0</span></span></span></span>，<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>T</mi><mn>3</mn></mrow><annotation encoding="application/x-tex">T3</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">T</span><span class="mord">3</span></span></span></span> 大家都<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault">A</span></span></span></span>了，原来真的是意思理解错了，<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msup><mi>I</mi><mo mathvariant="normal">′</mo></msup><mi>m</mi><mi>A</mi><mi>n</mi><mi>g</mi><mi>r</mi><mi>y</mi></mrow><annotation encoding="application/x-tex">I&#x27;m Angry</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.946332em;vertical-align:-0.19444em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.07847em;">I</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.751892em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">′</span></span></span></span></span></span></span></span></span><span class="mord mathdefault">m</span><span class="mord mathdefault">A</span><span class="mord mathdefault">n</span><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mord mathdefault" style="margin-right:0.03588em;">y</span></span></span></span></p>
+<p>晚上准备写写题解</p>
+<h1 id="720">7.20</h1>
+<p>颓废，上午开始打模拟赛，<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>T</mi><mn>1</mn></mrow><annotation encoding="application/x-tex">T1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">T</span><span class="mord">1</span></span></span></span>题目又看错，调了甚久，才发现意思理解错了，不过暴力也打了<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>60</mn></mrow><annotation encoding="application/x-tex">60</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">6</span><span class="mord">0</span></span></span></span>分，<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>T</mi><mn>2</mn></mrow><annotation encoding="application/x-tex">T2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">T</span><span class="mord">2</span></span></span></span>神仙题，特判写挂了，只有<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>20</mn></mrow><annotation encoding="application/x-tex">20</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">2</span><span class="mord">0</span></span></span></span>分，<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>T</mi><mn>3</mn></mrow><annotation encoding="application/x-tex">T3</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">T</span><span class="mord">3</span></span></span></span>一眼看上去<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>c</mi><mi>d</mi><mi>q</mi></mrow><annotation encoding="application/x-tex">cdq</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord mathdefault">c</span><span class="mord mathdefault">d</span><span class="mord mathdefault" style="margin-right:0.03588em;">q</span></span></span></span>分治，后来才发现是<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>D</mi><mi>A</mi><mi>G</mi></mrow><annotation encoding="application/x-tex">DAG</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">D</span><span class="mord mathdefault">A</span><span class="mord mathdefault">G</span></span></span></span>的最小链覆盖，打了一个贪心，竟然一分都没骗到，不知道反例在哪里。</p>
+<h1 id="721">7.21</h1>
+<p>切了几道<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>Y</mi><mi>N</mi><mi>O</mi><mi>I</mi></mrow><annotation encoding="application/x-tex">YNOI</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.22222em;">Y</span><span class="mord mathdefault" style="margin-right:0.10903em;">N</span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mord mathdefault" style="margin-right:0.07847em;">I</span></span></span></span>，被常数恶心到了。</p>
+<h1 id="722">7.22</h1>
+<p>讲图论，一开始还能听懂，后来懵逼。</p>
+<h1 id="723">7.23</h1>
+<p>自由练习，在机房颓废，刷了一天<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="normal">B</mi><mi mathvariant="normal">a</mi><mi mathvariant="normal">n</mi><mi mathvariant="normal">g</mi><mi mathvariant="normal">u</mi><mi mathvariant="normal">m</mi><mi mathvariant="normal">i</mi></mrow><annotation encoding="application/x-tex">\rm Bangumi</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8777699999999999em;vertical-align:-0.19444em;"></span><span class="mord"><span class="mord mathrm">B</span><span class="mord mathrm">a</span><span class="mord mathrm">n</span><span class="mord mathrm" style="margin-right:0.01389em;">g</span><span class="mord mathrm">u</span><span class="mord mathrm">m</span><span class="mord mathrm">i</span></span></span></span></span></p>
+<p><s>（原来我还有这么多番没有看）</s></p>
+<h1 id="724">7.24</h1>
+<p>讲<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="normal">d</mi><mi mathvariant="normal">p</mi></mrow><annotation encoding="application/x-tex">\rm dp</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord"><span class="mord mathrm">d</span><span class="mord mathrm">p</span></span></span></span></span>，有一题我口胡是线段树，结果正解一个前缀和就搞定了。</p>
+<p>刷了一大堆毒瘤<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="normal">d</mi><mi mathvariant="normal">p</mi></mrow><annotation encoding="application/x-tex">\rm dp</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord"><span class="mord mathrm">d</span><span class="mord mathrm">p</span></span></span></span></span></p>
+<h1 id="725">7.25</h1>
+<p>自由练习</p>
+<p>刷<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="normal">B</mi><mi mathvariant="normal">a</mi><mi mathvariant="normal">n</mi><mi mathvariant="normal">g</mi><mi mathvariant="normal">u</mi><mi mathvariant="normal">m</mi><mi mathvariant="normal">i</mi></mrow><annotation encoding="application/x-tex">\rm Bangumi</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8777699999999999em;vertical-align:-0.19444em;"></span><span class="mord"><span class="mord mathrm">B</span><span class="mord mathrm">a</span><span class="mord mathrm">n</span><span class="mord mathrm" style="margin-right:0.01389em;">g</span><span class="mord mathrm">u</span><span class="mord mathrm">m</span><span class="mord mathrm">i</span></span></span></span></span></p>
+<h1 id="726">7.26</h1>
+<p>膜你赛，<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="normal">T</mi><mn>1</mn></mrow><annotation encoding="application/x-tex">\rm T1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord"><span class="mord mathrm">T</span><span class="mord mathrm">1</span></span></span></span></span>是一个打表题，全部爆<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>0</mn></mrow><annotation encoding="application/x-tex">0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span></span></span></span>，话说我的<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>462000</mn></mrow><annotation encoding="application/x-tex">462000</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">4</span><span class="mord">6</span><span class="mord">2</span><span class="mord">0</span><span class="mord">0</span><span class="mord">0</span></span></span></span>是怎么算出来的？</p>
+<p><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="normal">T</mi><mn>2</mn></mrow><annotation encoding="application/x-tex">\rm T2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord"><span class="mord mathrm">T</span><span class="mord mathrm">2</span></span></span></span></span>恶臭题面，看了一个小时也没有看出来样例怎么搞，后来在大佬<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="normal">z</mi><mi mathvariant="normal">h</mi><mi mathvariant="normal">h</mi></mrow><annotation encoding="application/x-tex">\rm zhh</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord"><span class="mord mathrm">z</span><span class="mord mathrm">h</span><span class="mord mathrm">h</span></span></span></span></span>的提醒下终于看懂了。</p>
+<p>话说暴力<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>70</mn></mrow><annotation encoding="application/x-tex">70</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">7</span><span class="mord">0</span></span></span></span>分也挺不错</p>
+<p><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="normal">T</mi><mn>3</mn></mrow><annotation encoding="application/x-tex">\rm T3</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord"><span class="mord mathrm">T</span><span class="mord mathrm">3</span></span></span></span></span>一眼看上去是<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="normal">d</mi><mi mathvariant="normal">p</mi></mrow><annotation encoding="application/x-tex">\rm dp</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord"><span class="mord mathrm">d</span><span class="mord mathrm">p</span></span></span></span></span>，考完之后才发现一个<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="normal">b</mi><mi mathvariant="normal">f</mi><mi mathvariant="normal">s</mi></mrow><annotation encoding="application/x-tex">\rm bfs</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord"><span class="mord mathrm">b</span><span class="mord mathrm" style="margin-right:0.07778em;">f</span><span class="mord mathrm">s</span></span></span></span></span>就能水<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>90</mn></mrow><annotation encoding="application/x-tex">90</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">9</span><span class="mord">0</span></span></span></span>分，<s>卡卡常就过了</s></p>
+<p>颓废。</p>
+<p>晚上刷了几道恶臭树链剖分。</p>
+<h1 id="727">7.27</h1>
+<p>还是膜你赛，<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="normal">T</mi><mn>1</mn></mrow><annotation encoding="application/x-tex">\rm T1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord"><span class="mord mathrm">T</span><span class="mord mathrm">1</span></span></span></span></span>恶臭数学题，出题人说是因数分解，不超过普及组考纲。</p>
+<p><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="normal">T</mi><mn>2</mn></mrow><annotation encoding="application/x-tex">\rm T2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord"><span class="mord mathrm">T</span><span class="mord mathrm">2</span></span></span></span></span>是一个树形<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="normal">d</mi><mi mathvariant="normal">p</mi></mrow><annotation encoding="application/x-tex">\rm dp</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord"><span class="mord mathrm">d</span><span class="mord mathrm">p</span></span></span></span></span>，还是比较巧妙，正解是换根法，有人随机选根<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="normal">d</mi><mi mathvariant="normal">p</mi></mrow><annotation encoding="application/x-tex">\rm dp</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord"><span class="mord mathrm">d</span><span class="mord mathrm">p</span></span></span></span></span>，竟然有<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>80</mn></mrow><annotation encoding="application/x-tex">80</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">8</span><span class="mord">0</span></span></span></span>分，orz</p>
+<p><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="normal">T</mi><mn>3</mn></mrow><annotation encoding="application/x-tex">\rm T3</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord"><span class="mord mathrm">T</span><span class="mord mathrm">3</span></span></span></span></span>是一个数学题+<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="normal">d</mi><mi mathvariant="normal">p</mi></mrow><annotation encoding="application/x-tex">\rm dp</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord"><span class="mord mathrm">d</span><span class="mord mathrm">p</span></span></span></span></span>，状压一下有<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>50</mn></mrow><annotation encoding="application/x-tex">50</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">5</span><span class="mord">0</span></span></span></span>分，正解是玄学组合数乱推，感觉<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="normal">T</mi><mn>3</mn></mrow><annotation encoding="application/x-tex">\rm T3</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord"><span class="mord mathrm">T</span><span class="mord mathrm">3</span></span></span></span></span>像我出过的一道题的进阶版。</p>
+<p>竟然有<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>r</mi><mi>k</mi><mn>3</mn></mrow><annotation encoding="application/x-tex">rk3</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span><span class="mord">3</span></span></span></span>，也算完美收尾。</p>
+<p>话说这出题人把文件名设成<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="normal">n</mi><mi mathvariant="normal">a</mi><mi mathvariant="normal">i</mi><mi mathvariant="normal">i</mi><mi mathvariant="normal">i</mi><mi mathvariant="normal">i</mi><mi mathvariant="normal">i</mi><mi mathvariant="normal">i</mi><mi mathvariant="normal">i</mi><mi mathvariant="normal">v</mi><mi mathvariant="normal">e</mi></mrow><annotation encoding="application/x-tex">\rm naiiiiiiive</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.66786em;vertical-align:0em;"></span><span class="mord"><span class="mord mathrm">n</span><span class="mord mathrm">a</span><span class="mord mathrm">i</span><span class="mord mathrm">i</span><span class="mord mathrm">i</span><span class="mord mathrm">i</span><span class="mord mathrm">i</span><span class="mord mathrm">i</span><span class="mord mathrm">i</span><span class="mord mathrm" style="margin-right:0.01389em;">v</span><span class="mord mathrm">e</span></span></span></span></span>，模数设成<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>19260817</mn></mrow><annotation encoding="application/x-tex">19260817</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord">9</span><span class="mord">2</span><span class="mord">6</span><span class="mord">0</span><span class="mord">8</span><span class="mord">1</span><span class="mord">7</span></span></span></span>，还时限<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>+</mo><mn>1</mn><mi>s</mi></mrow><annotation encoding="application/x-tex">+1s</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="mord">+</span><span class="mord">1</span><span class="mord mathdefault">s</span></span></span></span>，怕不要上八月枪毙名单</p>
+<h1 id="728">7.28</h1>
+<p>玩+颓</p>
+<p>晚上补冰菓</p>
+<p>天气甚热</p>
+<h1 id="729">7.29</h1>
+<p>玩+颓</p>
+<p>晚上补冰菓</p>
+<p>天气甚热</p>
+<h1 id="730">7.30</h1>
+<p>回家，在高铁上面补冰菓，补到一半，突然文件坏了，想打人。</p>
+<p>于是又看了一遍轻音2，发现田井中律和千反田的声优竟然是同一个人，声优都是怪物。</p>
+<p>在高铁上切毒瘤数据结构，网络那题写了四个<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>log</mi><mo>⁡</mo></mrow><annotation encoding="application/x-tex">\log</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mop">lo<span style="margin-right:0.01389em;">g</span></span></span></span></span>的做法没调出来。</p>
+<p><s>二分答案+树链剖分+树套树大法好</s></p>
+
+          </div>
+        </div>
+
+        
+          <div class="next-post">
+            <a class="purple-link" href="http://localhost:4000/post/CF525E Anya and Cubes">
+              <h3 class="post-title">
+                下一篇：CF525E Anya and Cubes 双向搜索
+              </h3>
+            </a>
+          </div>
+          
+      </div>
+
+      
+
+      <div class="site-footer">
+  <div class="slogan">温故而知新</div>
+  <div class="social-container">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="http://localhost:4000/atom.xml" target="_blank">RSS</a>
+</div>
+
+
+    </div>
+    <script type="application/javascript">
+
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+
+
+  </body>
+</html>
