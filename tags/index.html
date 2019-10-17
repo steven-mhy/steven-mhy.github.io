@@ -1,16 +1,15 @@
+<!DOCTYPE html>
 <html>
   <head>
-    
-<meta charset="utf-8" >
+    <meta charset="utf-8" >
 
-<title>Gridea</title>
-<meta name="description" content="温故而知新">
+<title>标签列表 | Steven_Meng&#39;s Blog</title>
+<meta name="description" content="白鳥は　かなしからずや　空の青 海のあをにも　染まずただよふ">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="https://steven-mhy.github.io/favicon.ico?v=1571316956300">
+<link rel="shortcut icon" href="https://steven-mhy.github.io/favicon.ico?v=1571317992340">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link rel="stylesheet" href="https://steven-mhy.github.io/styles/main.css">
 
@@ -19,97 +18,154 @@
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
 
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
 
 
   </head>
   <body>
     <div id="app" class="main">
-      <div class="site-header-container">
-  <div class="site-header">
-    <div class="left">
-      <a href="https://steven-mhy.github.io">
-        <img class="avatar" src="https://steven-mhy.github.io/images/avatar.png?v=1571316956300" alt="" width="32px" height="32px">
-      </a>
-      <a href="https://steven-mhy.github.io">
-        <h1 class="site-title">Gridea</h1>
-      </a>
-    </div>
-    <div class="right">
-      <transition name="fade">
-        <i class="icon" :class="{ 'icon-close-outline': menuVisible, 'icon-menu-outline': !menuVisible }" @click="menuVisible = !menuVisible"></i>
-      </transition>
-    </div>
-  </div>
-</div>
 
-<transition name="fade">
-  <div class="menu-container" style="display: none;" v-show="menuVisible">
-    <div class="menu-list">
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://steven-mhy.github.io">
+        <img src="https://steven-mhy.github.io/images/avatar.png?v=1571317992340" class="site-logo">
+        <h1 class="site-title">Steven_Meng&#39;s Blog</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
       
         
-          <a href="/" class="menu purple-link">
+          <a href="/" class="site-nav">
             首页
           </a>
         
       
         
-          <a href="/archives" class="menu purple-link">
+          <a href="/archives" class="site-nav">
             归档
           </a>
         
       
         
-          <a href="/tags" class="menu purple-link">
+          <a href="/tags" class="site-nav">
             标签
           </a>
         
       
         
-          <a href="/post/about" class="menu purple-link">
+          <a href="/post/about" class="site-nav">
             关于
           </a>
         
       
     </div>
   </div>
-</transition>
-
-
-        <div class="content-container">
-          
-          <div class="tags-container">
-            
-              <a class="tag" href="https://steven-mhy.github.io/tag/y9glcuisx">实用</a>
-            
-              <a class="tag" href="https://steven-mhy.github.io/tag/jnyqBVWJ-e">比赛</a>
-            
-              <a class="tag" href="https://steven-mhy.github.io/tag/r6NA9fBes">Gridea</a>
-            
-          </div>
-
-        </div>
-
-        <div class="site-footer">
-  <div class="slogan">温故而知新</div>
-  <div class="social-container">
-    
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
       
-    
+        
       
-    
+        
       
-    
+        
       
-    
+        
       
-    
+        
+      
+    </div>
+    <div class="site-description">
+      白鳥は　かなしからずや　空の青 海のあをにも　染まずただよふ
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://steven-mhy.github.io/atom.xml" target="_blank">RSS</a>
+    </div>
   </div>
-  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://steven-mhy.github.io/atom.xml" target="_blank">RSS</a>
 </div>
 
 
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <h2 class="tag-list-title">标签列表</h2>
+          <div class="tags-container">
+            
+              <a class="tag" href="https://steven-mhy.github.io/tag/y8sp13uYxr">乱搞</a>
+            
+              <a class="tag" href="https://steven-mhy.github.io/tag/tz8jnsnOVd">题解</a>
+            
+              <a class="tag" href="https://steven-mhy.github.io/tag/38oaw9hdWg">FFT</a>
+            
+              <a class="tag" href="https://steven-mhy.github.io/tag/0j24aW2eag">分块</a>
+            
+              <a class="tag" href="https://steven-mhy.github.io/tag/TjesSZio9u">点分治</a>
+            
+              <a class="tag" href="https://steven-mhy.github.io/tag/G6FiwoVXFR">NTT</a>
+            
+              <a class="tag" href="https://steven-mhy.github.io/tag/8DOWvMf750">多项式</a>
+            
+              <a class="tag" href="https://steven-mhy.github.io/tag/BNLrxHNEMo">生成函数</a>
+            
+              <a class="tag" href="https://steven-mhy.github.io/tag/Bi5ckPaMVN">暴力</a>
+            
+              <a class="tag" href="https://steven-mhy.github.io/tag/lDsum5_xuv">随机化</a>
+            
+              <a class="tag" href="https://steven-mhy.github.io/tag/Elg5FF_d78">trie</a>
+            
+              <a class="tag" href="https://steven-mhy.github.io/tag/qEXnlDBj8z">可持久化</a>
+            
+              <a class="tag" href="https://steven-mhy.github.io/tag/dPrJjUjkSk">莫队</a>
+            
+              <a class="tag" href="https://steven-mhy.github.io/tag/jnyqBVWJ-e">比赛</a>
+            
+              <a class="tag" href="https://steven-mhy.github.io/tag/3usYs1e5BS">数学</a>
+            
+              <a class="tag" href="https://steven-mhy.github.io/tag/eBoUcZYF1pr">计算几何</a>
+            
+              <a class="tag" href="https://steven-mhy.github.io/tag/CgqyzC7d9bG">凸包</a>
+            
+              <a class="tag" href="https://steven-mhy.github.io/tag/2nJT9htuSF0">初赛</a>
+            
+              <a class="tag" href="https://steven-mhy.github.io/tag/mP8KAKLxBLr">堆</a>
+            
+              <a class="tag" href="https://steven-mhy.github.io/tag/8DG1Qnt-3kq">贪心</a>
+            
+              <a class="tag" href="https://steven-mhy.github.io/tag/6RLz_-cznbc">倍增</a>
+            
+              <a class="tag" href="https://steven-mhy.github.io/tag/iAf8h7itv2W">毒瘤</a>
+            
+              <a class="tag" href="https://steven-mhy.github.io/tag/hwNvtcl6w76">并查集</a>
+            
+              <a class="tag" href="https://steven-mhy.github.io/tag/915M0pAYLA6">线段树</a>
+            
+              <a class="tag" href="https://steven-mhy.github.io/tag/oOIFso9qohS">分治</a>
+            
+              <a class="tag" href="https://steven-mhy.github.io/tag/mA0sU98wK1a">启发式合并</a>
+            
+              <a class="tag" href="https://steven-mhy.github.io/tag/EvNUku8bleY">主席树</a>
+            
+              <a class="tag" href="https://steven-mhy.github.io/tag/I-Vnx-uq2DH">线段树合并</a>
+            
+              <a class="tag" href="https://steven-mhy.github.io/tag/eAsxztIi3b4">LCA</a>
+            
+              <a class="tag" href="https://steven-mhy.github.io/tag/5IAZYzF_y6F">树链剖分</a>
+            
+              <a class="tag" href="https://steven-mhy.github.io/tag/j7M1Jk7x2yP">图论</a>
+            
+          </div>
+        </div>
       </div>
-      <script type="application/javascript">
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+<script type="application/javascript">
+
+AOS.init();
 
 hljs.initHighlightingOnLoad()
 
@@ -125,6 +181,5 @@ var app = new Vue({
 
 
 
-    </div>
   </body>
 </html>

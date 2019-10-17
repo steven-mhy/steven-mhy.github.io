@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>蓝精灵的请求 | Steven_Meng&#39;s Blog</title>
+<meta name="description" content="白鳥は　かなしからずや　空の青 海のあをにも　染まずただよふ">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://steven-mhy.github.io/favicon.ico?v=1571317992340">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://steven-mhy.github.io/styles/main.css">
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+
+
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://steven-mhy.github.io">
+        <img src="https://steven-mhy.github.io/images/avatar.png?v=1571317992340" class="site-logo">
+        <h1 class="site-title">Steven_Meng&#39;s Blog</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      白鳥は　かなしからずや　空の青 海のあをにも　染まずただよふ
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://steven-mhy.github.io/atom.xml" target="_blank">RSS</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">蓝精灵的请求</h2>
+            <div class="post-date">2019-10-03</div>
+            
+            <div class="post-content">
+              <p>注意到题目实际上是把整个图分成了两个团（团是一个点的集合，其中任意两点之间都有边相连）。</p>
+<p>根据我们以前的经验，团什么的都可以随机化搞出来，如<a href="http://stevenmhy.tk/archives/7c083d74.html">P4212 外太空旅行</a></p>
+<p>注意到我们随机化不能写成这个样子：</p>
+<pre><code class="language-cpp">bool Check返回能不能构成团
+for (register int k=1;k&lt;=10000;++k){
+	random_shuffle(a+1,a+1+n);
+	//.........
+	for (register int i=1;i&lt;=n;++i){
+		//..........
+		if (Check(a[1]...a[i])){
+			if (Check(a[i+1]...a[n])) ans=min(ans,...);
+		}
+		else{
+			break;//后面不能构成团
+		}
+	}
+}
+</code></pre>
+<p>而是写成：</p>
+<pre><code class="language-cpp">bool Check返回能不能构成团
+for (register int k=1;k&lt;=10000;++k){
+	random_shuffle(a+1,a+1+n);
+	s={};
+	//.........
+	for (register int i=1;i&lt;=n;++i){
+		//..........
+		if (Check(s+a[i])){
+			s.insert(a[i]);
+			if (Check(a[1]...a[n]除s之外的元素)) ans=min(ans,...);
+		}
+	}
+}
+</code></pre>
+<p>总的代码，发现只要随机化33次就可以AC。</p>
+<pre><code class="language-cpp">#include &lt;bits/stdc++.h&gt;
+#define MAXN 705
+using namespace std;
+inline int read(){
+	int x=0,f=1;
+	char ch=getchar();
+	while (ch&lt;'0'||ch&gt;'9'){
+		if (ch=='-') f=-1;
+		ch=getchar();
+	}
+	while (ch&gt;='0'&amp;&amp;ch&lt;='9'){
+		x=(x*10)+(ch-'0');
+		ch=getchar();
+	}
+	return x*f;
+}
+int G[MAXN][MAXN];
+int a[MAXN],stk[MAXN],top,vis[MAXN];
+inline int Check(int x){
+	for (register int i=1;i&lt;=top;++i){
+		if (G[stk[i]][x]==false){
+			return false;
+		}
+	}
+	return true;
+}
+int stk1[MAXN],top1,n,m;
+inline int CheckElse(){
+	top1=0;
+	for (register int i=1;i&lt;=n;++i){
+		if (!vis[i]) stk1[++top1]=i;
+	}
+	for (register int i=1;i&lt;=top1;++i){
+		for (register int j=i+1;j&lt;=top1;++j){
+			if (G[stk1[i]][stk1[j]]==false) return false;
+		}
+	}
+	return true;
+}
+inline int CalcEdge(int x){
+	return x*(x-1)/2;
+}
+inline int Best(){
+	return CalcEdge(n/2)+CalcEdge(n-n/2);
+}
+int main(){
+	n=read(),m=read();
+	for (register int i=1;i&lt;=m;++i){
+		int u=read(),v=read();
+		G[u][v]=G[v][u]=true;
+	}
+	for (register int i=1;i&lt;=n;++i){
+		a[i]=i;
+	}
+	int ans=0x7fffffff;
+	int best=Best();
+	for (register int t=1;t&lt;=33;++t){
+		random_shuffle(a+1,a+1+n);
+		top=0;
+		memset(vis,0,sizeof(vis));
+		for (register int j=1;j&lt;=n;++j){
+			if (Check(a[j])) stk[++top]=a[j],vis[a[j]]=true;
+			int temp=CalcEdge(top)+CalcEdge(n-top);
+			if (temp&lt;ans){
+				if (CheckElse()) ans=temp;
+			}
+		}
+		if (ans==best) break;
+	}
+	printf(&quot;%d\n&quot;,ans==0x7fffffff?-1:ans);
+}
+</code></pre>
+<p>数据生成器，<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>m</mi></mrow><annotation encoding="application/x-tex">m</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">m</span></span></span></span>设成244550左右就可以使程序WA：</p>
+<pre><code class="language-cpp">#include &lt;bits/stdc++.h&gt;
+using namespace std;
+inline int read(){
+	int x=0,f=1;
+	char ch=getchar();
+	while (ch&lt;'0'||ch&gt;'9'){
+		if (ch=='-') f=-1;
+		ch=getchar();
+	}
+	while (ch&gt;='0'&amp;&amp;ch&lt;='9'){
+		x=(x&lt;&lt;3)+(x&lt;&lt;1)+(ch^'0');
+		ch=getchar();
+	}
+	return x*f;
+}
+vector&lt;pair&lt;int,int&gt; &gt;Edge;
+int main(){
+	int n=700,m=244550;
+	freopen(&quot;data.in&quot;,&quot;w&quot;,stdout);
+	for (register int i=1;i&lt;=n;++i){
+		for (register int j=i+1;j&lt;=n;++j){
+			Edge.push_back(make_pair(i,j));
+		}
+	}
+	random_shuffle(Edge.begin(),Edge.end());
+	printf(&quot;%d %d\n&quot;,n,m);
+	for (register int i=0;i&lt;m;++i){
+		printf(&quot;%d %d\n&quot;,Edge[i].first,Edge[i].second);
+	}
+}
+</code></pre>
+
+            </div>
+            
+              <div class="tag-container">
+                
+                  <a href="https://steven-mhy.github.io/tag/Bi5ckPaMVN" class="tag">
+                    暴力
+                  </a>
+                
+                  <a href="https://steven-mhy.github.io/tag/lDsum5_xuv" class="tag">
+                    随机化
+                  </a>
+                
+              </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://steven-mhy.github.io/post/可持久化trie学习笔记">
+                  <h3 class="post-title">
+                    可持久化trie学习笔记
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+<script type="application/javascript">
+
+AOS.init();
+
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+
+
+  </body>
+</html>

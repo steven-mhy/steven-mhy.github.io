@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>可持久化trie学习笔记 | Steven_Meng&#39;s Blog</title>
+<meta name="description" content="白鳥は　かなしからずや　空の青 海のあをにも　染まずただよふ">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://steven-mhy.github.io/favicon.ico?v=1571317992340">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://steven-mhy.github.io/styles/main.css">
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+
+
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://steven-mhy.github.io">
+        <img src="https://steven-mhy.github.io/images/avatar.png?v=1571317992340" class="site-logo">
+        <h1 class="site-title">Steven_Meng&#39;s Blog</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      白鳥は　かなしからずや　空の青 海のあをにも　染まずただよふ
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://steven-mhy.github.io/atom.xml" target="_blank">RSS</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">可持久化trie学习笔记</h2>
+            <div class="post-date">2019-10-03</div>
+            
+            <div class="post-content">
+              <p>可持久化trie是一种和最大异或和关系非常紧密的算法。</p>
+<h2 id="例题1">例题1</h2>
+<p>给你一个数列<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mspace linebreak="newline"></mspace><mrow><msub><mi>a</mi><mi>i</mi></msub><mspace linebreak="newline"></mspace></mrow></mrow><annotation encoding="application/x-tex">\\{a_i\\}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="mspace newline"></span><span class="base"><span class="strut" style="height:0.58056em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord"><span class="mord mathdefault">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace newline"></span></span></span></span></span>，每次询问给你<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>l</mi><mo separator="true">,</mo><mi>r</mi><mo separator="true">,</mo><mi>x</mi></mrow><annotation encoding="application/x-tex">l,r,x</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">x</span></span></span></span>，要你计算$\max\{ a[i]\oplus x\}(i \in [l,r]) $</p>
+<p>如何考虑？</p>
+<p>从高位往低位贪心！</p>
+<p>举个例子：</p>
+<p><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>a</mi><mo>[</mo><mi>i</mi><mo>]</mo><mo>:</mo><mn>100</mn><mo separator="true">,</mo><mn>110</mn><mo separator="true">,</mo><mn>101</mn><mo separator="true">,</mo><mn>010</mn></mrow><annotation encoding="application/x-tex">a[i]:100,110,101,010</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">a</span><span class="mopen">[</span><span class="mord mathdefault">i</span><span class="mclose">]</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">:</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.8388800000000001em;vertical-align:-0.19444em;"></span><span class="mord">1</span><span class="mord">0</span><span class="mord">0</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">1</span><span class="mord">1</span><span class="mord">0</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">1</span><span class="mord">0</span><span class="mord">1</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">0</span><span class="mord">1</span><span class="mord">0</span></span></span></span></p>
+<p><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>x</mi><mo>=</mo><mn>010</mn></mrow><annotation encoding="application/x-tex">x=010</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">x</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span><span class="mord">1</span><span class="mord">0</span></span></span></span></p>
+<p>首先，发现<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>a</mi><mo>[</mo><mi>i</mi><mo>]</mo></mrow><annotation encoding="application/x-tex">a[i]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">a</span><span class="mopen">[</span><span class="mord mathdefault">i</span><span class="mclose">]</span></span></span></span>的第最高位必须是<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span>，即使<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>a</mi><mo>[</mo><mi>i</mi><mo>]</mo><mo>⊕</mo><mi>x</mi></mrow><annotation encoding="application/x-tex">a[i] \oplus x</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">a</span><span class="mopen">[</span><span class="mord mathdefault">i</span><span class="mclose">]</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">⊕</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">x</span></span></span></span>最大的<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>a</mi><mo>[</mo><mi>i</mi><mo>]</mo></mrow><annotation encoding="application/x-tex">a[i]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">a</span><span class="mopen">[</span><span class="mord mathdefault">i</span><span class="mclose">]</span></span></span></span>只可能是<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>100</mn><mo separator="true">,</mo><mn>110</mn></mrow><annotation encoding="application/x-tex">100,110</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8388800000000001em;vertical-align:-0.19444em;"></span><span class="mord">1</span><span class="mord">0</span><span class="mord">0</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">1</span><span class="mord">1</span><span class="mord">0</span></span></span></span>中的一个。</p>
+<p>再看第二位，如果第二位是<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span>的话，<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1</mn><mo>⊕</mo><mn>1</mn><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">1\oplus1=0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">⊕</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span></span></span></span>，不是最大的，<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>a</mi><mo>[</mo><mi>i</mi><mo>]</mo></mrow><annotation encoding="application/x-tex">a[i]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">a</span><span class="mopen">[</span><span class="mord mathdefault">i</span><span class="mclose">]</span></span></span></span>就确定为<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>100</mn></mrow><annotation encoding="application/x-tex">100</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord">0</span><span class="mord">0</span></span></span></span>。</p>
+<p>于是我们可以设计出如下算法：</p>
+<pre><code class="language-cpp">procedure get_max(l,r,x){
+    s={a[l],a[l+1],a[l+2]...a[r]};
+    for (k in [log2(max(a[i])),1]){
+        if (x第k位是1){
+            if (s里面有数第k位是0) s=&gt;s中所有第k位为0的数
+            else s不变
+        }
+        else {
+            if (s里面有数第k位是1) s=&gt;s中所有第k位为1的数
+            else s不变
+		}
+    }
+}
+</code></pre>
+<p>发现此算法效率极慢，甚至比不上暴力。</p>
+<p>如何优化？</p>
+<p>发现一个重要的性质，每次操作之后，<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>s</mi></mrow><annotation encoding="application/x-tex">s</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">s</span></span></span></span>中所有数的二进制表示中，<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>[</mo><msub><mi>log</mi><mo>⁡</mo><mn>2</mn></msub><mo>(</mo><mi>max</mi><mo>⁡</mo><mo>(</mo><mi>a</mi><mo>[</mo><mi>i</mi><mo>]</mo><mo>)</mo><mo>)</mo><mo separator="true">,</mo><mi>k</mi><mo>]</mo></mrow><annotation encoding="application/x-tex">[\log_2(\max(a[i])),k]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span class="mop"><span class="mop">lo<span style="margin-right:0.01389em;">g</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.20696799999999996em;"><span style="top:-2.4558600000000004em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.24414em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mop">max</span><span class="mopen">(</span><span class="mord mathdefault">a</span><span class="mopen">[</span><span class="mord mathdefault">i</span><span class="mclose">]</span><span class="mclose">)</span><span class="mclose">)</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span><span class="mclose">]</span></span></span></span>的位上面都是一样的。</p>
+<p>这让我们想到了trie树。</p>
+<figure data-type="image" tabindex="1"><img src="https://cdn.jsdelivr.net/gh/GaisaiYuno/imghost/20191003162144.png" alt=""></figure>
+<p>考虑用trie维护<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>s</mi></mrow><annotation encoding="application/x-tex">s</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">s</span></span></span></span>，如何马上求出<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>a</mi><mo>[</mo><mi>l</mi><mo>]</mo><mo separator="true">,</mo><mi>a</mi><mo>[</mo><mi>l</mi><mo>+</mo><mn>1</mn><mo>]</mo><mo separator="true">,</mo><mi>a</mi><mo>[</mo><mi>l</mi><mo>+</mo><mn>2</mn><mo>]</mo><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mi>a</mi><mo>[</mo><mi>r</mi><mo>]</mo></mrow><annotation encoding="application/x-tex">{a[l],a[l+1],a[l+2]...a[r]}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathdefault">a</span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mclose">]</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">a</span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord">1</span><span class="mclose">]</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">a</span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord">2</span><span class="mclose">]</span><span class="mord">.</span><span class="mord">.</span><span class="mord">.</span><span class="mord mathdefault">a</span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mclose">]</span></span></span></span></span>呢？</p>
+<p>我们需要可持久化，实现时类似于主席树前缀和做差即可。</p>
+<pre><code class="language-cpp">Print(Query(31,rt[l-1],rt[r],x),'\n');
+</code></pre>
+<p>如何快速查询<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>s</mi></mrow><annotation encoding="application/x-tex">s</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">s</span></span></span></span>中有没有二进制<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>k</mi></mrow><annotation encoding="application/x-tex">k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span></span></span></span>位上面是<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>0</mn><mi mathvariant="normal">/</mi><mn>1</mn></mrow><annotation encoding="application/x-tex">0/1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">0</span><span class="mord">/</span><span class="mord">1</span></span></span></span>的数，只要查询这个子树的大小即可。</p>
+<pre><code class="language-cpp">int Query(int index,int l,int r,int x){
+	if (index&lt;0) return 0;
+	bool pos=(x&gt;&gt;index)&amp;1;
+	int k=tree[ch(r,pos^1)].sz-tree[ch(l,pos^1)].sz;//子树大小
+	if (k&gt;0){//有pos^1子树，根据贪心，必须往那里去
+		return Query(index-1,ch(l,pos^1),ch(r,pos^1),x)+(1&lt;&lt;index);
+	}
+	else {
+		return Query(index-1,ch(l,pos),ch(r,pos),x);
+	}
+}
+</code></pre>
+<p>插入也非常简单：</p>
+<pre><code class="language-cpp">void Insert(int &amp;i,int pre,int index,int x){
+	tree[i=++tot].sz=tree[pre].sz;//新建节点
+	if (index&lt;0){
+		tree[i].sz++;
+		return ;
+	}
+	bool pos=(x&gt;&gt;index)&amp;1;
+	ch(i,pos^1)=ch(pre,pos^1);//继承子节点
+	Insert(ch(i,pos),ch(pre,pos),index-1,x);//继续插入
+	tree[i].sz=tree[ch(i,0)].sz+tree[ch(i,1)].sz;//更新子树大小
+}
+</code></pre>
+<p>总的代码：</p>
+<pre><code class="language-cpp">#include &lt;bits/stdc++.h&gt;
+#define MAXN 200005
+using namespace std;
+inline int read(){
+	int x=0,f=1;
+	char ch=getchar();
+	while (ch&lt;'0'||ch&gt;'9'){
+		if (ch=='-') f=-1;
+		ch=getchar();
+	}
+	while (ch&gt;='0'&amp;&amp;ch&lt;='9'){
+		x=(x&lt;&lt;3)+(x&lt;&lt;1)+(ch^'0');
+		ch=getchar();
+	}
+	return x*f;
+}
+void print(int x){
+	if (x&gt;9) print(x/10);
+	putchar('0'+x%10);
+}
+inline void Print(int x,char ch){
+	if (x==0) return putchar('0'),void();
+	if (x&lt;0) x=-x,putchar('-');
+	print(x);
+	putchar(ch);
+}
+int rt[MAXN];
+namespace Trie{
+	struct node{
+		int ch[2];
+		int sz;
+	}tree[MAXN&lt;&lt;5];
+	#define ch(i,p) tree[i].ch[p]
+	int tot;
+	void Insert(int &amp;i,int pre,int index,int x){
+		tree[i=++tot].sz=tree[pre].sz;
+		if (index&lt;0){
+			tree[i].sz++;
+			return ;
+		}
+		bool pos=(x&gt;&gt;index)&amp;1;
+		ch(i,pos^1)=ch(pre,pos^1);
+		Insert(ch(i,pos),ch(pre,pos),index-1,x);
+		tree[i].sz=tree[ch(i,0)].sz+tree[ch(i,1)].sz;
+	}
+	int Query(int index,int l,int r,int x){
+		if (index&lt;0) return 0;
+		bool pos=(x&gt;&gt;index)&amp;1;
+		int k=tree[ch(r,pos^1)].sz-tree[ch(l,pos^1)].sz;
+		if (k&gt;0){
+			return Query(index-1,ch(l,pos^1),ch(r,pos^1),x)+(1&lt;&lt;index);
+		}
+		else {
+			return Query(index-1,ch(l,pos),ch(r,pos),x);
+		}
+	}
+}
+using namespace Trie;
+int a[MAXN];
+int main(){
+	int n=read(),m=read();
+	for (register int i=1;i&lt;=n;++i){
+		a[i]=read();
+	}
+	for (register int i=1;i&lt;=n;++i){
+		Insert(rt[i],rt[i-1],31,a[i]);
+	}
+	for (register int i=1;i&lt;=m;++i){
+		int x=read(),l=read()+1,r=read()+1;
+		Print(Query(31,rt[l-1],rt[r],x),'\n');
+	}
+}
+</code></pre>
+<h2 id="例题2">例题2</h2>
+<p><a href="https://www.luogu.org/problem/P4735">P4735 最大异或和</a></p>
+<p><code>A x</code>：添加操作，表示在序列末尾添加一个数<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>x</mi></mrow><annotation encoding="application/x-tex">x</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">x</span></span></span></span>，序列的长度变为<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>N</mi><mo>+</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">N+1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.76666em;vertical-align:-0.08333em;"></span><span class="mord mathdefault" style="margin-right:0.10903em;">N</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span>。</p>
+<p><code>Q l r x</code>：询问操作，你需要找到一个位置<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>p</mi></mrow><annotation encoding="application/x-tex">p</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord mathdefault">p</span></span></span></span>，满足<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>l</mi><mo>≤</mo><mi>p</mi><mo>≤</mo><mi>r</mi></mrow><annotation encoding="application/x-tex">l \le p \le r</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83041em;vertical-align:-0.13597em;"></span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.8304100000000001em;vertical-align:-0.19444em;"></span><span class="mord mathdefault">p</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span></span></span></span>，使得： <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>a</mi><mo>[</mo><mi>p</mi><mo>]</mo><mo>⊕</mo><mi>a</mi><mo>[</mo><mi>p</mi><mo>+</mo><mn>1</mn><mo>]</mo><mo>⊕</mo><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mo>⊕</mo><mi>a</mi><mo>[</mo><mi>N</mi><mo>]</mo><mo>⊕</mo><mi>x</mi></mrow><annotation encoding="application/x-tex">a[p] \oplus a[p+1] \oplus ... \oplus a[N] \oplus x</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">a</span><span class="mopen">[</span><span class="mord mathdefault">p</span><span class="mclose">]</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">⊕</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">a</span><span class="mopen">[</span><span class="mord mathdefault">p</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mclose">]</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">⊕</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord">.</span><span class="mord">.</span><span class="mord">.</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">⊕</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">a</span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.10903em;">N</span><span class="mclose">]</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">⊕</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">x</span></span></span></span>最大，输出最大是多少。</p>
+<p>令<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>s</mi><mi>u</mi><mi>m</mi><mo>[</mo><mi>p</mi><mo>]</mo><mo>=</mo><mi>a</mi><mo>[</mo><mn>1</mn><mo>]</mo><mo>⊕</mo><mi>a</mi><mo>[</mo><mn>2</mn><mo>]</mo><mo>⊕</mo><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mo>⊕</mo><mi>a</mi><mo>[</mo><mi>p</mi><mo>]</mo></mrow><annotation encoding="application/x-tex">sum[p]=a[1] \oplus a[2] \oplus ... \oplus a[p]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">s</span><span class="mord mathdefault">u</span><span class="mord mathdefault">m</span><span class="mopen">[</span><span class="mord mathdefault">p</span><span class="mclose">]</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">a</span><span class="mopen">[</span><span class="mord">1</span><span class="mclose">]</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">⊕</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">a</span><span class="mopen">[</span><span class="mord">2</span><span class="mclose">]</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">⊕</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord">.</span><span class="mord">.</span><span class="mord">.</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">⊕</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">a</span><span class="mopen">[</span><span class="mord mathdefault">p</span><span class="mclose">]</span></span></span></span>。</p>
+<p>考虑转换<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>a</mi><mo>[</mo><mi>p</mi><mo>]</mo><mo>⊕</mo><mi>a</mi><mo>[</mo><mi>p</mi><mo>+</mo><mn>1</mn><mo>]</mo><mo>⊕</mo><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mo>⊕</mo><mi>a</mi><mo>[</mo><mi>N</mi><mo>]</mo></mrow><annotation encoding="application/x-tex">a[p] \oplus a[p+1] \oplus ... \oplus a[N]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">a</span><span class="mopen">[</span><span class="mord mathdefault">p</span><span class="mclose">]</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">⊕</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">a</span><span class="mopen">[</span><span class="mord mathdefault">p</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mclose">]</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">⊕</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord">.</span><span class="mord">.</span><span class="mord">.</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">⊕</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">a</span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.10903em;">N</span><span class="mclose">]</span></span></span></span>为<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>s</mi><mi>u</mi><mi>m</mi><mo>[</mo><mi>N</mi><mo>]</mo><mo>⊕</mo><mi>s</mi><mi>u</mi><mi>m</mi><mo>[</mo><mi>p</mi><mo>−</mo><mn>1</mn><mo>]</mo></mrow><annotation encoding="application/x-tex">sum[N] \oplus sum[p-1]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">s</span><span class="mord mathdefault">u</span><span class="mord mathdefault">m</span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.10903em;">N</span><span class="mclose">]</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">⊕</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">s</span><span class="mord mathdefault">u</span><span class="mord mathdefault">m</span><span class="mopen">[</span><span class="mord mathdefault">p</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mclose">]</span></span></span></span>。</p>
+<p>问题变为找到一个<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>s</mi><mi>u</mi><mi>m</mi><mo>[</mo><mi>p</mi><mo>−</mo><mn>1</mn><mo>]</mo><mo separator="true">,</mo><mo>(</mo><mi>l</mi><mo>≤</mo><mi>p</mi><mo>≤</mo><mi>r</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">sum[p-1],(l \le p \le r)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">s</span><span class="mord mathdefault">u</span><span class="mord mathdefault">m</span><span class="mopen">[</span><span class="mord mathdefault">p</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mclose">]</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.8304100000000001em;vertical-align:-0.19444em;"></span><span class="mord mathdefault">p</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mclose">)</span></span></span></span>，使得<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>(</mo><mi>s</mi><mi>u</mi><mi>m</mi><mo>[</mo><mi>N</mi><mo>]</mo><mo>⊕</mo><mi>x</mi><mo>)</mo><mo>⊕</mo><mi>s</mi><mi>u</mi><mi>m</mi><mo>[</mo><mi>p</mi><mo>−</mo><mn>1</mn><mo>]</mo></mrow><annotation encoding="application/x-tex">(sum[N] \oplus x) \oplus sum[p-1]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathdefault">s</span><span class="mord mathdefault">u</span><span class="mord mathdefault">m</span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.10903em;">N</span><span class="mclose">]</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">⊕</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">x</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">⊕</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">s</span><span class="mord mathdefault">u</span><span class="mord mathdefault">m</span><span class="mopen">[</span><span class="mord mathdefault">p</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mclose">]</span></span></span></span>最大。</p>
+<p>于是这个问题也可以可持久化trie解决。</p>
+<pre><code class="language-cpp">#include &lt;bits/stdc++.h&gt;
+#define MAXN 1000005
+using namespace std;
+inline int read(){
+	int x=0,f=1;
+	char ch=getchar();
+	while (ch&lt;'0'||ch&gt;'9'){
+		if (ch=='-') f=-1;
+		ch=getchar();
+	}
+	while (ch&gt;='0'&amp;&amp;ch&lt;='9'){
+		x=(x&lt;&lt;3)+(x&lt;&lt;1)+(ch^'0');
+		ch=getchar();
+	}
+	return x*f;
+}
+void print(int x){
+	if (x&gt;9) print(x/10);
+	putchar('0'+x%10);
+}
+inline void Print(int x,char ch){
+	if (x==0) return putchar('0'),putchar(ch),void();
+	if (x&lt;0) x=-x,putchar('-');
+	print(x);
+	putchar(ch);
+}
+int rt[MAXN];
+namespace Trie{
+	struct node{
+		int ch[2];
+		int sz;
+	}tree[MAXN&lt;&lt;5];
+	#define ch(i,p) tree[i].ch[p]
+	int tot;
+	void Insert(int &amp;i,int pre,int index,int x){
+		tree[i=++tot].sz=tree[pre].sz;
+		if (index&lt;0){
+			tree[i].sz++;
+			return ;
+		}
+		bool pos=(x&gt;&gt;index)&amp;1;
+		ch(i,pos^1)=ch(pre,pos^1);
+		Insert(ch(i,pos),ch(pre,pos),index-1,x);
+		tree[i].sz=tree[ch(i,0)].sz+tree[ch(i,1)].sz;
+	}
+	int Query(int index,int l,int r,int x){
+		if (index&lt;0) return 0;
+		bool pos=(x&gt;&gt;index)&amp;1;
+		int k=tree[ch(r,pos^1)].sz-tree[ch(l,pos^1)].sz;
+		if (k&gt;0) return Query(index-1,ch(l,pos^1),ch(r,pos^1),x)+(1&lt;&lt;index);
+		else return Query(index-1,ch(l,pos),ch(r,pos),x);
+	}
+}
+using namespace Trie;
+inline char gc(){
+	char ch=getchar();
+	while (ch!='A'&amp;&amp;ch!='Q') ch=getchar();
+	return ch;
+}
+int a[MAXN];
+int main(){
+	int n=read(),m=read();
+	for (register int i=1;i&lt;=n;++i){
+		a[i]=read()^a[i-1];
+	}
+	for (register int i=1;i&lt;=n;++i){
+		Insert(rt[i],rt[i-1],31,a[i]);
+	}
+	for (register int i=1;i&lt;=m;++i){
+		char ch=gc();
+		if (ch=='A'){
+			int x=read();
+			a[n+1]=x^a[n];
+			Insert(rt[n+1],rt[n],31,a[n+1]);
+			++n;
+		}
+		else {
+			int l=read()-1,r=read()-1,x=read();
+			if (l==0&amp;&amp;l==r) Print(a[n]^x,'\n');//特判qwq
+			else {
+				if (!l) Print(Query(31,0,rt[r],x^a[n]),'\n');//这里也要
+				else Print(Query(31,rt[l-1],rt[r],x^a[n]),'\n');
+			}
+		}
+	}
+}
+</code></pre>
+<h2 id="例题3">例题3</h2>
+<p><a href="https://www.luogu.org/problem/P4098">P4098 [HEOI2013]ALO</a></p>
+<p>枚举次小值<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>a</mi><mo>[</mo><mi>i</mi><mo>]</mo></mrow><annotation encoding="application/x-tex">a[i]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">a</span><span class="mopen">[</span><span class="mord mathdefault">i</span><span class="mclose">]</span></span></span></span>，这题的重点是找到<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>m</mi><mi>i</mi><mi>n</mi><mi>l</mi><mo separator="true">,</mo><mi>m</mi><mi>a</mi><mi>x</mi><mi>r</mi></mrow><annotation encoding="application/x-tex">minl,maxr</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord mathdefault">m</span><span class="mord mathdefault">i</span><span class="mord mathdefault">n</span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">m</span><span class="mord mathdefault">a</span><span class="mord mathdefault">x</span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span></span></span></span>，使得<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>a</mi><mo>[</mo><mi>i</mi><mo>]</mo></mrow><annotation encoding="application/x-tex">a[i]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">a</span><span class="mopen">[</span><span class="mord mathdefault">i</span><span class="mclose">]</span></span></span></span>是<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>[</mo><mi>m</mi><mi>i</mi><mi>n</mi><mi>l</mi><mo separator="true">,</mo><mi>m</mi><mi>a</mi><mi>x</mi><mi>r</mi><mo>]</mo></mrow><annotation encoding="application/x-tex">[minl,maxr]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span class="mord mathdefault">m</span><span class="mord mathdefault">i</span><span class="mord mathdefault">n</span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">m</span><span class="mord mathdefault">a</span><span class="mord mathdefault">x</span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mclose">]</span></span></span></span>中的次小值。</p>
+<p>这个可以使用set或者平衡树或主席树之类的实现，也可以用双向链表<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><mi>n</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">O(n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mclose">)</span></span></span></span>实现。</p>
+<pre><code class="language-cpp">#include &lt;bits/stdc++.h&gt;
+#define MAXN 1000005
+using namespace std;
+inline int read(){
+	int x=0,f=1;
+	char ch=getchar();
+	while (ch&lt;'0'||ch&gt;'9'){
+		if (ch=='-') f=-1;
+		ch=getchar();
+	}
+	while (ch&gt;='0'&amp;&amp;ch&lt;='9'){
+		x=(x&lt;&lt;3)+(x&lt;&lt;1)+(ch^'0');
+		ch=getchar();
+	}
+	return x*f;
+}
+void print(int x){
+	if (x&gt;9) print(x/10);
+	putchar('0'+x%10);
+}
+inline void Print(int x,char ch){
+	if (x==0) return putchar('0'),putchar(ch),void();
+	if (x&lt;0) x=-x,putchar('-');
+	print(x);
+	putchar(ch);
+}
+int rt[MAXN];
+namespace Trie{
+	struct node{
+		int ch[2];
+		int sz;
+	}tree[MAXN&lt;&lt;5];
+	#define ch(i,p) tree[i].ch[p]
+	int tot;
+	void Insert(int &amp;i,int pre,int index,int x){
+		tree[i=++tot].sz=tree[pre].sz;
+		if (index&lt;0){
+			tree[i].sz++;
+			return ;
+		}
+		bool pos=(x&gt;&gt;index)&amp;1;
+		ch(i,pos^1)=ch(pre,pos^1);
+		Insert(ch(i,pos),ch(pre,pos),index-1,x);
+		tree[i].sz=tree[ch(i,0)].sz+tree[ch(i,1)].sz;
+	}
+	int Query(int index,int l,int r,int x){
+		if (index&lt;0) return 0;
+		bool pos=(x&gt;&gt;index)&amp;1;
+		int k=tree[ch(r,pos^1)].sz-tree[ch(l,pos^1)].sz;
+		if (k&gt;0) return Query(index-1,ch(l,pos^1),ch(r,pos^1),x)+(1&lt;&lt;index);
+		else return Query(index-1,ch(l,pos),ch(r,pos),x);
+	}
+}
+using namespace Trie;
+inline char gc(){
+	char ch=getchar();
+	while (ch!='A'&amp;&amp;ch!='Q') ch=getchar();
+	return ch;
+}
+int a[MAXN],id[MAXN],pre[MAXN],nex[MAXN];
+inline int cmp(int i,int j){
+	return a[i]&lt;a[j];
+}
+int L[MAXN],R[MAXN];
+int main(){
+	int n=read();
+	for (register int i=1;i&lt;=n;++i){
+		a[i]=read(),pre[i]=i-1,nex[i]=i+1;
+	}
+	pre[0]=1,nex[n]=n;
+	for (register int i=1;i&lt;=n;++i){
+		Insert(rt[i],rt[i-1],31,a[i]);
+	}
+	for (register int i=1;i&lt;=n;++i){
+		id[i]=i;
+	}
+	sort(id+1,id+1+n,cmp);
+	for (register int i=1;i&lt;=n;++i){
+		nex[pre[id[i]]]=nex[id[i]];
+		pre[nex[id[i]]]=pre[id[i]];
+		L[id[i]]=pre[pre[id[i]]];
+		R[id[i]]=nex[nex[id[i]]];
+	}
+	int ans=0;
+	for (register int i=1;i&lt;=n;++i){
+		ans=max(ans,Query(31,rt[L[i]],rt[R[i]-1],a[i]));
+	}
+	printf(&quot;%d\n&quot;,ans);
+}
+</code></pre>
+
+            </div>
+            
+              <div class="tag-container">
+                
+                  <a href="https://steven-mhy.github.io/tag/Elg5FF_d78" class="tag">
+                    trie
+                  </a>
+                
+                  <a href="https://steven-mhy.github.io/tag/qEXnlDBj8z" class="tag">
+                    可持久化
+                  </a>
+                
+              </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://steven-mhy.github.io/post/莫队学习笔记">
+                  <h3 class="post-title">
+                    莫队学习笔记
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+<script type="application/javascript">
+
+AOS.init();
+
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+
+
+  </body>
+</html>

@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>BZOJ 3133 [Baltic2013]ballmachine | Steven_Meng&#39;s Blog</title>
+<meta name="description" content="白鳥は　かなしからずや　空の青 海のあをにも　染まずただよふ">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://steven-mhy.github.io/favicon.ico?v=1571317992340">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://steven-mhy.github.io/styles/main.css">
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+
+
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://steven-mhy.github.io">
+        <img src="https://steven-mhy.github.io/images/avatar.png?v=1571317992340" class="site-logo">
+        <h1 class="site-title">Steven_Meng&#39;s Blog</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      白鳥は　かなしからずや　空の青 海のあをにも　染まずただよふ
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://steven-mhy.github.io/atom.xml" target="_blank">RSS</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">BZOJ 3133 [Baltic2013]ballmachine</h2>
+            <div class="post-date">2019-09-15</div>
+            
+            <div class="post-content">
+              <p><a href="https://www.lydsy.com/JudgeOnline/show.php?id=3133">传送门</a></p>
+<p>注意到题目条件<code>如果同时有多个点可以走，那么会选择编号最小的节点所在路径的方向。</code></p>
+<p>不妨考虑对树的节点进行一些安排，使得我们按照<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>d</mi><mi>f</mi><mi>s</mi></mrow><annotation encoding="application/x-tex">dfs</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord mathdefault">d</span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mord mathdefault">s</span></span></span></span>顺序找到的第一个点就是球落到的点。</p>
+<p>不要考虑编号最小的节点在的方向，而是考虑从一个点下落的时候，他会选择哪一条边，使得这条路径可以到达编号最小的点。</p>
+<p>没错，假设现在的节点是<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>u</mi></mrow><annotation encoding="application/x-tex">u</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">u</span></span></span></span>，它的子节点为<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>v</mi></mrow><annotation encoding="application/x-tex">v</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">v</span></span></span></span>，它选择的路径就是子树最小值最小的<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>v</mi></mrow><annotation encoding="application/x-tex">v</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">v</span></span></span></span></p>
+<p>于是，可以按照子树最小值的顺序对<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>u</mi></mrow><annotation encoding="application/x-tex">u</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">u</span></span></span></span>的子节点<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>v</mi></mrow><annotation encoding="application/x-tex">v</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">v</span></span></span></span>进行排序，这样就可以保证我们<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>d</mi><mi>f</mi><mi>s</mi></mrow><annotation encoding="application/x-tex">dfs</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord mathdefault">d</span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mord mathdefault">s</span></span></span></span>到的第一个没有放球的点就是球下落到的位置，相当于对这棵树进行了重构。</p>
+<pre><code class="language-cpp">inline bool cmp1(const int &amp;a,const int &amp;b){
+	return mino[a]&lt;mino[b];
+}
+void Init(int u){
+	mino[u]=u;
+	for (register int i=0;i&lt;G[u].size();++i){
+		int v=G[u][i];
+		Init(v);
+		mino[u]=min(mino[u],mino[v]);
+	}
+	sort(G[u].begin(),G[u].end(),cmp1);
+}
+</code></pre>
+<p>于是现在重构之后，发现现在按照<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>d</mi><mi>f</mi><mi>s</mi></mrow><annotation encoding="application/x-tex">dfs</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord mathdefault">d</span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mord mathdefault">s</span></span></span></span>的顺序遍历整棵树，遍历到的顺序就是小球的掉入的顺序。</p>
+<p>开始我们维护一个堆，维护的是放球的节点的编号，堆按照先序遍历的顺序排序。</p>
+<p>对于插入<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>n</mi><mi>u</mi><mi>m</mi></mrow><annotation encoding="application/x-tex">num</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">n</span><span class="mord mathdefault">u</span><span class="mord mathdefault">m</span></span></span></span>个小球，就是直接插入。</p>
+<p>对于删除，也比较好办，注意到删除一个小球，影响的只是这一条链上面的所有球，于是可以倍增找到同一条链最上面的小球，并且删除，掉下来的小球数量就是他们深度之差。</p>
+<p>但是，发现堆并不能<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><mi>log</mi><mo>⁡</mo><mi>n</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">O(\log n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mop">lo<span style="margin-right:0.01389em;">g</span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">n</span><span class="mclose">)</span></span></span></span>删除，反向考虑，堆维护改成没有放球的节点的编号，此时堆按照<strong>后序遍历</strong>的顺序排序。</p>
+<p>对于插入<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>n</mi><mi>u</mi><mi>m</mi></mrow><annotation encoding="application/x-tex">num</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">n</span><span class="mord mathdefault">u</span><span class="mord mathdefault">m</span></span></span></span>个小球，就是直接<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>p</mi><mi>o</mi><mi>p</mi></mrow><annotation encoding="application/x-tex">pop</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord mathdefault">p</span><span class="mord mathdefault">o</span><span class="mord mathdefault">p</span></span></span></span>出来堆顶元素。</p>
+<p>对于删除，找到最上面的小球，直接插入即可。</p>
+<p>代码：</p>
+<pre><code class="language-cpp">#include &lt;bits/stdc++.h&gt;
+#define MAXN 200005
+#define LOG 25
+using namespace std;
+inline int read(){
+	int x=0,f=1;
+	char ch=getchar();
+	while (ch&lt;'0'||ch&gt;'9'){
+		if (ch=='-') f=-1;
+		ch=getchar();
+	}
+	while (ch&gt;='0'&amp;&amp;ch&lt;='9'){
+		x=(x&lt;&lt;1)+(x&lt;&lt;3)+(ch^'0');
+		ch=getchar();
+	}
+	return x*f;
+}
+int anc[LOG][MAXN],mino[MAXN],dfn[MAXN];
+vector&lt;int&gt;G[MAXN];
+inline void AddEdge(int u,int v){
+	G[u].push_back(v);
+}
+inline bool cmp1(const int &amp;a,const int &amp;b){
+	return mino[a]&lt;mino[b];
+}
+struct cmp{bool operator()(const int &amp;a,const int &amp;b){return dfn[a]&gt;dfn[b];}};
+//后序遍历顺序
+void Init(int u){
+	mino[u]=u;
+	for (register int i=0;i&lt;G[u].size();++i){
+		int v=G[u][i];
+		Init(v);
+		mino[u]=min(mino[u],mino[v]);
+	}
+	sort(G[u].begin(),G[u].end(),cmp1);
+}
+int cnt;
+void dfs(int u,int father){
+	anc[0][u]=father;
+	for (register int i=1;i&lt;LOG;++i) anc[i][u]=anc[i-1][anc[i-1][u]];
+	for (register int i=0;i&lt;G[u].size();++i){
+		int v=G[u][i];
+		dfs(v,u);
+	}
+	dfn[u]=++cnt;
+}
+int inq[MAXN];
+int main(){
+	int n=read(),q=read();
+	for (register int i=1;i&lt;=n;++i){
+		int fa=read();
+		AddEdge(fa,i);
+	}
+	Init(0);
+	dfs(0,0);
+	priority_queue&lt;int,vector&lt;int&gt;,cmp&gt; Q;
+	for (register int i=1;i&lt;=n;++i) Q.push(i),inq[i]=true;//Q维护没有放球的位置
+	while (q--){
+		int opr=read(),num=read();
+		if (opr==1){
+			int lst;
+			while (num--){
+				int u=Q.top();Q.pop();
+				inq[lst=u]=false;
+			}
+			printf(&quot;%d\n&quot;,lst);//输出最后一个小球
+		}
+		else {
+			int ans=0;
+			for (register int i=LOG-1;i&gt;=0;--i){
+				if (anc[i][num]&amp;&amp;!inq[anc[i][num]]){
+					ans|=(1&lt;&lt;i);//ans记录深度
+					num=anc[i][num];
+				}
+			}
+			inq[num]=true;
+			Q.push(num);
+			printf(&quot;%d\n&quot;,ans);
+		}
+	}
+}
+</code></pre>
+
+            </div>
+            
+              <div class="tag-container">
+                
+                  <a href="https://steven-mhy.github.io/tag/mP8KAKLxBLr" class="tag">
+                    堆
+                  </a>
+                
+                  <a href="https://steven-mhy.github.io/tag/8DG1Qnt-3kq" class="tag">
+                    贪心
+                  </a>
+                
+                  <a href="https://steven-mhy.github.io/tag/6RLz_-cznbc" class="tag">
+                    倍增
+                  </a>
+                
+              </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://steven-mhy.github.io/post/LOJ-6435-「PKUSC2018」星际穿越">
+                  <h3 class="post-title">
+                    LOJ 6435.「PKUSC2018」星际穿越
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+<script type="application/javascript">
+
+AOS.init();
+
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+
+
+  </body>
+</html>
