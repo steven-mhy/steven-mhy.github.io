@@ -1,16 +1,18 @@
-<!DOCTYPE html>
+
 <html>
   <head>
-    <meta charset="utf-8" >
+    
+<meta charset="utf-8" >
 
 <title>Steven_Meng&#39;s Blog</title>
 <meta name="description" content="白鳥は　かなしからずや　空の青 海のあをにも　染まずただよふ">
 <meta name="referrer" content="no-referrer" />
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="https://steven-mhy.github.io/favicon.ico?v=1571390602731">
+<link rel="shortcut icon" href="https://steven-mhy.github.io/favicon.ico?v=1571391316490">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link rel="stylesheet" href="https://steven-mhy.github.io/styles/main.css">
 
@@ -19,232 +21,474 @@
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
 
-<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
-
 
 
   </head>
   <body>
     <div id="app" class="main">
-
-      <div class="sidebar" :class="{ 'full-height': menuVisible }">
-  <div class="top-container" data-aos="fade-right">
-    <div class="top-header-container">
-      <a class="site-title-container" href="https://steven-mhy.github.io">
-        <img src="https://steven-mhy.github.io/images/avatar.png?v=1571390602731" class="site-logo">
+      <div class="site-header-container">
+  <div class="site-header">
+    <div class="left">
+      <a href="https://steven-mhy.github.io">
+        <img class="avatar" src="https://steven-mhy.github.io/images/avatar.png?v=1571391316490" alt="" width="32px" height="32px">
+      </a>
+      <a href="https://steven-mhy.github.io">
         <h1 class="site-title">Steven_Meng&#39;s Blog</h1>
       </a>
-      <div class="menu-btn" @click="menuVisible = !menuVisible">
-        <div class="line"></div>
-      </div>
     </div>
-    <div>
+    <div class="right">
+      <transition name="fade">
+        <i class="icon" :class="{ 'icon-close-outline': menuVisible, 'icon-menu-outline': !menuVisible }" @click="menuVisible = !menuVisible"></i>
+      </transition>
+    </div>
+  </div>
+</div>
+
+<transition name="fade">
+  <div class="menu-container" style="display: none;" v-show="menuVisible">
+    <div class="menu-list">
       
         
-          <a href="/" class="site-nav">
+          <a href="/" class="menu purple-link">
             首页
           </a>
         
       
         
-          <a href="/archives" class="site-nav">
+          <a href="/archives" class="menu purple-link">
             归档
           </a>
         
       
         
-          <a href="/tags" class="site-nav">
+          <a href="/tags" class="menu purple-link">
             标签
           </a>
         
       
         
-          <a href="/post/about" class="site-nav">
+          <a href="/post/about" class="menu purple-link">
             关于
           </a>
         
       
     </div>
   </div>
-  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
-    <div class="social-container">
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-    </div>
-    <div class="site-description">
-      白鳥は　かなしからずや　空の青 海のあをにも　染まずただよふ
-    </div>
-    <div class="site-footer">
-      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://steven-mhy.github.io/atom.xml" target="_blank">RSS</a>
-    </div>
-  </div>
-</div>
+</transition>
 
 
-      <div class="main-container">
-        <div class="content-container" data-aos="fade-up">
-          
-            <article class="post-item">
-              <div class="left">
-                <a href="https://steven-mhy.github.io/post/LOJ-6435-「PKUSC2018」星际穿越">
-                  <h2 class="post-title">LOJ 6435.「PKUSC2018」星际穿越</h2>
-                </a>
-                <div class="post-date">
-                  2019-09-14
-                </div>
-                <div class="post-abstract">
-                  
-                </div>
-              </div>
-              
-            </article>
-          
-            <article class="post-item">
-              <div class="left">
-                <a href="https://steven-mhy.github.io/post/P2048-NOI2010-超级钢琴">
-                  <h2 class="post-title">P2048 [NOI2010]超级钢琴</h2>
-                </a>
-                <div class="post-date">
-                  2019-09-13
-                </div>
-                <div class="post-abstract">
-                  
-                </div>
-              </div>
-              
-            </article>
-          
-            <article class="post-item">
-              <div class="left">
-                <a href="https://steven-mhy.github.io/post/P3295-SCOI2016-萌萌哒">
-                  <h2 class="post-title">P3295 [SCOI2016]萌萌哒</h2>
-                </a>
-                <div class="post-date">
-                  2019-09-13
-                </div>
-                <div class="post-abstract">
-                  
-                </div>
-              </div>
-              
-            </article>
-          
-            <article class="post-item">
-              <div class="left">
-                <a href="https://steven-mhy.github.io/post/BZOJ-4025-二分图">
-                  <h2 class="post-title">BZOJ 4025 二分图</h2>
-                </a>
-                <div class="post-date">
-                  2019-09-08
-                </div>
-                <div class="post-abstract">
-                  
-                </div>
-              </div>
-              
-            </article>
-          
-            <article class="post-item">
-              <div class="left">
-                <a href="https://steven-mhy.github.io/post/P4197-Peaks">
-                  <h2 class="post-title">P4197 Peaks</h2>
-                </a>
-                <div class="post-date">
-                  2019-09-08
-                </div>
-                <div class="post-abstract">
-                  
-                </div>
-              </div>
-              
-            </article>
-          
-            <article class="post-item">
-              <div class="left">
-                <a href="https://steven-mhy.github.io/post/P3302-SDOI2013-森林">
-                  <h2 class="post-title">P3302 [SDOI2013]森林</h2>
-                </a>
-                <div class="post-date">
-                  2019-09-08
-                </div>
-                <div class="post-abstract">
-                  
-                </div>
-              </div>
-              
-            </article>
-          
-            <article class="post-item">
-              <div class="left">
-                <a href="https://steven-mhy.github.io/post/BZOJ-4668-冷战">
-                  <h2 class="post-title">BZOJ 4668 冷战</h2>
-                </a>
-                <div class="post-date">
-                  2019-09-08
-                </div>
-                <div class="post-abstract">
-                  
-                </div>
-              </div>
-              
-            </article>
-          
-            <article class="post-item">
-              <div class="left">
-                <a href="https://steven-mhy.github.io/post/Codeforces-Round-583-Div-1-Div-2-based-on-Olympiad-of-Metropolises">
-                  <h2 class="post-title">Codeforces Round #583 (Div. 1 + Div. 2, based on Olympiad of Metropolises)</h2>
-                </a>
-                <div class="post-date">
-                  2019-09-07
-                </div>
-                <div class="post-abstract">
-                  
-                </div>
-              </div>
-              
-            </article>
-          
-            <article class="post-item">
-              <div class="left">
-                <a href="https://steven-mhy.github.io/post/P5290-十二省联考2019-春节十二响">
-                  <h2 class="post-title">P5290 [十二省联考2019]春节十二响</h2>
-                </a>
-                <div class="post-date">
-                  2019-09-05
-                </div>
-                <div class="post-abstract">
-                  
-                </div>
-              </div>
-              
-            </article>
-          
-            <article class="post-item">
-              <div class="left">
-                <a href="https://steven-mhy.github.io/post/P4211-LNOI2014-LCA">
-                  <h2 class="post-title">P4211 [LNOI2014]LCA</h2>
-                </a>
-                <div class="post-date">
-                  2019-09-01
-                </div>
-                <div class="post-abstract">
-                  
-                </div>
-              </div>
-              
-            </article>
-          
+      <div class="content-container">
+        
+        
+<section class="post-item">
+    <div class="content">
+      <a href="https://steven-mhy.github.io/post/LOJ-6435-「PKUSC2018」星际穿越">
+        <h2 class="post-title">LOJ 6435.「PKUSC2018」星际穿越</h2>
+      </a>
+      <div class="post-abstract">
+        
+      </div>
+      <div class="post-info">
+        <span><i class="icon icon-calendar-outline"></i> 2019-09-14</span>
+        
+          <span>
+            <i class="icon icon-pricetags-outline"></i>
+            
+              <a href="https://steven-mhy.github.io/tag/6RLz_-cznbc">
+                倍增
+                
+                  ，
+                
+              </a>
+            
+              <a href="https://steven-mhy.github.io/tag/iAf8h7itv2W">
+                毒瘤
+                
+              </a>
+            
+          </span>
+        
+      </div>
+    </div>
+    
+  </section>
 
-          <div class="pagination-container">
+<section class="post-item">
+    <div class="content">
+      <a href="https://steven-mhy.github.io/post/P2048-NOI2010-超级钢琴">
+        <h2 class="post-title">P2048 [NOI2010]超级钢琴</h2>
+      </a>
+      <div class="post-abstract">
+        
+      </div>
+      <div class="post-info">
+        <span><i class="icon icon-calendar-outline"></i> 2019-09-13</span>
+        
+          <span>
+            <i class="icon icon-pricetags-outline"></i>
+            
+              <a href="https://steven-mhy.github.io/tag/tz8jnsnOVd">
+                题解
+                
+                  ，
+                
+              </a>
+            
+              <a href="https://steven-mhy.github.io/tag/mP8KAKLxBLr">
+                堆
+                
+                  ，
+                
+              </a>
+            
+              <a href="https://steven-mhy.github.io/tag/6RLz_-cznbc">
+                倍增
+                
+              </a>
+            
+          </span>
+        
+      </div>
+    </div>
+    
+  </section>
+
+<section class="post-item">
+    <div class="content">
+      <a href="https://steven-mhy.github.io/post/P3295-SCOI2016-萌萌哒">
+        <h2 class="post-title">P3295 [SCOI2016]萌萌哒</h2>
+      </a>
+      <div class="post-abstract">
+        
+      </div>
+      <div class="post-info">
+        <span><i class="icon icon-calendar-outline"></i> 2019-09-13</span>
+        
+          <span>
+            <i class="icon icon-pricetags-outline"></i>
+            
+              <a href="https://steven-mhy.github.io/tag/tz8jnsnOVd">
+                题解
+                
+                  ，
+                
+              </a>
+            
+              <a href="https://steven-mhy.github.io/tag/6RLz_-cznbc">
+                倍增
+                
+                  ，
+                
+              </a>
+            
+              <a href="https://steven-mhy.github.io/tag/hwNvtcl6w76">
+                并查集
+                
+              </a>
+            
+          </span>
+        
+      </div>
+    </div>
+    
+  </section>
+
+<section class="post-item">
+    <div class="content">
+      <a href="https://steven-mhy.github.io/post/BZOJ-4025-二分图">
+        <h2 class="post-title">BZOJ 4025 二分图</h2>
+      </a>
+      <div class="post-abstract">
+        
+      </div>
+      <div class="post-info">
+        <span><i class="icon icon-calendar-outline"></i> 2019-09-08</span>
+        
+          <span>
+            <i class="icon icon-pricetags-outline"></i>
+            
+              <a href="https://steven-mhy.github.io/tag/tz8jnsnOVd">
+                题解
+                
+                  ，
+                
+              </a>
+            
+              <a href="https://steven-mhy.github.io/tag/hwNvtcl6w76">
+                并查集
+                
+                  ，
+                
+              </a>
+            
+              <a href="https://steven-mhy.github.io/tag/915M0pAYLA6">
+                线段树
+                
+                  ，
+                
+              </a>
+            
+              <a href="https://steven-mhy.github.io/tag/oOIFso9qohS">
+                分治
+                
+                  ，
+                
+              </a>
+            
+              <a href="https://steven-mhy.github.io/tag/mA0sU98wK1a">
+                启发式合并
+                
+              </a>
+            
+          </span>
+        
+      </div>
+    </div>
+    
+  </section>
+
+<section class="post-item">
+    <div class="content">
+      <a href="https://steven-mhy.github.io/post/P4197-Peaks">
+        <h2 class="post-title">P4197 Peaks</h2>
+      </a>
+      <div class="post-abstract">
+        
+      </div>
+      <div class="post-info">
+        <span><i class="icon icon-calendar-outline"></i> 2019-09-08</span>
+        
+          <span>
+            <i class="icon icon-pricetags-outline"></i>
+            
+              <a href="https://steven-mhy.github.io/tag/tz8jnsnOVd">
+                题解
+                
+                  ，
+                
+              </a>
+            
+              <a href="https://steven-mhy.github.io/tag/hwNvtcl6w76">
+                并查集
+                
+                  ，
+                
+              </a>
+            
+              <a href="https://steven-mhy.github.io/tag/EvNUku8bleY">
+                主席树
+                
+                  ，
+                
+              </a>
+            
+              <a href="https://steven-mhy.github.io/tag/I-Vnx-uq2DH">
+                线段树合并
+                
+              </a>
+            
+          </span>
+        
+      </div>
+    </div>
+    
+  </section>
+
+<section class="post-item">
+    <div class="content">
+      <a href="https://steven-mhy.github.io/post/P3302-SDOI2013-森林">
+        <h2 class="post-title">P3302 [SDOI2013]森林</h2>
+      </a>
+      <div class="post-abstract">
+        
+      </div>
+      <div class="post-info">
+        <span><i class="icon icon-calendar-outline"></i> 2019-09-08</span>
+        
+          <span>
+            <i class="icon icon-pricetags-outline"></i>
+            
+              <a href="https://steven-mhy.github.io/tag/tz8jnsnOVd">
+                题解
+                
+                  ，
+                
+              </a>
+            
+              <a href="https://steven-mhy.github.io/tag/hwNvtcl6w76">
+                并查集
+                
+                  ，
+                
+              </a>
+            
+              <a href="https://steven-mhy.github.io/tag/mA0sU98wK1a">
+                启发式合并
+                
+                  ，
+                
+              </a>
+            
+              <a href="https://steven-mhy.github.io/tag/EvNUku8bleY">
+                主席树
+                
+                  ，
+                
+              </a>
+            
+              <a href="https://steven-mhy.github.io/tag/eAsxztIi3b4">
+                LCA
+                
+              </a>
+            
+          </span>
+        
+      </div>
+    </div>
+    
+  </section>
+
+<section class="post-item">
+    <div class="content">
+      <a href="https://steven-mhy.github.io/post/BZOJ-4668-冷战">
+        <h2 class="post-title">BZOJ 4668 冷战</h2>
+      </a>
+      <div class="post-abstract">
+        
+      </div>
+      <div class="post-info">
+        <span><i class="icon icon-calendar-outline"></i> 2019-09-08</span>
+        
+          <span>
+            <i class="icon icon-pricetags-outline"></i>
+            
+              <a href="https://steven-mhy.github.io/tag/tz8jnsnOVd">
+                题解
+                
+                  ，
+                
+              </a>
+            
+              <a href="https://steven-mhy.github.io/tag/hwNvtcl6w76">
+                并查集
+                
+              </a>
+            
+          </span>
+        
+      </div>
+    </div>
+    
+  </section>
+
+<section class="post-item">
+    <div class="content">
+      <a href="https://steven-mhy.github.io/post/Codeforces-Round-583-Div-1-Div-2-based-on-Olympiad-of-Metropolises">
+        <h2 class="post-title">Codeforces Round #583 (Div. 1 + Div. 2, based on Olympiad of Metropolises)</h2>
+      </a>
+      <div class="post-abstract">
+        
+      </div>
+      <div class="post-info">
+        <span><i class="icon icon-calendar-outline"></i> 2019-09-07</span>
+        
+          <span>
+            <i class="icon icon-pricetags-outline"></i>
+            
+              <a href="https://steven-mhy.github.io/tag/jnyqBVWJ-e">
+                比赛
+                
+              </a>
+            
+          </span>
+        
+      </div>
+    </div>
+    
+  </section>
+
+<section class="post-item">
+    <div class="content">
+      <a href="https://steven-mhy.github.io/post/P5290-十二省联考2019-春节十二响">
+        <h2 class="post-title">P5290 [十二省联考2019]春节十二响</h2>
+      </a>
+      <div class="post-abstract">
+        
+      </div>
+      <div class="post-info">
+        <span><i class="icon icon-calendar-outline"></i> 2019-09-05</span>
+        
+          <span>
+            <i class="icon icon-pricetags-outline"></i>
+            
+              <a href="https://steven-mhy.github.io/tag/tz8jnsnOVd">
+                题解
+                
+                  ，
+                
+              </a>
+            
+              <a href="https://steven-mhy.github.io/tag/mP8KAKLxBLr">
+                堆
+                
+                  ，
+                
+              </a>
+            
+              <a href="https://steven-mhy.github.io/tag/mA0sU98wK1a">
+                启发式合并
+                
+              </a>
+            
+          </span>
+        
+      </div>
+    </div>
+    
+  </section>
+
+<section class="post-item">
+    <div class="content">
+      <a href="https://steven-mhy.github.io/post/P4211-LNOI2014-LCA">
+        <h2 class="post-title">P4211 [LNOI2014]LCA</h2>
+      </a>
+      <div class="post-abstract">
+        
+      </div>
+      <div class="post-info">
+        <span><i class="icon icon-calendar-outline"></i> 2019-09-01</span>
+        
+          <span>
+            <i class="icon icon-pricetags-outline"></i>
+            
+              <a href="https://steven-mhy.github.io/tag/tz8jnsnOVd">
+                题解
+                
+                  ，
+                
+              </a>
+            
+              <a href="https://steven-mhy.github.io/tag/5IAZYzF_y6F">
+                树链剖分
+                
+                  ，
+                
+              </a>
+            
+              <a href="https://steven-mhy.github.io/tag/j7M1Jk7x2yP">
+                图论
+                
+              </a>
+            
+          </span>
+        
+      </div>
+    </div>
+    
+  </section>
+
+
+<div class="pagination-container">
   
     <a href="https://steven-mhy.github.io/page/2/" class="prev"><i class="icon-arrow-ios-back-outline"></i> 上一页</a>
   
@@ -253,15 +497,30 @@
   
 </div>
 
-        </div>
+
       </div>
+
+      <div class="site-footer">
+  <div class="slogan">白鳥は　かなしからずや　空の青 海のあをにも　染まずただよふ</div>
+  <div class="social-container">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://steven-mhy.github.io/atom.xml" target="_blank">RSS</a>
+</div>
+
+
     </div>
-
-    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
-
-<script type="application/javascript">
-
-AOS.init();
+    <script type="application/javascript">
 
 hljs.initHighlightingOnLoad()
 

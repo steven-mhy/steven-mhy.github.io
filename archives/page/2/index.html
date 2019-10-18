@@ -1,16 +1,17 @@
-<!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8" >
+    
+<meta charset="utf-8" >
 
-<title>文章归档 | Steven_Meng&#39;s Blog</title>
+<title>Steven_Meng&#39;s Blog</title>
 <meta name="description" content="白鳥は　かなしからずや　空の青 海のあをにも　染まずただよふ">
 <meta name="referrer" content="no-referrer" />
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="https://steven-mhy.github.io/favicon.ico?v=1571390602731">
+<link rel="shortcut icon" href="https://steven-mhy.github.io/favicon.ico?v=1571391316490">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link rel="stylesheet" href="https://steven-mhy.github.io/styles/main.css">
 
@@ -19,607 +20,647 @@
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
 
-<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
-
 
 
   </head>
   <body>
     <div id="app" class="main">
-
-      <div class="sidebar" :class="{ 'full-height': menuVisible }">
-  <div class="top-container" data-aos="fade-right">
-    <div class="top-header-container">
-      <a class="site-title-container" href="https://steven-mhy.github.io">
-        <img src="https://steven-mhy.github.io/images/avatar.png?v=1571390602731" class="site-logo">
+      <div class="site-header-container">
+  <div class="site-header">
+    <div class="left">
+      <a href="https://steven-mhy.github.io">
+        <img class="avatar" src="https://steven-mhy.github.io/images/avatar.png?v=1571391316490" alt="" width="32px" height="32px">
+      </a>
+      <a href="https://steven-mhy.github.io">
         <h1 class="site-title">Steven_Meng&#39;s Blog</h1>
       </a>
-      <div class="menu-btn" @click="menuVisible = !menuVisible">
-        <div class="line"></div>
-      </div>
     </div>
-    <div>
+    <div class="right">
+      <transition name="fade">
+        <i class="icon" :class="{ 'icon-close-outline': menuVisible, 'icon-menu-outline': !menuVisible }" @click="menuVisible = !menuVisible"></i>
+      </transition>
+    </div>
+  </div>
+</div>
+
+<transition name="fade">
+  <div class="menu-container" style="display: none;" v-show="menuVisible">
+    <div class="menu-list">
       
         
-          <a href="/" class="site-nav">
+          <a href="/" class="menu purple-link">
             首页
           </a>
         
       
         
-          <a href="/archives" class="site-nav">
+          <a href="/archives" class="menu purple-link">
             归档
           </a>
         
       
         
-          <a href="/tags" class="site-nav">
+          <a href="/tags" class="menu purple-link">
             标签
           </a>
         
       
         
-          <a href="/post/about" class="site-nav">
+          <a href="/post/about" class="menu purple-link">
             关于
           </a>
         
       
     </div>
   </div>
-  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
-    <div class="social-container">
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-    </div>
-    <div class="site-description">
-      白鳥は　かなしからずや　空の青 海のあをにも　染まずただよふ
-    </div>
-    <div class="site-footer">
-      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://steven-mhy.github.io/atom.xml" target="_blank">RSS</a>
-    </div>
-  </div>
-</div>
+</transition>
 
 
-      <div class="main-container">
-        <div class="content-container" data-aos="fade-up">
+        <div class="content-container">
+          
           
 
-          <h2 class="archives-title">文章归档</h2>
-          <div class="archives-container">
-            
-              <h2 class="year" data-aos="fade-in" data-aos-delay="500">2019</h2>
-              
-                
-                  <article class="post">
-                    <a href="https://steven-mhy.github.io/post/P4137-Rmq-Problem-mex">
-                      <h2 class="post-title">
-                        P4137 Rmq Problem / mex
-                      </h2>
-                    </a>
-                  </article>
-                
-              
-                
-                  <article class="post">
-                    <a href="https://steven-mhy.github.io/post/CF1202D-Print-a-1337-string">
-                      <h2 class="post-title">
-                        CF1202D Print a 1337-string...
-                      </h2>
-                    </a>
-                  </article>
-                
-              
-                
-                  <article class="post">
-                    <a href="https://steven-mhy.github.io/post/游戏「NOI2017」">
-                      <h2 class="post-title">
-                        游戏「NOI2017」
-                      </h2>
-                    </a>
-                  </article>
-                
-              
-                
-                  <article class="post">
-                    <a href="https://steven-mhy.github.io/post/BZOJ-4358-permu">
-                      <h2 class="post-title">
-                        BZOJ 4358 permu
-                      </h2>
-                    </a>
-                  </article>
-                
-              
-                
-                  <article class="post">
-                    <a href="https://steven-mhy.github.io/post/AT1219-歴史の研究">
-                      <h2 class="post-title">
-                        AT1219 歴史の研究
-                      </h2>
-                    </a>
-                  </article>
-                
-              
-                
-                  <article class="post">
-                    <a href="https://steven-mhy.github.io/post/梦幻布丁「HNOI2009」">
-                      <h2 class="post-title">
-                        梦幻布丁「HNOI2009」
-                      </h2>
-                    </a>
-                  </article>
-                
-              
-                
-                  <article class="post">
-                    <a href="https://steven-mhy.github.io/post/BZOJ-3757-苹果树">
-                      <h2 class="post-title">
-                        BZOJ 3757 苹果树
-                      </h2>
-                    </a>
-                  </article>
-                
-              
-                
-                  <article class="post">
-                    <a href="https://steven-mhy.github.io/post/P3007-USACO11JAN-大陆议会The-Continental-Cowngress">
-                      <h2 class="post-title">
-                        P3007 [USACO11JAN]大陆议会The Continental Cowngress
-                      </h2>
-                    </a>
-                  </article>
-                
-              
-                
-                  <article class="post">
-                    <a href="https://steven-mhy.github.io/post/LOJ-10097-「一本通-3-5-练习-5」和平委员会">
-                      <h2 class="post-title">
-                        LOJ #10097. 「一本通 3.5 练习 5」和平委员会
-                      </h2>
-                    </a>
-                  </article>
-                
-              
-                
-                  <article class="post">
-                    <a href="https://steven-mhy.github.io/post/P4305-JLOI2011-不重复数字">
-                      <h2 class="post-title">
-                        P4305 [JLOI2011]不重复数字
-                      </h2>
-                    </a>
-                  </article>
-                
-              
-                
-                  <article class="post">
-                    <a href="https://steven-mhy.github.io/post/P3168-CQOI2015-任务查询系统">
-                      <h2 class="post-title">
-                        P3168 [CQOI2015]任务查询系统
-                      </h2>
-                    </a>
-                  </article>
-                
-              
-                
-                  <article class="post">
-                    <a href="https://steven-mhy.github.io/post/P4396-AHOI2013-作业">
-                      <h2 class="post-title">
-                        P4396 [AHOI2013]作业
-                      </h2>
-                    </a>
-                  </article>
-                
-              
-                
-                  <article class="post">
-                    <a href="https://steven-mhy.github.io/post/「BZOJ3289」Mato的文件管理">
-                      <h2 class="post-title">
-                        「BZOJ3289」Mato的文件管理
-                      </h2>
-                    </a>
-                  </article>
-                
-              
-                
-                  <article class="post">
-                    <a href="https://steven-mhy.github.io/post/暑假集训作业">
-                      <h2 class="post-title">
-                        暑假集训作业
-                      </h2>
-                    </a>
-                  </article>
-                
-              
-                
-                  <article class="post">
-                    <a href="https://steven-mhy.github.io/post/P4867-Gty的二逼妹子序列">
-                      <h2 class="post-title">
-                        P4867 Gty的二逼妹子序列
-                      </h2>
-                    </a>
-                  </article>
-                
-              
-                
-                  <article class="post">
-                    <a href="https://steven-mhy.github.io/post/LOJ-2402-「THUPC-2017」天天爱射击-Shooting">
-                      <h2 class="post-title">
-                        LOJ #2402. 「THUPC 2017」天天爱射击 / Shooting
-                      </h2>
-                    </a>
-                  </article>
-                
-              
-                
-                  <article class="post">
-                    <a href="https://steven-mhy.github.io/post/U81395-换根の树">
-                      <h2 class="post-title">
-                        U81395 换根の树
-                      </h2>
-                    </a>
-                  </article>
-                
-              
-                
-                  <article class="post">
-                    <a href="https://steven-mhy.github.io/post/BZOJ3262-陌上花开">
-                      <h2 class="post-title">
-                        BZOJ3262 陌上花开
-                      </h2>
-                    </a>
-                  </article>
-                
-              
-                
-                  <article class="post">
-                    <a href="https://steven-mhy.github.io/post/P2221-HAOI2012-高速公路">
-                      <h2 class="post-title">
-                        P2221 [HAOI2012]高速公路
-                      </h2>
-                    </a>
-                  </article>
-                
-              
-                
-                  <article class="post">
-                    <a href="https://steven-mhy.github.io/post/2-SAT学习笔记">
-                      <h2 class="post-title">
-                        2-SAT学习笔记
-                      </h2>
-                    </a>
-                  </article>
-                
-              
-                
-                  <article class="post">
-                    <a href="https://steven-mhy.github.io/post/P4180-【模板】严格次小生成树-BJWC2010">
-                      <h2 class="post-title">
-                        P4180 【模板】严格次小生成树[BJWC2010]
-                      </h2>
-                    </a>
-                  </article>
-                
-              
-                
-                  <article class="post">
-                    <a href="https://steven-mhy.github.io/post/P2898-USACO08JAN-haybale猜测Haybale-Guessing">
-                      <h2 class="post-title">
-                        P2898 [USACO08JAN]haybale猜测Haybale Guessing
-                      </h2>
-                    </a>
-                  </article>
-                
-              
-                
-                  <article class="post">
-                    <a href="https://steven-mhy.github.io/post/P3901-数列找不同">
-                      <h2 class="post-title">
-                        P3901 数列找不同
-                      </h2>
-                    </a>
-                  </article>
-                
-              
-                
-                  <article class="post">
-                    <a href="https://steven-mhy.github.io/post/P3979-遥远的国度">
-                      <h2 class="post-title">
-                        P3979 遥远的国度
-                      </h2>
-                    </a>
-                  </article>
-                
-              
-                
-                  <article class="post">
-                    <a href="https://steven-mhy.github.io/post/P3792-由乃与大母神原型和偶像崇拜">
-                      <h2 class="post-title">
-                        P3792 由乃与大母神原型和偶像崇拜
-                      </h2>
-                    </a>
-                  </article>
-                
-              
-                
-                  <article class="post">
-                    <a href="https://steven-mhy.github.io/post/U80812-相同颜色对">
-                      <h2 class="post-title">
-                        U80812 相同颜色对
-                      </h2>
-                    </a>
-                  </article>
-                
-              
-                
-                  <article class="post">
-                    <a href="https://steven-mhy.github.io/post/P5071-Ynoi2015-此时此刻的光辉">
-                      <h2 class="post-title">
-                        P5071 [Ynoi2015]此时此刻的光辉
-                      </h2>
-                    </a>
-                  </article>
-                
-              
-                
-                  <article class="post">
-                    <a href="https://steven-mhy.github.io/post/P4689-Ynoi2016-这是我自己的发明">
-                      <h2 class="post-title">
-                        P4689 [Ynoi2016]这是我自己的发明
-                      </h2>
-                    </a>
-                  </article>
-                
-              
-                
-                  <article class="post">
-                    <a href="https://steven-mhy.github.io/post/P4462-CQOI2018-异或序列">
-                      <h2 class="post-title">
-                        P4462 [CQOI2018]异或序列
-                      </h2>
-                    </a>
-                  </article>
-                
-              
-                
-                  <article class="post">
-                    <a href="https://steven-mhy.github.io/post/SP3978-DISQUERY-Distance-Query">
-                      <h2 class="post-title">
-                        SP3978 DISQUERY - Distance Query
-                      </h2>
-                    </a>
-                  </article>
-                
-              
-                
-                  <article class="post">
-                    <a href="https://steven-mhy.github.io/post/P5002-专心OI-找祖先">
-                      <h2 class="post-title">
-                        P5002 专心OI - 找祖先
-                      </h2>
-                    </a>
-                  </article>
-                
-              
-                
-                  <article class="post">
-                    <a href="https://steven-mhy.github.io/post/圆方树学习笔记">
-                      <h2 class="post-title">
-                        圆方树学习笔记
-                      </h2>
-                    </a>
-                  </article>
-                
-              
-                
-                  <article class="post">
-                    <a href="https://steven-mhy.github.io/post/P1712-NOI2016-区间">
-                      <h2 class="post-title">
-                        P1712 [NOI2016]区间
-                      </h2>
-                    </a>
-                  </article>
-                
-              
-                
-                  <article class="post">
-                    <a href="https://steven-mhy.github.io/post/P1325-雷达安装">
-                      <h2 class="post-title">
-                        P1325 雷达安装
-                      </h2>
-                    </a>
-                  </article>
-                
-              
-                
-                  <article class="post">
-                    <a href="https://steven-mhy.github.io/post/SP1296-SUMFOUR-4-values-whose-sum-is-0">
-                      <h2 class="post-title">
-                        SP1296 SUMFOUR - 4 values whose sum is 0
-                      </h2>
-                    </a>
-                  </article>
-                
-              
-                
-                  <article class="post">
-                    <a href="https://steven-mhy.github.io/post/P2572-BZOJ1858-SCOI2010-序列操作">
-                      <h2 class="post-title">
-                        P2572 BZOJ1858 [SCOI2010]序列操作 
-                      </h2>
-                    </a>
-                  </article>
-                
-              
-                
-                  <article class="post">
-                    <a href="https://steven-mhy.github.io/post/P2146-NOI2015-软件包管理器">
-                      <h2 class="post-title">
-                        P2146 [NOI2015]软件包管理器
-                      </h2>
-                    </a>
-                  </article>
-                
-              
-                
-                  <article class="post">
-                    <a href="https://steven-mhy.github.io/post/P1505-国家集训队-旅游">
-                      <h2 class="post-title">
-                        P1505 [国家集训队]旅游
-                      </h2>
-                    </a>
-                  </article>
-                
-              
-                
-                  <article class="post">
-                    <a href="https://steven-mhy.github.io/post/CF735D-Taxes">
-                      <h2 class="post-title">
-                        CF735D Taxes
-                      </h2>
-                    </a>
-                  </article>
-                
-              
-                
-                  <article class="post">
-                    <a href="https://steven-mhy.github.io/post/P3674-小清新人渣的本愿">
-                      <h2 class="post-title">
-                        P3674 小清新人渣的本愿
-                      </h2>
-                    </a>
-                  </article>
-                
-              
-                
-                  <article class="post">
-                    <a href="https://steven-mhy.github.io/post/P2294-HNOI2005-狡猾的商人">
-                      <h2 class="post-title">
-                        P2294 [HNOI2005]狡猾的商人
-                      </h2>
-                    </a>
-                  </article>
-                
-              
-                
-                  <article class="post">
-                    <a href="https://steven-mhy.github.io/post/GSS题目清单">
-                      <h2 class="post-title">
-                        GSS题目清单
-                      </h2>
-                    </a>
-                  </article>
-                
-              
-                
-                  <article class="post">
-                    <a href="https://steven-mhy.github.io/post/SP19543-GSS8-Can-you-answer-these-queries-VIII">
-                      <h2 class="post-title">
-                        SP19543 GSS8 - Can you answer these queries VIII
-                      </h2>
-                    </a>
-                  </article>
-                
-              
-                
-                  <article class="post">
-                    <a href="https://steven-mhy.github.io/post/P3038-USACO11DEC-牧草种植Grass-Planting">
-                      <h2 class="post-title">
-                        P3038 [USACO11DEC]牧草种植Grass Planting
-                      </h2>
-                    </a>
-                  </article>
-                
-              
-                
-                  <article class="post">
-                    <a href="https://steven-mhy.github.io/post/P3833-SHOI2012-魔法树">
-                      <h2 class="post-title">
-                        P3833 [SHOI2012]魔法树
-                      </h2>
-                    </a>
-                  </article>
-                
-              
-                
-                  <article class="post">
-                    <a href="https://steven-mhy.github.io/post/P4315-月下“毛景树”">
-                      <h2 class="post-title">
-                        P4315 月下“毛景树”
-                      </h2>
-                    </a>
-                  </article>
-                
-              
-                
-                  <article class="post">
-                    <a href="https://steven-mhy.github.io/post/P4085-USACO17DEC-Haybale-Feast">
-                      <h2 class="post-title">
-                        P4085 [USACO17DEC]Haybale Feast
-                      </h2>
-                    </a>
-                  </article>
-                
-              
-                
-                  <article class="post">
-                    <a href="https://steven-mhy.github.io/post/P4089-USACO17DEC-The-Bovine-Shuffle">
-                      <h2 class="post-title">
-                        P4089 [USACO17DEC]The Bovine Shuffle
-                      </h2>
-                    </a>
-                  </article>
-                
-              
-                
-                  <article class="post">
-                    <a href="https://steven-mhy.github.io/post/P3313-SDOI2014-旅行">
-                      <h2 class="post-title">
-                        P3313 [SDOI2014]旅行
-                      </h2>
-                    </a>
-                  </article>
-                
-              
-                
-                  <article class="post">
-                    <a href="https://steven-mhy.github.io/post/HDU5807-BestCoder-Round-86-1004-Keep-In-Touch">
-                      <h2 class="post-title">
-                        [HDU5807] [BestCoder Round #86 1004] Keep In Touch 
-                      </h2>
-                    </a>
-                  </article>
-                
-              
-            
-          </div>
-
-          <div class="pagination-container">
+<div class="archives-container">
   
-    <a href="https://steven-mhy.github.io/archives/" class="prev"><i class="icon-arrow-ios-back-outline"></i> 上一页</a>
-  
-  
-    <a href="https://steven-mhy.github.io/archives/page/3/" class="next">下一页 <i class="icon-arrow-ios-forward-outline"></i></a>
+    <h2 class="year">2019</h2>
+    
+      
+        <article class="post">
+          <a href="https://steven-mhy.github.io/post/P4137-Rmq-Problem-mex">
+            <h2 class="post-title">
+              P4137 Rmq Problem / mex
+              <small>2019-08-08</small>
+            </h2>
+          </a>
+        </article>
+      
+    
+      
+        <article class="post">
+          <a href="https://steven-mhy.github.io/post/CF1202D-Print-a-1337-string">
+            <h2 class="post-title">
+              CF1202D Print a 1337-string...
+              <small>2019-08-07</small>
+            </h2>
+          </a>
+        </article>
+      
+    
+      
+        <article class="post">
+          <a href="https://steven-mhy.github.io/post/游戏「NOI2017」">
+            <h2 class="post-title">
+              游戏「NOI2017」
+              <small>2019-08-07</small>
+            </h2>
+          </a>
+        </article>
+      
+    
+      
+        <article class="post">
+          <a href="https://steven-mhy.github.io/post/BZOJ-4358-permu">
+            <h2 class="post-title">
+              BZOJ 4358 permu
+              <small>2019-08-07</small>
+            </h2>
+          </a>
+        </article>
+      
+    
+      
+        <article class="post">
+          <a href="https://steven-mhy.github.io/post/AT1219-歴史の研究">
+            <h2 class="post-title">
+              AT1219 歴史の研究
+              <small>2019-08-06</small>
+            </h2>
+          </a>
+        </article>
+      
+    
+      
+        <article class="post">
+          <a href="https://steven-mhy.github.io/post/梦幻布丁「HNOI2009」">
+            <h2 class="post-title">
+              梦幻布丁「HNOI2009」
+              <small>2019-08-06</small>
+            </h2>
+          </a>
+        </article>
+      
+    
+      
+        <article class="post">
+          <a href="https://steven-mhy.github.io/post/BZOJ-3757-苹果树">
+            <h2 class="post-title">
+              BZOJ 3757 苹果树
+              <small>2019-08-06</small>
+            </h2>
+          </a>
+        </article>
+      
+    
+      
+        <article class="post">
+          <a href="https://steven-mhy.github.io/post/P3007-USACO11JAN-大陆议会The-Continental-Cowngress">
+            <h2 class="post-title">
+              P3007 [USACO11JAN]大陆议会The Continental Cowngress
+              <small>2019-08-06</small>
+            </h2>
+          </a>
+        </article>
+      
+    
+      
+        <article class="post">
+          <a href="https://steven-mhy.github.io/post/LOJ-10097-「一本通-3-5-练习-5」和平委员会">
+            <h2 class="post-title">
+              LOJ #10097. 「一本通 3.5 练习 5」和平委员会
+              <small>2019-08-05</small>
+            </h2>
+          </a>
+        </article>
+      
+    
+      
+        <article class="post">
+          <a href="https://steven-mhy.github.io/post/P4305-JLOI2011-不重复数字">
+            <h2 class="post-title">
+              P4305 [JLOI2011]不重复数字
+              <small>2019-08-05</small>
+            </h2>
+          </a>
+        </article>
+      
+    
+      
+        <article class="post">
+          <a href="https://steven-mhy.github.io/post/P3168-CQOI2015-任务查询系统">
+            <h2 class="post-title">
+              P3168 [CQOI2015]任务查询系统
+              <small>2019-08-05</small>
+            </h2>
+          </a>
+        </article>
+      
+    
+      
+        <article class="post">
+          <a href="https://steven-mhy.github.io/post/P4396-AHOI2013-作业">
+            <h2 class="post-title">
+              P4396 [AHOI2013]作业
+              <small>2019-08-05</small>
+            </h2>
+          </a>
+        </article>
+      
+    
+      
+        <article class="post">
+          <a href="https://steven-mhy.github.io/post/「BZOJ3289」Mato的文件管理">
+            <h2 class="post-title">
+              「BZOJ3289」Mato的文件管理
+              <small>2019-08-05</small>
+            </h2>
+          </a>
+        </article>
+      
+    
+      
+        <article class="post">
+          <a href="https://steven-mhy.github.io/post/暑假集训作业">
+            <h2 class="post-title">
+              暑假集训作业
+              <small>2019-08-05</small>
+            </h2>
+          </a>
+        </article>
+      
+    
+      
+        <article class="post">
+          <a href="https://steven-mhy.github.io/post/P4867-Gty的二逼妹子序列">
+            <h2 class="post-title">
+              P4867 Gty的二逼妹子序列
+              <small>2019-08-05</small>
+            </h2>
+          </a>
+        </article>
+      
+    
+      
+        <article class="post">
+          <a href="https://steven-mhy.github.io/post/LOJ-2402-「THUPC-2017」天天爱射击-Shooting">
+            <h2 class="post-title">
+              LOJ #2402. 「THUPC 2017」天天爱射击 / Shooting
+              <small>2019-08-05</small>
+            </h2>
+          </a>
+        </article>
+      
+    
+      
+        <article class="post">
+          <a href="https://steven-mhy.github.io/post/U81395-换根の树">
+            <h2 class="post-title">
+              U81395 换根の树
+              <small>2019-08-04</small>
+            </h2>
+          </a>
+        </article>
+      
+    
+      
+        <article class="post">
+          <a href="https://steven-mhy.github.io/post/BZOJ3262-陌上花开">
+            <h2 class="post-title">
+              BZOJ3262 陌上花开
+              <small>2019-08-04</small>
+            </h2>
+          </a>
+        </article>
+      
+    
+      
+        <article class="post">
+          <a href="https://steven-mhy.github.io/post/P2221-HAOI2012-高速公路">
+            <h2 class="post-title">
+              P2221 [HAOI2012]高速公路
+              <small>2019-08-04</small>
+            </h2>
+          </a>
+        </article>
+      
+    
+      
+        <article class="post">
+          <a href="https://steven-mhy.github.io/post/2-SAT学习笔记">
+            <h2 class="post-title">
+              2-SAT学习笔记
+              <small>2019-08-04</small>
+            </h2>
+          </a>
+        </article>
+      
+    
+      
+        <article class="post">
+          <a href="https://steven-mhy.github.io/post/P4180-【模板】严格次小生成树-BJWC2010">
+            <h2 class="post-title">
+              P4180 【模板】严格次小生成树[BJWC2010]
+              <small>2019-08-03</small>
+            </h2>
+          </a>
+        </article>
+      
+    
+      
+        <article class="post">
+          <a href="https://steven-mhy.github.io/post/P2898-USACO08JAN-haybale猜测Haybale-Guessing">
+            <h2 class="post-title">
+              P2898 [USACO08JAN]haybale猜测Haybale Guessing
+              <small>2019-08-02</small>
+            </h2>
+          </a>
+        </article>
+      
+    
+      
+        <article class="post">
+          <a href="https://steven-mhy.github.io/post/P3901-数列找不同">
+            <h2 class="post-title">
+              P3901 数列找不同
+              <small>2019-08-02</small>
+            </h2>
+          </a>
+        </article>
+      
+    
+      
+        <article class="post">
+          <a href="https://steven-mhy.github.io/post/P3979-遥远的国度">
+            <h2 class="post-title">
+              P3979 遥远的国度
+              <small>2019-08-02</small>
+            </h2>
+          </a>
+        </article>
+      
+    
+      
+        <article class="post">
+          <a href="https://steven-mhy.github.io/post/P3792-由乃与大母神原型和偶像崇拜">
+            <h2 class="post-title">
+              P3792 由乃与大母神原型和偶像崇拜
+              <small>2019-08-02</small>
+            </h2>
+          </a>
+        </article>
+      
+    
+      
+        <article class="post">
+          <a href="https://steven-mhy.github.io/post/U80812-相同颜色对">
+            <h2 class="post-title">
+              U80812 相同颜色对
+              <small>2019-08-02</small>
+            </h2>
+          </a>
+        </article>
+      
+    
+      
+        <article class="post">
+          <a href="https://steven-mhy.github.io/post/P5071-Ynoi2015-此时此刻的光辉">
+            <h2 class="post-title">
+              P5071 [Ynoi2015]此时此刻的光辉
+              <small>2019-08-01</small>
+            </h2>
+          </a>
+        </article>
+      
+    
+      
+        <article class="post">
+          <a href="https://steven-mhy.github.io/post/P4689-Ynoi2016-这是我自己的发明">
+            <h2 class="post-title">
+              P4689 [Ynoi2016]这是我自己的发明
+              <small>2019-08-01</small>
+            </h2>
+          </a>
+        </article>
+      
+    
+      
+        <article class="post">
+          <a href="https://steven-mhy.github.io/post/P4462-CQOI2018-异或序列">
+            <h2 class="post-title">
+              P4462 [CQOI2018]异或序列
+              <small>2019-07-31</small>
+            </h2>
+          </a>
+        </article>
+      
+    
+      
+        <article class="post">
+          <a href="https://steven-mhy.github.io/post/SP3978-DISQUERY-Distance-Query">
+            <h2 class="post-title">
+              SP3978 DISQUERY - Distance Query
+              <small>2019-07-31</small>
+            </h2>
+          </a>
+        </article>
+      
+    
+      
+        <article class="post">
+          <a href="https://steven-mhy.github.io/post/P5002-专心OI-找祖先">
+            <h2 class="post-title">
+              P5002 专心OI - 找祖先
+              <small>2019-07-31</small>
+            </h2>
+          </a>
+        </article>
+      
+    
+      
+        <article class="post">
+          <a href="https://steven-mhy.github.io/post/圆方树学习笔记">
+            <h2 class="post-title">
+              圆方树学习笔记
+              <small>2019-07-31</small>
+            </h2>
+          </a>
+        </article>
+      
+    
+      
+        <article class="post">
+          <a href="https://steven-mhy.github.io/post/P1712-NOI2016-区间">
+            <h2 class="post-title">
+              P1712 [NOI2016]区间
+              <small>2019-07-31</small>
+            </h2>
+          </a>
+        </article>
+      
+    
+      
+        <article class="post">
+          <a href="https://steven-mhy.github.io/post/P1325-雷达安装">
+            <h2 class="post-title">
+              P1325 雷达安装
+              <small>2019-07-31</small>
+            </h2>
+          </a>
+        </article>
+      
+    
+      
+        <article class="post">
+          <a href="https://steven-mhy.github.io/post/SP1296-SUMFOUR-4-values-whose-sum-is-0">
+            <h2 class="post-title">
+              SP1296 SUMFOUR - 4 values whose sum is 0
+              <small>2019-07-31</small>
+            </h2>
+          </a>
+        </article>
+      
+    
+      
+        <article class="post">
+          <a href="https://steven-mhy.github.io/post/P2572-BZOJ1858-SCOI2010-序列操作">
+            <h2 class="post-title">
+              P2572 BZOJ1858 [SCOI2010]序列操作 
+              <small>2019-07-30</small>
+            </h2>
+          </a>
+        </article>
+      
+    
+      
+        <article class="post">
+          <a href="https://steven-mhy.github.io/post/P2146-NOI2015-软件包管理器">
+            <h2 class="post-title">
+              P2146 [NOI2015]软件包管理器
+              <small>2019-07-30</small>
+            </h2>
+          </a>
+        </article>
+      
+    
+      
+        <article class="post">
+          <a href="https://steven-mhy.github.io/post/P1505-国家集训队-旅游">
+            <h2 class="post-title">
+              P1505 [国家集训队]旅游
+              <small>2019-07-30</small>
+            </h2>
+          </a>
+        </article>
+      
+    
+      
+        <article class="post">
+          <a href="https://steven-mhy.github.io/post/CF735D-Taxes">
+            <h2 class="post-title">
+              CF735D Taxes
+              <small>2019-07-30</small>
+            </h2>
+          </a>
+        </article>
+      
+    
+      
+        <article class="post">
+          <a href="https://steven-mhy.github.io/post/P3674-小清新人渣的本愿">
+            <h2 class="post-title">
+              P3674 小清新人渣的本愿
+              <small>2019-07-30</small>
+            </h2>
+          </a>
+        </article>
+      
+    
+      
+        <article class="post">
+          <a href="https://steven-mhy.github.io/post/P2294-HNOI2005-狡猾的商人">
+            <h2 class="post-title">
+              P2294 [HNOI2005]狡猾的商人
+              <small>2019-07-28</small>
+            </h2>
+          </a>
+        </article>
+      
+    
+      
+        <article class="post">
+          <a href="https://steven-mhy.github.io/post/GSS题目清单">
+            <h2 class="post-title">
+              GSS题目清单
+              <small>2019-07-27</small>
+            </h2>
+          </a>
+        </article>
+      
+    
+      
+        <article class="post">
+          <a href="https://steven-mhy.github.io/post/SP19543-GSS8-Can-you-answer-these-queries-VIII">
+            <h2 class="post-title">
+              SP19543 GSS8 - Can you answer these queries VIII
+              <small>2019-07-27</small>
+            </h2>
+          </a>
+        </article>
+      
+    
+      
+        <article class="post">
+          <a href="https://steven-mhy.github.io/post/P3038-USACO11DEC-牧草种植Grass-Planting">
+            <h2 class="post-title">
+              P3038 [USACO11DEC]牧草种植Grass Planting
+              <small>2019-07-27</small>
+            </h2>
+          </a>
+        </article>
+      
+    
+      
+        <article class="post">
+          <a href="https://steven-mhy.github.io/post/P3833-SHOI2012-魔法树">
+            <h2 class="post-title">
+              P3833 [SHOI2012]魔法树
+              <small>2019-07-27</small>
+            </h2>
+          </a>
+        </article>
+      
+    
+      
+        <article class="post">
+          <a href="https://steven-mhy.github.io/post/P4315-月下“毛景树”">
+            <h2 class="post-title">
+              P4315 月下“毛景树”
+              <small>2019-07-27</small>
+            </h2>
+          </a>
+        </article>
+      
+    
+      
+        <article class="post">
+          <a href="https://steven-mhy.github.io/post/P4085-USACO17DEC-Haybale-Feast">
+            <h2 class="post-title">
+              P4085 [USACO17DEC]Haybale Feast
+              <small>2019-07-25</small>
+            </h2>
+          </a>
+        </article>
+      
+    
+      
+        <article class="post">
+          <a href="https://steven-mhy.github.io/post/P4089-USACO17DEC-The-Bovine-Shuffle">
+            <h2 class="post-title">
+              P4089 [USACO17DEC]The Bovine Shuffle
+              <small>2019-07-25</small>
+            </h2>
+          </a>
+        </article>
+      
+    
+      
+        <article class="post">
+          <a href="https://steven-mhy.github.io/post/P3313-SDOI2014-旅行">
+            <h2 class="post-title">
+              P3313 [SDOI2014]旅行
+              <small>2019-07-25</small>
+            </h2>
+          </a>
+        </article>
+      
+    
+      
+        <article class="post">
+          <a href="https://steven-mhy.github.io/post/HDU5807-BestCoder-Round-86-1004-Keep-In-Touch">
+            <h2 class="post-title">
+              [HDU5807] [BestCoder Round #86 1004] Keep In Touch 
+              <small>2019-07-25</small>
+            </h2>
+          </a>
+        </article>
+      
+    
   
 </div>
 
+
         </div>
+
+        <div class="site-footer">
+  <div class="slogan">白鳥は　かなしからずや　空の青 海のあをにも　染まずただよふ</div>
+  <div class="social-container">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://steven-mhy.github.io/atom.xml" target="_blank">RSS</a>
+</div>
+
+
       </div>
-    </div>
-
-    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
-
-<script type="application/javascript">
-
-AOS.init();
+      <script type="application/javascript">
 
 hljs.initHighlightingOnLoad()
 
@@ -635,5 +676,6 @@ var app = new Vue({
 
 
 
+    </div>
   </body>
 </html>

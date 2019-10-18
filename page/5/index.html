@@ -1,16 +1,18 @@
-<!DOCTYPE html>
+
 <html>
   <head>
-    <meta charset="utf-8" >
+    
+<meta charset="utf-8" >
 
 <title>Steven_Meng&#39;s Blog</title>
 <meta name="description" content="白鳥は　かなしからずや　空の青 海のあをにも　染まずただよふ">
 <meta name="referrer" content="no-referrer" />
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="https://steven-mhy.github.io/favicon.ico?v=1571390602731">
+<link rel="shortcut icon" href="https://steven-mhy.github.io/favicon.ico?v=1571391316490">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link rel="stylesheet" href="https://steven-mhy.github.io/styles/main.css">
 
@@ -19,232 +21,366 @@
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
 
-<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
-
 
 
   </head>
   <body>
     <div id="app" class="main">
-
-      <div class="sidebar" :class="{ 'full-height': menuVisible }">
-  <div class="top-container" data-aos="fade-right">
-    <div class="top-header-container">
-      <a class="site-title-container" href="https://steven-mhy.github.io">
-        <img src="https://steven-mhy.github.io/images/avatar.png?v=1571390602731" class="site-logo">
+      <div class="site-header-container">
+  <div class="site-header">
+    <div class="left">
+      <a href="https://steven-mhy.github.io">
+        <img class="avatar" src="https://steven-mhy.github.io/images/avatar.png?v=1571391316490" alt="" width="32px" height="32px">
+      </a>
+      <a href="https://steven-mhy.github.io">
         <h1 class="site-title">Steven_Meng&#39;s Blog</h1>
       </a>
-      <div class="menu-btn" @click="menuVisible = !menuVisible">
-        <div class="line"></div>
-      </div>
     </div>
-    <div>
+    <div class="right">
+      <transition name="fade">
+        <i class="icon" :class="{ 'icon-close-outline': menuVisible, 'icon-menu-outline': !menuVisible }" @click="menuVisible = !menuVisible"></i>
+      </transition>
+    </div>
+  </div>
+</div>
+
+<transition name="fade">
+  <div class="menu-container" style="display: none;" v-show="menuVisible">
+    <div class="menu-list">
       
         
-          <a href="/" class="site-nav">
+          <a href="/" class="menu purple-link">
             首页
           </a>
         
       
         
-          <a href="/archives" class="site-nav">
+          <a href="/archives" class="menu purple-link">
             归档
           </a>
         
       
         
-          <a href="/tags" class="site-nav">
+          <a href="/tags" class="menu purple-link">
             标签
           </a>
         
       
         
-          <a href="/post/about" class="site-nav">
+          <a href="/post/about" class="menu purple-link">
             关于
           </a>
         
       
     </div>
   </div>
-  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
-    <div class="social-container">
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-    </div>
-    <div class="site-description">
-      白鳥は　かなしからずや　空の青 海のあをにも　染まずただよふ
-    </div>
-    <div class="site-footer">
-      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://steven-mhy.github.io/atom.xml" target="_blank">RSS</a>
-    </div>
-  </div>
-</div>
+</transition>
 
 
-      <div class="main-container">
-        <div class="content-container" data-aos="fade-up">
-          
-            <article class="post-item">
-              <div class="left">
-                <a href="https://steven-mhy.github.io/post/APIO2019毒瘤题记录">
-                  <h2 class="post-title">APIO2019毒瘤题记录</h2>
-                </a>
-                <div class="post-date">
-                  2019-08-25
-                </div>
-                <div class="post-abstract">
-                  
-                </div>
-              </div>
-              
-            </article>
-          
-            <article class="post-item">
-              <div class="left">
-                <a href="https://steven-mhy.github.io/post/BZOJ-4987-Tree">
-                  <h2 class="post-title">BZOJ 4987 Tree</h2>
-                </a>
-                <div class="post-date">
-                  2019-08-25
-                </div>
-                <div class="post-abstract">
-                  
-                </div>
-              </div>
-              
-            </article>
-          
-            <article class="post-item">
-              <div class="left">
-                <a href="https://steven-mhy.github.io/post/P4516-JSOI2018-潜入行动">
-                  <h2 class="post-title">P4516 [JSOI2018]潜入行动</h2>
-                </a>
-                <div class="post-date">
-                  2019-08-25
-                </div>
-                <div class="post-abstract">
-                  
-                </div>
-              </div>
-              
-            </article>
-          
-            <article class="post-item">
-              <div class="left">
-                <a href="https://steven-mhy.github.io/post/容斥-背包学习笔记">
-                  <h2 class="post-title">容斥+背包学习笔记</h2>
-                </a>
-                <div class="post-date">
-                  2019-08-25
-                </div>
-                <div class="post-abstract">
-                  
-                </div>
-              </div>
-              
-            </article>
-          
-            <article class="post-item">
-              <div class="left">
-                <a href="https://steven-mhy.github.io/post/CDQ分治优化斜率优化">
-                  <h2 class="post-title">CDQ分治优化斜率优化</h2>
-                </a>
-                <div class="post-date">
-                  2019-08-20
-                </div>
-                <div class="post-abstract">
-                  
-                </div>
-              </div>
-              
-            </article>
-          
-            <article class="post-item">
-              <div class="left">
-                <a href="https://steven-mhy.github.io/post/斜率优化学习笔记">
-                  <h2 class="post-title">斜率优化学习笔记</h2>
-                </a>
-                <div class="post-date">
-                  2019-08-18
-                </div>
-                <div class="post-abstract">
-                  
-                </div>
-              </div>
-              
-            </article>
-          
-            <article class="post-item">
-              <div class="left">
-                <a href="https://steven-mhy.github.io/post/凸包学习笔记">
-                  <h2 class="post-title">凸包学习笔记</h2>
-                </a>
-                <div class="post-date">
-                  2019-08-18
-                </div>
-                <div class="post-abstract">
-                  
-                </div>
-              </div>
-              
-            </article>
-          
-            <article class="post-item">
-              <div class="left">
-                <a href="https://steven-mhy.github.io/post/P4166-SCOI2007-最大土地面积">
-                  <h2 class="post-title">P4166 [SCOI2007]最大土地面积</h2>
-                </a>
-                <div class="post-date">
-                  2019-08-12
-                </div>
-                <div class="post-abstract">
-                  
-                </div>
-              </div>
-              
-            </article>
-          
-            <article class="post-item">
-              <div class="left">
-                <a href="https://steven-mhy.github.io/post/SP20644-ZQUERY-Zero-Query">
-                  <h2 class="post-title">SP20644 ZQUERY - Zero Query</h2>
-                </a>
-                <div class="post-date">
-                  2019-08-11
-                </div>
-                <div class="post-abstract">
-                  
-                </div>
-              </div>
-              
-            </article>
-          
-            <article class="post-item">
-              <div class="left">
-                <a href="https://steven-mhy.github.io/post/P4168-Violet-蒲公英">
-                  <h2 class="post-title">P4168 [Violet]蒲公英</h2>
-                </a>
-                <div class="post-date">
-                  2019-08-09
-                </div>
-                <div class="post-abstract">
-                  
-                </div>
-              </div>
-              
-            </article>
-          
+      <div class="content-container">
+        
+        
+<section class="post-item">
+    <div class="content">
+      <a href="https://steven-mhy.github.io/post/APIO2019毒瘤题记录">
+        <h2 class="post-title">APIO2019毒瘤题记录</h2>
+      </a>
+      <div class="post-abstract">
+        
+      </div>
+      <div class="post-info">
+        <span><i class="icon icon-calendar-outline"></i> 2019-08-25</span>
+        
+          <span>
+            <i class="icon icon-pricetags-outline"></i>
+            
+              <a href="https://steven-mhy.github.io/tag/Z67GTpiNQw6">
+                APIO
+                
+              </a>
+            
+          </span>
+        
+      </div>
+    </div>
+    
+  </section>
 
-          <div class="pagination-container">
+<section class="post-item">
+    <div class="content">
+      <a href="https://steven-mhy.github.io/post/BZOJ-4987-Tree">
+        <h2 class="post-title">BZOJ 4987 Tree</h2>
+      </a>
+      <div class="post-abstract">
+        
+      </div>
+      <div class="post-info">
+        <span><i class="icon icon-calendar-outline"></i> 2019-08-25</span>
+        
+          <span>
+            <i class="icon icon-pricetags-outline"></i>
+            
+              <a href="https://steven-mhy.github.io/tag/xQxLUgkFtO2">
+                树形dp
+                
+                  ，
+                
+              </a>
+            
+              <a href="https://steven-mhy.github.io/tag/caR0rruH0yQ">
+                动态规划
+                
+              </a>
+            
+          </span>
+        
+      </div>
+    </div>
+    
+  </section>
+
+<section class="post-item">
+    <div class="content">
+      <a href="https://steven-mhy.github.io/post/P4516-JSOI2018-潜入行动">
+        <h2 class="post-title">P4516 [JSOI2018]潜入行动</h2>
+      </a>
+      <div class="post-abstract">
+        
+      </div>
+      <div class="post-info">
+        <span><i class="icon icon-calendar-outline"></i> 2019-08-25</span>
+        
+          <span>
+            <i class="icon icon-pricetags-outline"></i>
+            
+              <a href="https://steven-mhy.github.io/tag/xQxLUgkFtO2">
+                树形dp
+                
+                  ，
+                
+              </a>
+            
+              <a href="https://steven-mhy.github.io/tag/caR0rruH0yQ">
+                动态规划
+                
+              </a>
+            
+          </span>
+        
+      </div>
+    </div>
+    
+  </section>
+
+<section class="post-item">
+    <div class="content">
+      <a href="https://steven-mhy.github.io/post/容斥-背包学习笔记">
+        <h2 class="post-title">容斥+背包学习笔记</h2>
+      </a>
+      <div class="post-abstract">
+        
+      </div>
+      <div class="post-info">
+        <span><i class="icon icon-calendar-outline"></i> 2019-08-25</span>
+        
+          <span>
+            <i class="icon icon-pricetags-outline"></i>
+            
+              <a href="https://steven-mhy.github.io/tag/3A82fMRFOWt">
+                背包
+                
+                  ，
+                
+              </a>
+            
+              <a href="https://steven-mhy.github.io/tag/7NRJJgBEJQk">
+                容斥
+                
+              </a>
+            
+          </span>
+        
+      </div>
+    </div>
+    
+  </section>
+
+<section class="post-item">
+    <div class="content">
+      <a href="https://steven-mhy.github.io/post/CDQ分治优化斜率优化">
+        <h2 class="post-title">CDQ分治优化斜率优化</h2>
+      </a>
+      <div class="post-abstract">
+        
+      </div>
+      <div class="post-info">
+        <span><i class="icon icon-calendar-outline"></i> 2019-08-20</span>
+        
+          <span>
+            <i class="icon icon-pricetags-outline"></i>
+            
+              <a href="https://steven-mhy.github.io/tag/vrGAn34aD-p">
+                CDQ分治
+                
+                  ，
+                
+              </a>
+            
+              <a href="https://steven-mhy.github.io/tag/hmwcQ6a0Aev">
+                斜率优化
+                
+              </a>
+            
+          </span>
+        
+      </div>
+    </div>
+    
+  </section>
+
+<section class="post-item">
+    <div class="content">
+      <a href="https://steven-mhy.github.io/post/斜率优化学习笔记">
+        <h2 class="post-title">斜率优化学习笔记</h2>
+      </a>
+      <div class="post-abstract">
+        
+      </div>
+      <div class="post-info">
+        <span><i class="icon icon-calendar-outline"></i> 2019-08-18</span>
+        
+          <span>
+            <i class="icon icon-pricetags-outline"></i>
+            
+              <a href="https://steven-mhy.github.io/tag/hmwcQ6a0Aev">
+                斜率优化
+                
+              </a>
+            
+          </span>
+        
+      </div>
+    </div>
+    
+  </section>
+
+<section class="post-item">
+    <div class="content">
+      <a href="https://steven-mhy.github.io/post/凸包学习笔记">
+        <h2 class="post-title">凸包学习笔记</h2>
+      </a>
+      <div class="post-abstract">
+        
+      </div>
+      <div class="post-info">
+        <span><i class="icon icon-calendar-outline"></i> 2019-08-18</span>
+        
+          <span>
+            <i class="icon icon-pricetags-outline"></i>
+            
+              <a href="https://steven-mhy.github.io/tag/eBoUcZYF1pr">
+                计算几何
+                
+                  ，
+                
+              </a>
+            
+              <a href="https://steven-mhy.github.io/tag/CgqyzC7d9bG">
+                凸包
+                
+              </a>
+            
+          </span>
+        
+      </div>
+    </div>
+    
+  </section>
+
+<section class="post-item">
+    <div class="content">
+      <a href="https://steven-mhy.github.io/post/P4166-SCOI2007-最大土地面积">
+        <h2 class="post-title">P4166 [SCOI2007]最大土地面积</h2>
+      </a>
+      <div class="post-abstract">
+        
+      </div>
+      <div class="post-info">
+        <span><i class="icon icon-calendar-outline"></i> 2019-08-12</span>
+        
+      </div>
+    </div>
+    
+  </section>
+
+<section class="post-item">
+    <div class="content">
+      <a href="https://steven-mhy.github.io/post/SP20644-ZQUERY-Zero-Query">
+        <h2 class="post-title">SP20644 ZQUERY - Zero Query</h2>
+      </a>
+      <div class="post-abstract">
+        
+      </div>
+      <div class="post-info">
+        <span><i class="icon icon-calendar-outline"></i> 2019-08-11</span>
+        
+          <span>
+            <i class="icon icon-pricetags-outline"></i>
+            
+              <a href="https://steven-mhy.github.io/tag/tz8jnsnOVd">
+                题解
+                
+                  ，
+                
+              </a>
+            
+              <a href="https://steven-mhy.github.io/tag/u5Tym0HXSZT">
+                回滚莫队
+                
+              </a>
+            
+          </span>
+        
+      </div>
+    </div>
+    
+  </section>
+
+<section class="post-item">
+    <div class="content">
+      <a href="https://steven-mhy.github.io/post/P4168-Violet-蒲公英">
+        <h2 class="post-title">P4168 [Violet]蒲公英</h2>
+      </a>
+      <div class="post-abstract">
+        
+      </div>
+      <div class="post-info">
+        <span><i class="icon icon-calendar-outline"></i> 2019-08-09</span>
+        
+          <span>
+            <i class="icon icon-pricetags-outline"></i>
+            
+              <a href="https://steven-mhy.github.io/tag/tz8jnsnOVd">
+                题解
+                
+                  ，
+                
+              </a>
+            
+              <a href="https://steven-mhy.github.io/tag/0j24aW2eag">
+                分块
+                
+              </a>
+            
+          </span>
+        
+      </div>
+    </div>
+    
+  </section>
+
+
+<div class="pagination-container">
   
     <a href="https://steven-mhy.github.io/page/4/" class="prev"><i class="icon-arrow-ios-back-outline"></i> 上一页</a>
   
@@ -253,15 +389,30 @@
   
 </div>
 
-        </div>
+
       </div>
+
+      <div class="site-footer">
+  <div class="slogan">白鳥は　かなしからずや　空の青 海のあをにも　染まずただよふ</div>
+  <div class="social-container">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://steven-mhy.github.io/atom.xml" target="_blank">RSS</a>
+</div>
+
+
     </div>
-
-    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
-
-<script type="application/javascript">
-
-AOS.init();
+    <script type="application/javascript">
 
 hljs.initHighlightingOnLoad()
 
