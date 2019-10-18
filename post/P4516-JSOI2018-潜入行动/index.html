@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>P4516 [JSOI2018]潜入行动 | Steven_Meng&#39;s Blog</title>
+<meta name="description" content="白鳥は　かなしからずや　空の青 海のあをにも　染まずただよふ">
+<meta name="referrer" content="no-referrer" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://steven-mhy.github.io/favicon.ico?v=1571390602731">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://steven-mhy.github.io/styles/main.css">
+
+
+  
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
+  
+
+  
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+
+
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://steven-mhy.github.io">
+        <img src="https://steven-mhy.github.io/images/avatar.png?v=1571390602731" class="site-logo">
+        <h1 class="site-title">Steven_Meng&#39;s Blog</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      白鳥は　かなしからずや　空の青 海のあをにも　染まずただよふ
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://steven-mhy.github.io/atom.xml" target="_blank">RSS</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">P4516 [JSOI2018]潜入行动</h2>
+            <div class="post-date">2019-08-25</div>
+            
+            <div class="post-content">
+              <p><a href="https://www.luogu.org/problem/P4516">传送门</a></p>
+<p>考虑dp状态<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>d</mi><mi>p</mi><mo>[</mo><mi>u</mi><mo>]</mo><mo>[</mo><mi>i</mi><mo>]</mo><mo>[</mo><mn>0</mn><mi mathvariant="normal">/</mi><mn>1</mn><mo>]</mo><mo>[</mo><mn>0</mn><mi mathvariant="normal">/</mi><mn>1</mn><mo>]</mo></mrow><annotation encoding="application/x-tex">dp[u][i][0/1][0/1]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">d</span><span class="mord mathdefault">p</span><span class="mopen">[</span><span class="mord mathdefault">u</span><span class="mclose">]</span><span class="mopen">[</span><span class="mord mathdefault">i</span><span class="mclose">]</span><span class="mopen">[</span><span class="mord">0</span><span class="mord">/</span><span class="mord">1</span><span class="mclose">]</span><span class="mopen">[</span><span class="mord">0</span><span class="mord">/</span><span class="mord">1</span><span class="mclose">]</span></span></span></span>表示dp到节点<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>u</mi></mrow><annotation encoding="application/x-tex">u</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">u</span></span></span></span>，<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>u</mi></mrow><annotation encoding="application/x-tex">u</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">u</span></span></span></span>的子树里面放了<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>i</mi></mrow><annotation encoding="application/x-tex">i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.65952em;vertical-align:0em;"></span><span class="mord mathdefault">i</span></span></span></span>个监听设备，<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>u</mi></mrow><annotation encoding="application/x-tex">u</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">u</span></span></span></span>自己有没有被放，<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>u</mi></mrow><annotation encoding="application/x-tex">u</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">u</span></span></span></span>自己有没有被监听。</p>
+<p>注意到我们要满足题目的条件，所以只有<strong>u的子树内的其他点（不包含u）都被监听，才会算入dp方案数</strong>。</p>
+<p>接下来是恶心的分类讨论：</p>
+<p><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1.</mn><mi>d</mi><mi>p</mi><mo>[</mo><mi>u</mi><mo>]</mo><mo>[</mo><mi>i</mi><mo>]</mo><mo>[</mo><mn>0</mn><mo>]</mo><mo>[</mo><mn>0</mn><mo>]</mo></mrow><annotation encoding="application/x-tex">1.dp[u][i][0][0]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mord">.</span><span class="mord mathdefault">d</span><span class="mord mathdefault">p</span><span class="mopen">[</span><span class="mord mathdefault">u</span><span class="mclose">]</span><span class="mopen">[</span><span class="mord mathdefault">i</span><span class="mclose">]</span><span class="mopen">[</span><span class="mord">0</span><span class="mclose">]</span><span class="mopen">[</span><span class="mord">0</span><span class="mclose">]</span></span></span></span>，此时我们只能有一种选择，即使转移状态是<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>u</mi></mrow><annotation encoding="application/x-tex">u</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">u</span></span></span></span>既不被支配，又没有放，<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>v</mi></mrow><annotation encoding="application/x-tex">v</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">v</span></span></span></span>不能放，否则支配了<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>u</mi></mrow><annotation encoding="application/x-tex">u</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">u</span></span></span></span>，但是<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>v</mi></mrow><annotation encoding="application/x-tex">v</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">v</span></span></span></span>必须被支配（<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>u</mi></mrow><annotation encoding="application/x-tex">u</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">u</span></span></span></span>无法支配<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>v</mi></mrow><annotation encoding="application/x-tex">v</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">v</span></span></span></span>），要不然不符合上面我们的条件。</p>
+<pre><code class="language-cpp">Inc(dp[u][j+k][0][0],t[j][0][0]*dp[v][k][0][1]);//v一定要被支配，但是v不能放，否则支配了u
+</code></pre>
+<p><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>2.</mn><mi>d</mi><mi>p</mi><mo>[</mo><mi>u</mi><mo>]</mo><mo>[</mo><mi>i</mi><mo>]</mo><mo>[</mo><mn>0</mn><mo>]</mo><mo>[</mo><mn>1</mn><mo>]</mo></mrow><annotation encoding="application/x-tex">2.dp[u][i][0][1]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">2</span><span class="mord">.</span><span class="mord mathdefault">d</span><span class="mord mathdefault">p</span><span class="mopen">[</span><span class="mord mathdefault">u</span><span class="mclose">]</span><span class="mopen">[</span><span class="mord mathdefault">i</span><span class="mclose">]</span><span class="mopen">[</span><span class="mord">0</span><span class="mclose">]</span><span class="mopen">[</span><span class="mord">1</span><span class="mclose">]</span></span></span></span></p>
+<p>这里我们根据转移状态，再分两种情况：</p>
+<p><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>a</mi><mi mathvariant="normal">.</mi><mi mathvariant="normal">转</mi><mi mathvariant="normal">移</mi><mi mathvariant="normal">状</mi><mi mathvariant="normal">态</mi><mi mathvariant="normal">是</mi><mi>d</mi><mi>p</mi><mo>[</mo><mi>u</mi><mo>]</mo><mo>[</mo><mi>j</mi><mo>]</mo><mo>[</mo><mn>0</mn><mo>]</mo><mo>[</mo><mn>0</mn><mo>]</mo></mrow><annotation encoding="application/x-tex">a.转移状态是dp[u][j][0][0]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">a</span><span class="mord">.</span><span class="mord cjk_fallback">转</span><span class="mord cjk_fallback">移</span><span class="mord cjk_fallback">状</span><span class="mord cjk_fallback">态</span><span class="mord cjk_fallback">是</span><span class="mord mathdefault">d</span><span class="mord mathdefault">p</span><span class="mopen">[</span><span class="mord mathdefault">u</span><span class="mclose">]</span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.05724em;">j</span><span class="mclose">]</span><span class="mopen">[</span><span class="mord">0</span><span class="mclose">]</span><span class="mopen">[</span><span class="mord">0</span><span class="mclose">]</span></span></span></span>：此时<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>v</mi></mrow><annotation encoding="application/x-tex">v</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">v</span></span></span></span>必须放，来支配<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>u</mi></mrow><annotation encoding="application/x-tex">u</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">u</span></span></span></span>，而且<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>v</mi></mrow><annotation encoding="application/x-tex">v</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">v</span></span></span></span>必须被支配，因为<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>u</mi></mrow><annotation encoding="application/x-tex">u</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">u</span></span></span></span>无法支配<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>v</mi></mrow><annotation encoding="application/x-tex">v</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">v</span></span></span></span>。</p>
+<pre><code class="language-cpp">Inc(dp[u][j+k][0][1],t[j][0][0]*dp[v][k][1][1]);//如果u只被支配，转移状态是u什么都不放，那么v可以既被支配又放，此时u什么都不放，也不被支配都可以
+</code></pre>
+<p><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>b</mi><mi mathvariant="normal">.</mi><mi mathvariant="normal">转</mi><mi mathvariant="normal">移</mi><mi mathvariant="normal">状</mi><mi mathvariant="normal">态</mi><mi mathvariant="normal">是</mi><mi>d</mi><mi>p</mi><mo>[</mo><mi>u</mi><mo>]</mo><mo>[</mo><mi>j</mi><mo>]</mo><mo>[</mo><mn>0</mn><mo>]</mo><mo>[</mo><mn>1</mn><mo>]</mo></mrow><annotation encoding="application/x-tex">b.转移状态是dp[u][j][0][1]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">b</span><span class="mord">.</span><span class="mord cjk_fallback">转</span><span class="mord cjk_fallback">移</span><span class="mord cjk_fallback">状</span><span class="mord cjk_fallback">态</span><span class="mord cjk_fallback">是</span><span class="mord mathdefault">d</span><span class="mord mathdefault">p</span><span class="mopen">[</span><span class="mord mathdefault">u</span><span class="mclose">]</span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.05724em;">j</span><span class="mclose">]</span><span class="mopen">[</span><span class="mord">0</span><span class="mclose">]</span><span class="mopen">[</span><span class="mord">1</span><span class="mclose">]</span></span></span></span>：此时<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>v</mi></mrow><annotation encoding="application/x-tex">v</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">v</span></span></span></span>放不放无所谓，因为<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>u</mi></mrow><annotation encoding="application/x-tex">u</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">u</span></span></span></span>已经被支配了，但是<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>v</mi></mrow><annotation encoding="application/x-tex">v</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">v</span></span></span></span>必须被支配，因为<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>u</mi></mrow><annotation encoding="application/x-tex">u</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">u</span></span></span></span>无法支配<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>v</mi></mrow><annotation encoding="application/x-tex">v</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">v</span></span></span></span></p>
+<pre><code class="language-cpp">Inc(dp[u][j+k][0][1],t[j][0][1]*(dp[v][k][1][1]+dp[v][k][0][1]));//转移状态是u被支配，那么v只要被支配即可，注意到v放什么不会影响到u的状态
+</code></pre>
+<p><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>3.</mn><mi>d</mi><mi>p</mi><mo>[</mo><mi>u</mi><mo>]</mo><mo>[</mo><mi>j</mi><mo>]</mo><mo>[</mo><mn>1</mn><mo>]</mo><mo>[</mo><mn>0</mn><mo>]</mo></mrow><annotation encoding="application/x-tex">3.dp[u][j][1][0]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">3</span><span class="mord">.</span><span class="mord mathdefault">d</span><span class="mord mathdefault">p</span><span class="mopen">[</span><span class="mord mathdefault">u</span><span class="mclose">]</span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.05724em;">j</span><span class="mclose">]</span><span class="mopen">[</span><span class="mord">1</span><span class="mclose">]</span><span class="mopen">[</span><span class="mord">0</span><span class="mclose">]</span></span></span></span>此时转移状态只能是<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>u</mi></mrow><annotation encoding="application/x-tex">u</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">u</span></span></span></span>只放而不被支配，后面<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>v</mi></mrow><annotation encoding="application/x-tex">v</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">v</span></span></span></span>只要不放即可。</p>
+<p>为什么能从<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>d</mi><mi>p</mi><mo>[</mo><mi>v</mi><mo>]</mo><mo>[</mo><mi>k</mi><mo>]</mo><mo>[</mo><mn>0</mn><mo>]</mo><mo>[</mo><mn>0</mn><mo>]</mo></mrow><annotation encoding="application/x-tex">dp[v][k][0][0]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">d</span><span class="mord mathdefault">p</span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.03588em;">v</span><span class="mclose">]</span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span><span class="mclose">]</span><span class="mopen">[</span><span class="mord">0</span><span class="mclose">]</span><span class="mopen">[</span><span class="mord">0</span><span class="mclose">]</span></span></span></span>转移而来，是因为<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>u</mi></mrow><annotation encoding="application/x-tex">u</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">u</span></span></span></span>放了，可以支配<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>v</mi></mrow><annotation encoding="application/x-tex">v</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">v</span></span></span></span>，满足上面的条件。</p>
+<pre><code class="language-cpp">Inc(dp[u][j+k][1][0],t[j][1][0]*(dp[v][k][0][0]+dp[v][k][0][1]));//如果u只被放，转移状态只能是u只被放，所以v不能放，有两种情况
+</code></pre>
+<p><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>4.</mn><mi>d</mi><mi>p</mi><mo>[</mo><mi>u</mi><mo>]</mo><mo>[</mo><mi>j</mi><mo>]</mo><mo>[</mo><mn>1</mn><mo>]</mo><mo>[</mo><mn>1</mn><mo>]</mo></mrow><annotation encoding="application/x-tex">4.dp[u][j][1][1]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">4</span><span class="mord">.</span><span class="mord mathdefault">d</span><span class="mord mathdefault">p</span><span class="mopen">[</span><span class="mord mathdefault">u</span><span class="mclose">]</span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.05724em;">j</span><span class="mclose">]</span><span class="mopen">[</span><span class="mord">1</span><span class="mclose">]</span><span class="mopen">[</span><span class="mord">1</span><span class="mclose">]</span></span></span></span></p>
+<p>这里我们根据转移状态，再分两种情况：</p>
+<p><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>a</mi><mi mathvariant="normal">.</mi><mi mathvariant="normal">转</mi><mi mathvariant="normal">移</mi><mi mathvariant="normal">状</mi><mi mathvariant="normal">态</mi><mi mathvariant="normal">是</mi><mi>d</mi><mi>p</mi><mo>[</mo><mi>u</mi><mo>]</mo><mo>[</mo><mi>j</mi><mo>]</mo><mo>[</mo><mn>1</mn><mo>]</mo><mo>[</mo><mn>1</mn><mo>]</mo></mrow><annotation encoding="application/x-tex">a.转移状态是dp[u][j][1][1]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">a</span><span class="mord">.</span><span class="mord cjk_fallback">转</span><span class="mord cjk_fallback">移</span><span class="mord cjk_fallback">状</span><span class="mord cjk_fallback">态</span><span class="mord cjk_fallback">是</span><span class="mord mathdefault">d</span><span class="mord mathdefault">p</span><span class="mopen">[</span><span class="mord mathdefault">u</span><span class="mclose">]</span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.05724em;">j</span><span class="mclose">]</span><span class="mopen">[</span><span class="mord">1</span><span class="mclose">]</span><span class="mopen">[</span><span class="mord">1</span><span class="mclose">]</span></span></span></span>此时随便乱搞，其他四种情况都是合法的。</p>
+<pre><code class="language-cpp">Inc(dp[u][j+k][1][1],t[j][1][1]*(dp[v][k][0][0]+dp[v][k][0][1]+dp[v][k][1][0]+dp[v][k][1][1]));//如果u既被支配又被放，转移状态是u既被支配又被放，那么剩下随便乱搞
+</code></pre>
+<p><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>a</mi><mi mathvariant="normal">.</mi><mi mathvariant="normal">转</mi><mi mathvariant="normal">移</mi><mi mathvariant="normal">状</mi><mi mathvariant="normal">态</mi><mi mathvariant="normal">时</mi><mi>d</mi><mi>p</mi><mo>[</mo><mi>u</mi><mo>]</mo><mo>[</mo><mi>j</mi><mo>]</mo><mo>[</mo><mn>1</mn><mo>]</mo><mo>[</mo><mn>0</mn><mo>]</mo></mrow><annotation encoding="application/x-tex">a.转移状态时dp[u][j][1][0]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">a</span><span class="mord">.</span><span class="mord cjk_fallback">转</span><span class="mord cjk_fallback">移</span><span class="mord cjk_fallback">状</span><span class="mord cjk_fallback">态</span><span class="mord cjk_fallback">时</span><span class="mord mathdefault">d</span><span class="mord mathdefault">p</span><span class="mopen">[</span><span class="mord mathdefault">u</span><span class="mclose">]</span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.05724em;">j</span><span class="mclose">]</span><span class="mopen">[</span><span class="mord">1</span><span class="mclose">]</span><span class="mopen">[</span><span class="mord">0</span><span class="mclose">]</span></span></span></span>此时<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>v</mi></mrow><annotation encoding="application/x-tex">v</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">v</span></span></span></span>只要能够支配<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>u</mi></mrow><annotation encoding="application/x-tex">u</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">u</span></span></span></span>即可，所以<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>v</mi></mrow><annotation encoding="application/x-tex">v</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">v</span></span></span></span>要放。</p>
+<pre><code class="language-cpp">Inc(dp[u][j+k][1][1],t[j][1][0]*(dp[v][k][1][1]+dp[v][k][1][0]));//转移状态是u只被放，那v必须放，来支配u，注意到v可以不被支配，因为u放了
+</code></pre>
+<p>注意到<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>d</mi><mi>p</mi></mrow><annotation encoding="application/x-tex">dp</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord mathdefault">d</span><span class="mord mathdefault">p</span></span></span></span>过程无法改变<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>u</mi></mrow><annotation encoding="application/x-tex">u</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">u</span></span></span></span>节点有没有放的事实，即<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>d</mi><mi>p</mi><mo>[</mo><mo>]</mo><mo>[</mo><mo>]</mo><mo>[</mo><mn>0</mn><mo>]</mo><mo>[</mo><mn>0</mn><mi mathvariant="normal">/</mi><mn>1</mn><mo>]</mo></mrow><annotation encoding="application/x-tex">dp[][][0][0/1]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">d</span><span class="mord mathdefault">p</span><span class="mopen">[</span><span class="mclose">]</span><span class="mopen">[</span><span class="mclose">]</span><span class="mopen">[</span><span class="mord">0</span><span class="mclose">]</span><span class="mopen">[</span><span class="mord">0</span><span class="mord">/</span><span class="mord">1</span><span class="mclose">]</span></span></span></span>只能从<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>d</mi><mi>p</mi><mo>[</mo><mo>]</mo><mo>[</mo><mo>]</mo><mo>[</mo><mn>0</mn><mo>]</mo><mo>[</mo><mn>0</mn><mi mathvariant="normal">/</mi><mn>1</mn><mo>]</mo></mrow><annotation encoding="application/x-tex">dp[][][0][0/1]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">d</span><span class="mord mathdefault">p</span><span class="mopen">[</span><span class="mclose">]</span><span class="mopen">[</span><span class="mclose">]</span><span class="mopen">[</span><span class="mord">0</span><span class="mclose">]</span><span class="mopen">[</span><span class="mord">0</span><span class="mord">/</span><span class="mord">1</span><span class="mclose">]</span></span></span></span>转移而来，同理<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>d</mi><mi>p</mi><mo>[</mo><mo>]</mo><mo>[</mo><mo>]</mo><mo>[</mo><mn>1</mn><mo>]</mo><mo>[</mo><mn>0</mn><mi mathvariant="normal">/</mi><mn>1</mn><mo>]</mo></mrow><annotation encoding="application/x-tex">dp[][][1][0/1]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">d</span><span class="mord mathdefault">p</span><span class="mopen">[</span><span class="mclose">]</span><span class="mopen">[</span><span class="mclose">]</span><span class="mopen">[</span><span class="mord">1</span><span class="mclose">]</span><span class="mopen">[</span><span class="mord">0</span><span class="mord">/</span><span class="mord">1</span><span class="mclose">]</span></span></span></span>只能从<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>d</mi><mi>p</mi><mo>[</mo><mo>]</mo><mo>[</mo><mo>]</mo><mo>[</mo><mn>1</mn><mo>]</mo><mo>[</mo><mn>0</mn><mi mathvariant="normal">/</mi><mn>1</mn><mo>]</mo></mrow><annotation encoding="application/x-tex">dp[][][1][0/1]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">d</span><span class="mord mathdefault">p</span><span class="mopen">[</span><span class="mclose">]</span><span class="mopen">[</span><span class="mclose">]</span><span class="mopen">[</span><span class="mord">1</span><span class="mclose">]</span><span class="mopen">[</span><span class="mord">0</span><span class="mord">/</span><span class="mord">1</span><span class="mclose">]</span></span></span></span>转移而来。</p>
+<p>注意此题卡内存，以下代码会MLE。（防抄袭）</p>
+<pre><code class="language-cpp">#include &lt;bits/stdc++.h&gt;
+#define MOD 1000000007
+#define MAXN 100005
+#define MAXK 105
+#define int long long
+using namespace std;
+inline int read(){
+    int x=0,f=1;
+    char ch=getchar();
+    while (ch&lt;'0'||ch&gt;'9'){
+        if (ch=='-') f=-1;
+        ch=getchar();
+    }
+    while (ch&gt;='0'&amp;&amp;ch&lt;='9'){
+        x=(x&lt;&lt;3)+(x&lt;&lt;1)+(ch^'0');
+        ch=getchar();
+    }
+    return x*f;
+}
+vector&lt;int&gt;G[MAXN];
+inline void AddEdge(int u,int v){
+    G[u].push_back(v);
+}
+int dp[MAXN][MAXK][2][2],t[MAXK][2][2],sz[MAXN],m;
+#define Set(x,y) t[j][x][y]=dp[u][j][x][y];dp[u][j][x][y]=0
+inline void Inc(int &amp;a,int b){
+    a=(a+b)%MOD;
+}
+void dfs(int u,int father){
+    sz[u]=1;
+    dp[u][1][1][0]=dp[u][0][0][0]=1;
+    for (register int i=0;i&lt;G[u].size();++i){
+        int v=G[u][i];
+        if (v==father) continue;
+        dfs(v,u);
+        int Max1=min(m,sz[u]),Max2=min(m,sz[v]);
+        for (register int j=0;j&lt;=Max1;++j){
+            Set(0,0);
+            Set(0,1);
+            Set(1,0);
+            Set(1,1);
+        }
+        for (register int j=0;j&lt;=Max1;++j){
+            for (register int k=0;k&lt;=Max2;++k){
+                if (j+k&gt;m) continue;
+                //printf(&quot;In&quot;);
+                Inc(dp[u][j+k][0][0],t[j][0][0]*dp[v][k][0][1]);//v一定要被支配，但是v不能放，否则支配了u
+
+                Inc(dp[u][j+k][0][1],t[j][0][0]*dp[v][k][1][1]);//如果u只被支配，转移状态是u什么都不放，那么v可以既被支配又放，此时u什么都不放，也不被支配都可以
+                Inc(dp[u][j+k][0][1],t[j][0][1]*(dp[v][k][1][1]+dp[v][k][0][1]));//转移状态是u被支配，那么v只要被支配即可，注意到v放什么不会影响到u的状态
+
+                Inc(dp[u][j+k][1][0],t[j][1][0]*(dp[v][k][0][0]+dp[v][k][0][1]));//如果u只被放，转移状态只能是u只被放，所以v不能放，有两种情况
+
+                Inc(dp[u][j+k][1][1],t[j][1][1]*(dp[v][k][0][0]+dp[v][k][0][1]+dp[v][k][1][0]+dp[v][k][1][1]));//如果u既被支配又被放，转移状态是u既被支配又被放，那么剩下随便乱搞
+                Inc(dp[u][j+k][1][1],t[j][1][0]*(dp[v][k][1][1]+dp[v][k][1][0]));//转移状态是u只被放，那v必须放，来支配u，注意到v可以不被支配，因为u放了
+
+                //注意到dp过程无法改变u节点有没有放的事实，即dp[][][0][0/1]只能从dp[][][0][0/1]转移而来，同理dp[][][1][0/1]只能从dp[][][1][0/1]转移而来
+            }
+        }
+        sz[u]+=sz[v];
+    }
+}
+#undef int
+int main(){
+#define int long long
+    int n=read();m=read();
+    for (register int i=1;i&lt;n;++i){
+        int u=read(),v=read();
+        AddEdge(u,v);
+        AddEdge(v,u);
+    }
+    dfs(1,1);
+    printf(&quot;%lld\n&quot;,(dp[1][m][0][1]+dp[1][m][1][1])%MOD);//1一定被支配
+}
+</code></pre>
+
+            </div>
+            
+              <div class="tag-container">
+                
+                  <a href="https://steven-mhy.github.io/tag/xQxLUgkFtO2" class="tag">
+                    树形dp
+                  </a>
+                
+                  <a href="https://steven-mhy.github.io/tag/caR0rruH0yQ" class="tag">
+                    动态规划
+                  </a>
+                
+              </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://steven-mhy.github.io/post/容斥-背包学习笔记">
+                  <h3 class="post-title">
+                    容斥+背包学习笔记
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+              
+                <div id="gitalk-container" data-aos="fade-in"></div>
+              
+
+              
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+<script type="application/javascript">
+
+AOS.init();
+
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+
+  
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+
+      var gitalk = new Gitalk({
+        clientID: '0381bd48f354d449038e',
+        clientSecret: 'a325a1b671eb2071d75fc107561dfeedaa1485cf',
+        repo: 'steven-mhy.github.io',
+        owner: 'steven-mhy',
+        admin: ['steven-mhy'],
+        id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+      gitalk.render('gitalk-container')
+
+    </script>
+  
+
+  
+
+
+
+
+  </body>
+</html>

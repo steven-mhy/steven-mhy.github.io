@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>BZOJ 4987 Tree | Steven_Meng&#39;s Blog</title>
+<meta name="description" content="白鳥は　かなしからずや　空の青 海のあをにも　染まずただよふ">
+<meta name="referrer" content="no-referrer" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://steven-mhy.github.io/favicon.ico?v=1571390602731">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://steven-mhy.github.io/styles/main.css">
+
+
+  
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
+  
+
+  
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+
+
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://steven-mhy.github.io">
+        <img src="https://steven-mhy.github.io/images/avatar.png?v=1571390602731" class="site-logo">
+        <h1 class="site-title">Steven_Meng&#39;s Blog</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      白鳥は　かなしからずや　空の青 海のあをにも　染まずただよふ
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://steven-mhy.github.io/atom.xml" target="_blank">RSS</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">BZOJ 4987 Tree</h2>
+            <div class="post-date">2019-08-25</div>
+            
+            <div class="post-content">
+              <p><a href="https://www.lydsy.com/JudgeOnline/problem.php?id=4987">传送门</a></p>
+<p>先上一个结论，所有<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>k</mi></mrow><annotation encoding="application/x-tex">k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span></span></span></span>个节点应该构成一棵树，形状是原树的直径连着一堆子树，其中直径只经过一遍，子树的所有边经过两次，走法就是从直径的一段走到另一端，但是中途会离开直径，到某个和当前节点相连的子树逛一圈再回到这个节点。</p>
+<p>所以子状态就有了，<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>d</mi><mi>p</mi><mo>[</mo><mi>u</mi><mo>]</mo><mo>[</mo><mi>j</mi><mo>]</mo><mo>[</mo><mn>0</mn><mi mathvariant="normal">/</mi><mn>1</mn><mi mathvariant="normal">/</mi><mn>2</mn><mo>]</mo></mrow><annotation encoding="application/x-tex">dp[u][j][0/1/2]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">d</span><span class="mord mathdefault">p</span><span class="mopen">[</span><span class="mord mathdefault">u</span><span class="mclose">]</span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.05724em;">j</span><span class="mclose">]</span><span class="mopen">[</span><span class="mord">0</span><span class="mord">/</span><span class="mord">1</span><span class="mord">/</span><span class="mord">2</span><span class="mclose">]</span></span></span></span>表示<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>u</mi></mrow><annotation encoding="application/x-tex">u</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">u</span></span></span></span>的子树里面选<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>j</mi></mrow><annotation encoding="application/x-tex">j</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.85396em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.05724em;">j</span></span></span></span>个点，而且<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>u</mi></mrow><annotation encoding="application/x-tex">u</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">u</span></span></span></span>的子树里面有多少直径的端点。</p>
+<p>分六种情况考虑。</p>
+<hr>
+<p><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>d</mi><mi>p</mi><mo>[</mo><mi>u</mi><mo>]</mo><mo>[</mo><mi>j</mi><mo>+</mo><mi>k</mi><mo>]</mo><mo>[</mo><mn>0</mn><mo>]</mo></mrow><annotation encoding="application/x-tex">dp[u][j+k][0]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">d</span><span class="mord mathdefault">p</span><span class="mopen">[</span><span class="mord mathdefault">u</span><span class="mclose">]</span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.05724em;">j</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span><span class="mclose">]</span><span class="mopen">[</span><span class="mord">0</span><span class="mclose">]</span></span></span></span>只能从<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>d</mi><mi>p</mi><mo>[</mo><mi>u</mi><mo>]</mo><mo>[</mo><mi>j</mi><mo>]</mo><mo>[</mo><mn>0</mn><mo>]</mo></mrow><annotation encoding="application/x-tex">dp[u][j][0]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">d</span><span class="mord mathdefault">p</span><span class="mopen">[</span><span class="mord mathdefault">u</span><span class="mclose">]</span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.05724em;">j</span><span class="mclose">]</span><span class="mopen">[</span><span class="mord">0</span><span class="mclose">]</span></span></span></span>，<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>d</mi><mi>p</mi><mo>[</mo><mi>v</mi><mo>]</mo><mo>[</mo><mi>k</mi><mo>]</mo><mo>[</mo><mn>0</mn><mo>]</mo></mrow><annotation encoding="application/x-tex">dp[v][k][0]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">d</span><span class="mord mathdefault">p</span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.03588em;">v</span><span class="mclose">]</span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span><span class="mclose">]</span><span class="mopen">[</span><span class="mord">0</span><span class="mclose">]</span></span></span></span>转移而来，显然边<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>&lt;</mo><mi>u</mi><mo separator="true">,</mo><mi>v</mi><mo>&gt;</mo></mrow><annotation encoding="application/x-tex">&lt;u,v&gt;</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5782em;vertical-align:-0.0391em;"></span><span class="mrel">&lt;</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.7335400000000001em;vertical-align:-0.19444em;"></span><span class="mord mathdefault">u</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">v</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">&gt;</span></span></span></span>不属于直径，所以要算两遍：</p>
+<pre><code class="language-cpp">chkmin(dp[u][j+k][0],dp[u][j][0]+dp[v][k][0]+len*2);
+</code></pre>
+<hr>
+<p><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>d</mi><mi>p</mi><mo>[</mo><mi>u</mi><mo>]</mo><mo>[</mo><mi>j</mi><mo>+</mo><mi>k</mi><mo>]</mo><mo>[</mo><mn>1</mn><mo>]</mo></mrow><annotation encoding="application/x-tex">dp[u][j+k][1]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">d</span><span class="mord mathdefault">p</span><span class="mopen">[</span><span class="mord mathdefault">u</span><span class="mclose">]</span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.05724em;">j</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span><span class="mclose">]</span><span class="mopen">[</span><span class="mord">1</span><span class="mclose">]</span></span></span></span>：转移有两种情况：</p>
+<p><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>a</mi><mi mathvariant="normal">.</mi><mi>d</mi><mi>p</mi><mo>[</mo><mi>u</mi><mo>]</mo><mo>[</mo><mi>j</mi><mo>]</mo><mo>[</mo><mn>1</mn><mo>]</mo><mo separator="true">,</mo><mi>d</mi><mi>p</mi><mo>[</mo><mi>v</mi><mo>]</mo><mo>[</mo><mi>k</mi><mo>]</mo><mo>[</mo><mn>0</mn><mo>]</mo></mrow><annotation encoding="application/x-tex">a.dp[u][j][1],dp[v][k][0]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">a</span><span class="mord">.</span><span class="mord mathdefault">d</span><span class="mord mathdefault">p</span><span class="mopen">[</span><span class="mord mathdefault">u</span><span class="mclose">]</span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.05724em;">j</span><span class="mclose">]</span><span class="mopen">[</span><span class="mord">1</span><span class="mclose">]</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">d</span><span class="mord mathdefault">p</span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.03588em;">v</span><span class="mclose">]</span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span><span class="mclose">]</span><span class="mopen">[</span><span class="mord">0</span><span class="mclose">]</span></span></span></span>转移而来，如图所示，直径一定穿过<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>u</mi></mrow><annotation encoding="application/x-tex">u</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">u</span></span></span></span>，所以<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>&lt;</mo><mi>u</mi><mo separator="true">,</mo><mi>v</mi><mo>&gt;</mo></mrow><annotation encoding="application/x-tex">&lt;u,v&gt;</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5782em;vertical-align:-0.0391em;"></span><span class="mrel">&lt;</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.7335400000000001em;vertical-align:-0.19444em;"></span><span class="mord mathdefault">u</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">v</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">&gt;</span></span></span></span>算两次。</p>
+<figure data-type="image" tabindex="1"><img src="/images/type2.png" alt=""></figure>
+<pre><code class="language-cpp">chkmin(dp[u][j+k][1],dp[u][j][1]+dp[v][k][0]+len*2);
+</code></pre>
+<p><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>b</mi><mi mathvariant="normal">.</mi><mi>d</mi><mi>p</mi><mo>[</mo><mi>u</mi><mo>]</mo><mo>[</mo><mi>j</mi><mo>]</mo><mo>[</mo><mn>0</mn><mo>]</mo><mo separator="true">,</mo><mi>d</mi><mi>p</mi><mo>[</mo><mi>v</mi><mo>]</mo><mo>[</mo><mi>k</mi><mo>]</mo><mo>[</mo><mn>1</mn><mo>]</mo></mrow><annotation encoding="application/x-tex">b.dp[u][j][0],dp[v][k][1]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">b</span><span class="mord">.</span><span class="mord mathdefault">d</span><span class="mord mathdefault">p</span><span class="mopen">[</span><span class="mord mathdefault">u</span><span class="mclose">]</span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.05724em;">j</span><span class="mclose">]</span><span class="mopen">[</span><span class="mord">0</span><span class="mclose">]</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">d</span><span class="mord mathdefault">p</span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.03588em;">v</span><span class="mclose">]</span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span><span class="mclose">]</span><span class="mopen">[</span><span class="mord">1</span><span class="mclose">]</span></span></span></span>转移而来，如图所示，直径穿过<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>&lt;</mo><mi>u</mi><mo separator="true">,</mo><mi>v</mi><mo>&gt;</mo></mrow><annotation encoding="application/x-tex">&lt;u,v&gt;</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5782em;vertical-align:-0.0391em;"></span><span class="mrel">&lt;</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.7335400000000001em;vertical-align:-0.19444em;"></span><span class="mord mathdefault">u</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">v</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">&gt;</span></span></span></span>，<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>&lt;</mo><mi>u</mi><mo separator="true">,</mo><mi>v</mi><mo>&gt;</mo></mrow><annotation encoding="application/x-tex">&lt;u,v&gt;</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5782em;vertical-align:-0.0391em;"></span><span class="mrel">&lt;</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.7335400000000001em;vertical-align:-0.19444em;"></span><span class="mord mathdefault">u</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">v</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">&gt;</span></span></span></span>只算一次。</p>
+<figure data-type="image" tabindex="2"><img src="/images/type3.png" alt=""></figure>
+<pre><code class="language-cpp">chkmin(dp[u][j+k][1],dp[u][j][0]+dp[v][k][1]+len);
+</code></pre>
+<hr>
+<p><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>d</mi><mi>p</mi><mo>[</mo><mi>u</mi><mo>]</mo><mo>[</mo><mi>j</mi><mo>+</mo><mi>k</mi><mo>]</mo><mo>[</mo><mn>2</mn><mo>]</mo></mrow><annotation encoding="application/x-tex">dp[u][j+k][2]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">d</span><span class="mord mathdefault">p</span><span class="mopen">[</span><span class="mord mathdefault">u</span><span class="mclose">]</span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.05724em;">j</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span><span class="mclose">]</span><span class="mopen">[</span><span class="mord">2</span><span class="mclose">]</span></span></span></span>：转移有三种情况：</p>
+<p><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>a</mi><mi mathvariant="normal">.</mi><mi>d</mi><mi>p</mi><mo>[</mo><mi>u</mi><mo>]</mo><mo>[</mo><mi>j</mi><mo>]</mo><mo>[</mo><mn>0</mn><mo>]</mo><mo separator="true">,</mo><mi>d</mi><mi>p</mi><mo>[</mo><mi>v</mi><mo>]</mo><mo>[</mo><mi>k</mi><mo>]</mo><mo>[</mo><mn>2</mn><mo>]</mo><mi mathvariant="normal">/</mi><mi>d</mi><mi>p</mi><mo>[</mo><mi>u</mi><mo>]</mo><mo>[</mo><mi>j</mi><mo>]</mo><mo>[</mo><mn>2</mn><mo>]</mo><mo separator="true">,</mo><mi>d</mi><mi>p</mi><mo>[</mo><mi>v</mi><mo>]</mo><mo>[</mo><mi>k</mi><mo>]</mo><mo>[</mo><mn>0</mn><mo>]</mo></mrow><annotation encoding="application/x-tex">a.dp[u][j][0],dp[v][k][2]/dp[u][j][2],dp[v][k][0]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">a</span><span class="mord">.</span><span class="mord mathdefault">d</span><span class="mord mathdefault">p</span><span class="mopen">[</span><span class="mord mathdefault">u</span><span class="mclose">]</span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.05724em;">j</span><span class="mclose">]</span><span class="mopen">[</span><span class="mord">0</span><span class="mclose">]</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">d</span><span class="mord mathdefault">p</span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.03588em;">v</span><span class="mclose">]</span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span><span class="mclose">]</span><span class="mopen">[</span><span class="mord">2</span><span class="mclose">]</span><span class="mord">/</span><span class="mord mathdefault">d</span><span class="mord mathdefault">p</span><span class="mopen">[</span><span class="mord mathdefault">u</span><span class="mclose">]</span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.05724em;">j</span><span class="mclose">]</span><span class="mopen">[</span><span class="mord">2</span><span class="mclose">]</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">d</span><span class="mord mathdefault">p</span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.03588em;">v</span><span class="mclose">]</span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span><span class="mclose">]</span><span class="mopen">[</span><span class="mord">0</span><span class="mclose">]</span></span></span></span>，转移而来，发现直径只可能整个缩在<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>u</mi><mi mathvariant="normal">/</mi><mi>v</mi></mrow><annotation encoding="application/x-tex">u/v</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">u</span><span class="mord">/</span><span class="mord mathdefault" style="margin-right:0.03588em;">v</span></span></span></span>的子树之中，所以算两次。</p>
+<pre><code class="language-cpp">chkmin(dp[u][j+k][2],dp[u][j][0]+dp[v][k][2]+len*2);
+chkmin(dp[u][j+k][2],dp[u][j][2]+dp[v][k][0]+len*2);
+</code></pre>
+<p><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>b</mi><mi mathvariant="normal">.</mi><mi>d</mi><mi>p</mi><mo>[</mo><mi>u</mi><mo>]</mo><mo>[</mo><mi>j</mi><mo>]</mo><mo>[</mo><mn>1</mn><mo>]</mo><mo separator="true">,</mo><mi>d</mi><mi>p</mi><mo>[</mo><mi>v</mi><mo>]</mo><mo>[</mo><mi>k</mi><mo>]</mo><mo>[</mo><mn>1</mn><mo>]</mo></mrow><annotation encoding="application/x-tex">b.dp[u][j][1],dp[v][k][1]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">b</span><span class="mord">.</span><span class="mord mathdefault">d</span><span class="mord mathdefault">p</span><span class="mopen">[</span><span class="mord mathdefault">u</span><span class="mclose">]</span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.05724em;">j</span><span class="mclose">]</span><span class="mopen">[</span><span class="mord">1</span><span class="mclose">]</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">d</span><span class="mord mathdefault">p</span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.03588em;">v</span><span class="mclose">]</span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span><span class="mclose">]</span><span class="mopen">[</span><span class="mord">1</span><span class="mclose">]</span></span></span></span>转移而来，发现直径经过<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>&lt;</mo><mi>u</mi><mo separator="true">,</mo><mi>v</mi><mo>&gt;</mo></mrow><annotation encoding="application/x-tex">&lt;u,v&gt;</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5782em;vertical-align:-0.0391em;"></span><span class="mrel">&lt;</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.7335400000000001em;vertical-align:-0.19444em;"></span><span class="mord mathdefault">u</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">v</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">&gt;</span></span></span></span>，所以算一次</p>
+<figure data-type="image" tabindex="3"><img src="/images/type4.png" alt=""></figure>
+<pre><code class="language-cpp">chkmin(dp[u][j+k][2],dp[u][j][1]+dp[v][k][1]+len);
+</code></pre>
+<p>代码：</p>
+<pre><code class="language-cpp">#include &lt;bits/stdc++.h&gt;
+#define MAXN 3005
+using namespace std;
+inline int read(){
+    int x=0,f=1;
+    char ch=getchar();
+    while (ch&lt;'0'||ch&gt;'9'){
+        if (ch=='-') f=-1;
+        ch=getchar();
+    }
+    while (ch&gt;='0'&amp;&amp;ch&lt;='9'){
+        x=(x&lt;&lt;3)+(x&lt;&lt;1)+(ch^'0');
+        ch=getchar();
+    }
+    return x*f;
+}
+int n,m;
+struct Edge{
+    int to,len;
+};
+vector&lt;Edge&gt;G[MAXN];
+inline void AddEdge(int u,int v,int w){
+    G[u].push_back(Edge{v,w});
+}
+int dp[MAXN][MAXN][4],sz[MAXN];
+inline void chkmin(int &amp;a,int b){
+    if (a&gt;b) a=b;
+}
+void dfs(int u,int father){
+    sz[u]=1;
+    dp[u][1][0]=dp[u][1][1]=dp[u][1][2]=0;
+    for (register int i=0;i&lt;G[u].size();++i){
+        int v=G[u][i].to,len=G[u][i].len;
+        if (v==father) continue;
+        dfs(v,u);
+        for (register int j=min(m,sz[u]);j&gt;=1;--j){
+            for (register int k=1;k&lt;=min(m,sz[v]);++k){
+                if (j+k&gt;m) continue;
+                chkmin(dp[u][j+k][0],dp[u][j][0]+dp[v][k][0]+len*2);
+                chkmin(dp[u][j+k][1],dp[u][j][1]+dp[v][k][0]+len*2);
+                chkmin(dp[u][j+k][1],dp[u][j][0]+dp[v][k][1]+len);
+                chkmin(dp[u][j+k][2],dp[u][j][1]+dp[v][k][1]+len);
+                chkmin(dp[u][j+k][2],dp[u][j][0]+dp[v][k][2]+len*2);
+                chkmin(dp[u][j+k][2],dp[u][j][2]+dp[v][k][0]+len*2);
+            }
+        }
+        sz[u]+=sz[v];
+    }
+}
+int main(){
+    n=read(),m=read();
+    for (register int i=1;i&lt;n;++i){
+        int u=read(),v=read(),w=read();
+        AddEdge(u,v,w);
+        AddEdge(v,u,w);
+    }
+    memset(dp,0x3f,sizeof(dp));
+    dfs(1,1);
+    int ans=0x7fffffff;
+    for (register int i=1;i&lt;=n;++i) ans=min(ans,dp[i][m][2]);
+    printf(&quot;%d\n&quot;,ans);
+}
+</code></pre>
+
+            </div>
+            
+              <div class="tag-container">
+                
+                  <a href="https://steven-mhy.github.io/tag/xQxLUgkFtO2" class="tag">
+                    树形dp
+                  </a>
+                
+                  <a href="https://steven-mhy.github.io/tag/caR0rruH0yQ" class="tag">
+                    动态规划
+                  </a>
+                
+              </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://steven-mhy.github.io/post/P4516-JSOI2018-潜入行动">
+                  <h3 class="post-title">
+                    P4516 [JSOI2018]潜入行动
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+              
+                <div id="gitalk-container" data-aos="fade-in"></div>
+              
+
+              
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+<script type="application/javascript">
+
+AOS.init();
+
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+
+  
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+
+      var gitalk = new Gitalk({
+        clientID: '0381bd48f354d449038e',
+        clientSecret: 'a325a1b671eb2071d75fc107561dfeedaa1485cf',
+        repo: 'steven-mhy.github.io',
+        owner: 'steven-mhy',
+        admin: ['steven-mhy'],
+        id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+      gitalk.render('gitalk-container')
+
+    </script>
+  
+
+  
+
+
+
+
+  </body>
+</html>

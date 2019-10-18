@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>P4212 外太空旅行 随机 | Steven_Meng&#39;s Blog</title>
+<meta name="description" content="白鳥は　かなしからずや　空の青 海のあをにも　染まずただよふ">
+<meta name="referrer" content="no-referrer" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://steven-mhy.github.io/favicon.ico?v=1571390602731">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://steven-mhy.github.io/styles/main.css">
+
+
+  
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
+  
+
+  
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+
+
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://steven-mhy.github.io">
+        <img src="https://steven-mhy.github.io/images/avatar.png?v=1571390602731" class="site-logo">
+        <h1 class="site-title">Steven_Meng&#39;s Blog</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      白鳥は　かなしからずや　空の青 海のあをにも　染まずただよふ
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://steven-mhy.github.io/atom.xml" target="_blank">RSS</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">P4212 外太空旅行 随机</h2>
+            <div class="post-date">2019-07-13</div>
+            
+            <div class="post-content">
+              <p><a href="https://www.luogu.org/problemnew/show/P4212">传送门</a><br>
+题意：求最大团，团是一个点的集合，其中任意两点都有边相连。<br>
+最大团属于<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>N</mi><mi>P</mi><mi>C</mi></mrow><annotation encoding="application/x-tex">NPC</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.10903em;">N</span><span class="mord mathdefault" style="margin-right:0.13889em;">P</span><span class="mord mathdefault" style="margin-right:0.07153em;">C</span></span></span></span>问题<s>None Player Characters</s><br>
+虽然数据范围小，<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>n</mi><mo>≤</mo><mn>50</mn></mrow><annotation encoding="application/x-tex">n \le 50</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7719400000000001em;vertical-align:-0.13597em;"></span><span class="mord mathdefault">n</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">5</span><span class="mord">0</span></span></span></span>，但是直接暴搜肯定超时。<br>
+考虑随机化，每次打乱点的总集合<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>S</mi></mrow><annotation encoding="application/x-tex">S</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span></span></span></span><br>
+从<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>S</mi></mrow><annotation encoding="application/x-tex">S</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span></span></span></span>中取出点<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>v</mi></mrow><annotation encoding="application/x-tex">v</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">v</span></span></span></span>，若<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>v</mi></mrow><annotation encoding="application/x-tex">v</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">v</span></span></span></span>与<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>A</mi><mi>n</mi><mi>s</mi></mrow><annotation encoding="application/x-tex">Ans</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault">A</span><span class="mord mathdefault">n</span><span class="mord mathdefault">s</span></span></span></span>中的所有点都有边相连，则将<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>v</mi></mrow><annotation encoding="application/x-tex">v</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">v</span></span></span></span>加入<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>A</mi><mi>n</mi><mi>s</mi></mrow><annotation encoding="application/x-tex">Ans</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault">A</span><span class="mord mathdefault">n</span><span class="mord mathdefault">s</span></span></span></span>，否则跳过<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>v</mi></mrow><annotation encoding="application/x-tex">v</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">v</span></span></span></span></p>
+<p>实践证明随机化个<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1000</mn></mrow><annotation encoding="application/x-tex">1000</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord">0</span><span class="mord">0</span><span class="mord">0</span></span></span></span>次就能<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>A</mi><mi>C</mi></mrow><annotation encoding="application/x-tex">AC</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault">A</span><span class="mord mathdefault" style="margin-right:0.07153em;">C</span></span></span></span></p>
+<p>正确性显（bu）然（hui）</p>
+<pre><code class="language-cpp">// luogu-judger-enable-o2
+#include &lt;bits/stdc++.h&gt;
+#define MAXN 55
+using namespace std;
+inline int read() {
+    int x=0,f=1;
+    char ch=getchar();
+    while (ch&lt;'0'||ch&gt;'9') {
+        if (ch=='-') f=-1;
+        ch=getchar();
+    }
+    while (ch&gt;='0'&amp;&amp;ch&lt;='9') {
+        x=(x*10)+(ch-'0');
+        ch=getchar();
+    }
+    return x*f;
+}
+int G[MAXN][MAXN];
+void AddEdge(int u,int v){
+    G[u][v]=true;
+    G[v][u]=true;
+}
+int a[MAXN];
+int stk[MAXN],top;
+int main(){
+    int n=read(),u,v;
+    int maxn=0;
+    while (scanf(&quot;%d%d&quot;,&amp;u,&amp;v)!=EOF&amp;&amp;u!=0&amp;&amp;v!=0){
+		AddEdge(u,v);
+		maxn=max(maxn,u),maxn=max(maxn,v);
+	}
+    for (register int i=1;i&lt;=n;++i){
+    	a[i]=i;
+	}
+    int ans=-0x7fffffff;
+    srand(time(NULL));
+    for (register int k=0;k&lt;10000;++k){
+        random_shuffle(a+1,a+1+n);
+        top=0;
+        stk[++top]=a[1];
+        for (register int i=2;i&lt;=n;++i){//找出v
+        	bool flag=true;
+        	for (register int j=1;j&lt;=top;++j){//判断是否有边相连
+        		if (!G[stk[j]][a[i]]){
+        			flag=false;
+        			break;
+				}
+			}
+			if (flag==true){
+				stk[++top]=a[i];//加入集合Ans
+			}
+		}
+		ans=max(ans,top);
+    }
+    printf(&quot;%d\n&quot;,ans);
+}
+</code></pre>
+
+            </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://steven-mhy.github.io/post/P4309 [TJOI2013]最长上升子序列">
+                  <h3 class="post-title">
+                    P4309 [TJOI2013]最长上升子序列 平衡树
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+              
+                <div id="gitalk-container" data-aos="fade-in"></div>
+              
+
+              
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+<script type="application/javascript">
+
+AOS.init();
+
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+
+  
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+
+      var gitalk = new Gitalk({
+        clientID: '0381bd48f354d449038e',
+        clientSecret: 'a325a1b671eb2071d75fc107561dfeedaa1485cf',
+        repo: 'steven-mhy.github.io',
+        owner: 'steven-mhy',
+        admin: ['steven-mhy'],
+        id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+      gitalk.render('gitalk-container')
+
+    </script>
+  
+
+  
+
+
+
+
+  </body>
+</html>

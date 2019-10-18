@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>P3007 [USACO11JAN]大陆议会The Continental Cowngress | Steven_Meng&#39;s Blog</title>
+<meta name="description" content="白鳥は　かなしからずや　空の青 海のあをにも　染まずただよふ">
+<meta name="referrer" content="no-referrer" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://steven-mhy.github.io/favicon.ico?v=1571390602731">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://steven-mhy.github.io/styles/main.css">
+
+
+  
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
+  
+
+  
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+
+
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://steven-mhy.github.io">
+        <img src="https://steven-mhy.github.io/images/avatar.png?v=1571390602731" class="site-logo">
+        <h1 class="site-title">Steven_Meng&#39;s Blog</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      白鳥は　かなしからずや　空の青 海のあをにも　染まずただよふ
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://steven-mhy.github.io/atom.xml" target="_blank">RSS</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">P3007 [USACO11JAN]大陆议会The Continental Cowngress</h2>
+            <div class="post-date">2019-08-06</div>
+            
+            <div class="post-content">
+              <p><a href="https://www.luogu.org/problem/P3007">洛谷</a></p>
+<p><a href="http://119.29.55.79/problem/369">GDOI</a></p>
+<p>首先，按照<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>2</mn><mo>−</mo><mi>S</mi><mi>A</mi><mi>T</mi></mrow><annotation encoding="application/x-tex">2-SAT</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="mord">2</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span><span class="mord mathdefault">A</span><span class="mord mathdefault" style="margin-right:0.13889em;">T</span></span></span></span>问题的套路，我们要把这个转化成<strong>依赖性问题</strong></p>
+<p>又发现一只奶牛刚好投两次票，所以只要不满足奶牛的其中一次投票，就要满足另一次，这样就转化成了依赖性问题。</p>
+<p>但是，这道题还要输出<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="normal">&quot;</mi><mo>?</mo><mi mathvariant="normal">&quot;</mi></mrow><annotation encoding="application/x-tex">&quot;?&quot;</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord">&quot;</span><span class="mclose">?</span><span class="mord">&quot;</span></span></span></span>，怎么搞</p>
+<p>再看一眼数据范围<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1</mn><mo>≤</mo><mi>N</mi><mo>≤</mo><mn>1000</mn></mrow><annotation encoding="application/x-tex">1 \le N \le 1000</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.78041em;vertical-align:-0.13597em;"></span><span class="mord">1</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.8193em;vertical-align:-0.13597em;"></span><span class="mord mathdefault" style="margin-right:0.10903em;">N</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord">0</span><span class="mord">0</span><span class="mord">0</span></span></span></span>，这样小的数据范围，暴力都能过。</p>
+<p>于是不妨从两个相对的节点<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>b</mi><mi>f</mi><mi>s</mi></mrow><annotation encoding="application/x-tex">bfs</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord mathdefault">b</span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mord mathdefault">s</span></span></span></span>一遍，如果他们两个都没有矛盾，那么输出<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>?</mo></mrow><annotation encoding="application/x-tex">?</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mclose">?</span></span></span></span>，如果一个有矛盾，那么输出<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>Y</mi><mi mathvariant="normal">/</mi><mi>N</mi></mrow><annotation encoding="application/x-tex">Y/N</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.22222em;">Y</span><span class="mord">/</span><span class="mord mathdefault" style="margin-right:0.10903em;">N</span></span></span></span>，如果都有矛盾，那么输出<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>I</mi><mi>M</mi><mi>P</mi><mi>O</mi><mi>S</mi><mi>S</mi><mi>I</mi><mi>B</mi><mi>L</mi><mi>E</mi></mrow><annotation encoding="application/x-tex">IMPOSSIBLE</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.07847em;">I</span><span class="mord mathdefault" style="margin-right:0.10903em;">M</span><span class="mord mathdefault" style="margin-right:0.13889em;">P</span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span><span class="mord mathdefault" style="margin-right:0.07847em;">I</span><span class="mord mathdefault" style="margin-right:0.05017em;">B</span><span class="mord mathdefault">L</span><span class="mord mathdefault" style="margin-right:0.05764em;">E</span></span></span></span>。</p>
+<pre><code class="language-cpp">#include &lt;bits/stdc++.h&gt;
+#define MAXN 4005
+using namespace std;
+inline int read(){
+    int x=0,f=1;
+    char ch=getchar();
+    while (ch&lt;'0'||ch&gt;'9'){
+        if (ch=='-') f=-1;
+        ch=getchar();
+    }
+    while (ch&gt;='0'&amp;&amp;ch&lt;='9'){
+        x=(x&lt;&lt;3)+(x&lt;&lt;1)+(ch^'0');
+        ch=getchar();
+    }
+    return x*f;
+}
+vector&lt;int&gt;G[MAXN];
+inline void AddEdge(int u,int v){
+    G[u].push_back(v);
+}
+int vis[MAXN],n,m;
+inline int Other(int u){
+    if (u&lt;=n) return u+n;
+    else return u-n;
+}
+inline bool bfs(int s){
+    memset(vis,0,sizeof(vis));
+    queue&lt;int&gt;Q;
+    Q.push(s);
+    while (Q.size()){
+        int u=Q.front();Q.pop();
+        vis[u]=true;
+        if (vis[Other(u)]) return false;
+        for (register int i=0;i&lt;G[u].size();++i){
+            int v=G[u][i];
+            if (!vis[v]) Q.push(v);
+        }
+    }
+    return true;
+}
+inline char gc(){
+    char ch=getchar();
+    while (ch!='Y'&amp;&amp;ch!='N') ch=getchar();
+    return ch=='Y';
+}
+int main(){
+    n=read(),m=read();
+    //1 ... n赞成票
+    //n+1 ... 2*n反对票
+    for (register int i=1;i&lt;=m;++i){
+        int u=read(),f1=gc(),v=read(),f2=gc();
+        AddEdge(u+(!f1)*n,v+f2*n);
+        AddEdge(v+(!f2)*n,u+f1*n);
+    }
+    string Ans=&quot;&quot;;
+    for (register int i=1;i&lt;=n;++i){
+        bool True=bfs(i),False=bfs(Other(i));
+        if (!True&amp;&amp;!False){
+            puts(&quot;IMPOSSIBLE&quot;);
+            return 0;
+        }
+        else if (True&amp;&amp;!False){
+            Ans+='N';
+        }
+        else if (False&amp;&amp;!True){
+            Ans+='Y';
+        }
+        else {
+            Ans+='?';
+        }
+    }
+    cout&lt;&lt;Ans&lt;&lt;endl;
+}
+</code></pre>
+
+            </div>
+            
+              <div class="tag-container">
+                
+                  <a href="https://steven-mhy.github.io/tag/tz8jnsnOVd" class="tag">
+                    题解
+                  </a>
+                
+                  <a href="https://steven-mhy.github.io/tag/Bi5ckPaMVN" class="tag">
+                    暴力
+                  </a>
+                
+                  <a href="https://steven-mhy.github.io/tag/ClQ4PfhHD3G" class="tag">
+                    2-SAT
+                  </a>
+                
+              </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://steven-mhy.github.io/post/LOJ-10097-「一本通-3-5-练习-5」和平委员会">
+                  <h3 class="post-title">
+                    LOJ #10097. 「一本通 3.5 练习 5」和平委员会
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+              
+                <div id="gitalk-container" data-aos="fade-in"></div>
+              
+
+              
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+<script type="application/javascript">
+
+AOS.init();
+
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+
+  
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+
+      var gitalk = new Gitalk({
+        clientID: '0381bd48f354d449038e',
+        clientSecret: 'a325a1b671eb2071d75fc107561dfeedaa1485cf',
+        repo: 'steven-mhy.github.io',
+        owner: 'steven-mhy',
+        admin: ['steven-mhy'],
+        id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+      gitalk.render('gitalk-container')
+
+    </script>
+  
+
+  
+
+
+
+
+  </body>
+</html>

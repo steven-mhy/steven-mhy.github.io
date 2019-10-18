@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>P2146 [NOI2015]软件包管理器 | Steven_Meng&#39;s Blog</title>
+<meta name="description" content="白鳥は　かなしからずや　空の青 海のあをにも　染まずただよふ">
+<meta name="referrer" content="no-referrer" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://steven-mhy.github.io/favicon.ico?v=1571390602731">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://steven-mhy.github.io/styles/main.css">
+
+
+  
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
+  
+
+  
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+
+
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://steven-mhy.github.io">
+        <img src="https://steven-mhy.github.io/images/avatar.png?v=1571390602731" class="site-logo">
+        <h1 class="site-title">Steven_Meng&#39;s Blog</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      白鳥は　かなしからずや　空の青 海のあをにも　染まずただよふ
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://steven-mhy.github.io/atom.xml" target="_blank">RSS</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">P2146 [NOI2015]软件包管理器</h2>
+            <div class="post-date">2019-07-30</div>
+            
+            <div class="post-content">
+              <p><a href="https://www.luogu.org/problem/P2146">传送门</a></p>
+<p>安装操作其实就是把这个节点及其祖先节点变成<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span>，卸载操作其实就是把这个节点及其子树之内的所有节点变成<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>0</mn></mrow><annotation encoding="application/x-tex">0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span></span></span></span></p>
+<p>树链剖分实现即可。</p>
+<pre><code class="language-cpp">#include &lt;cstdio&gt;
+#include &lt;iostream&gt;
+#include &lt;vector&gt;
+#define MAXN 100005
+using namespace std;
+vector&lt;int&gt; G[MAXN];
+char cmd[10];
+int fa[MAXN], size[MAXN], Bigson[MAXN], top[MAXN], id[MAXN], dep[MAXN];
+int cnt;
+int fro[MAXN], bac[MAXN];
+void dfs(int u, int father)
+{
+    size[u] = 1;
+    Bigson[u] = 0;
+    dep[u] = dep[father] + 1;
+    for (int i = 0; i &lt; G[u].size(); i++)
+    {
+        if (G[u][i] != father)
+        {
+            fa[G[u][i]] = u;
+            dfs(G[u][i], u);
+            size[u] += size[G[u][i]];
+            if (size[G[u][i]] &gt; size[Bigson[u]])
+            {
+                Bigson[u] = G[u][i];
+            }
+        }
+    }
+}
+void dfs2(int u, int Top)
+{
+    top[u] = Top;
+    id[u] = ++cnt;
+    fro[cnt] = u;
+    if (Bigson[u])
+    {
+        dfs2(Bigson[u], Top);
+    }
+    for (int i = 0; i &lt; G[u].size(); i++)
+    {
+        if (G[u][i] != fa[u] &amp;&amp; G[u][i] != Bigson[u])
+        {
+            dfs2(G[u][i], G[u][i]);
+        }
+    }
+}
+struct SegmentTree
+{
+    struct node
+    {
+        int l, r;
+        int val, tag;
+    } tree[MAXN &lt;&lt; 2];
+    void pushup(int i)
+    {
+        tree[i].val = tree[i &lt;&lt; 1].val + tree[i &lt;&lt; 1 | 1].val;
+    }
+    void pushdown(int i)
+    {
+        if (tree[i].tag != -1)
+        {
+            tree[i &lt;&lt; 1].tag = tree[i &lt;&lt; 1 | 1].tag = tree[i].tag;
+            tree[i &lt;&lt; 1].val = tree[i].tag * (tree[i &lt;&lt; 1].r - tree[i &lt;&lt; 1].l + 1);
+            tree[i &lt;&lt; 1 | 1].val = tree[i].tag * (tree[i &lt;&lt; 1 | 1].r - tree[i &lt;&lt; 1 | 1].l + 1);
+            tree[i].tag = -1;
+        }
+    }
+    void build(int l, int r, int i)
+    {
+        tree[i].l = l;
+        tree[i].r = r;
+        tree[i].val = 0;
+        tree[i].tag = -1;
+        if (l == r)
+        {
+            return;
+        }
+        int mid = (l + r) &gt;&gt; 1;
+        build(l, mid, i &lt;&lt; 1);
+        build(mid + 1, r, i &lt;&lt; 1 | 1);
+    }
+    void update(int L, int R, int i, int v)
+    {
+        int l = tree[i].l, r = tree[i].r;
+        if (L &lt;= l &amp;&amp; r &lt;= R)
+        {
+            tree[i].val = v * (r - l + 1);
+            tree[i].tag = v;
+            return;
+        }
+        pushdown(i);
+        int mid = (l + r) &gt;&gt; 1;
+        if (L &lt;= mid)
+        {
+            update(L, R, i &lt;&lt; 1, v);
+        }
+        if (mid &lt; R)
+        {
+            update(L, R, i &lt;&lt; 1 | 1, v);
+        }
+        pushup(i);
+    }
+} Seg;
+void update_tree(int u, int v)
+{
+    int topu = top[u];
+    int topv = top[v];
+    while (topu != topv)
+    {
+        if (dep[topu] &lt; dep[topv])
+        {
+            swap(u, v);
+            swap(topu, topv);
+        }
+        Seg.update(id[topu], id[u], 1, 1);
+        u = fa[topu];
+        topu = top[u];
+    }
+    if (dep[u] &gt; dep[v])
+    {
+        swap(u, v);
+    }
+    Seg.update(id[u], id[v], 1, 1);
+}
+int Myabs(int a, int b)
+{
+    return (a - b &gt; 0) ? a - b : b - a;
+}
+int main()
+{
+    int n;
+    scanf(&quot;%d&quot;, &amp;n);
+    for (int i = 2; i &lt;= n; i++)
+    {
+        int k;
+        scanf(&quot;%d&quot;, &amp;k);
+        G[++k].push_back(i);
+        G[i].push_back(k);
+    }
+    dfs(1, 1);
+    dfs2(1, 1);
+    Seg.build(1, n, 1);
+    int q;
+    scanf(&quot;%d&quot;, &amp;q);
+    while (q--)
+    {
+        scanf(&quot;%s&quot;, cmd);
+        int Sum = Seg.tree[1].val; //初始值
+        if (cmd[0] == 'i')
+        {
+            int x;
+            scanf(&quot;%d&quot;, &amp;x);
+            ++x;
+            update_tree(1, x);
+        }
+        else if (cmd[0] == 'u')
+        {
+            int x;
+            scanf(&quot;%d&quot;, &amp;x);
+            ++x;
+            Seg.update(id[x], id[x] + size[x] - 1, 1, 0);
+        }
+        printf(&quot;%d\n&quot;, Myabs(Sum, Seg.tree[1].val));
+    }
+}
+</code></pre>
+
+            </div>
+            
+              <div class="tag-container">
+                
+                  <a href="https://steven-mhy.github.io/tag/tz8jnsnOVd" class="tag">
+                    题解
+                  </a>
+                
+                  <a href="https://steven-mhy.github.io/tag/915M0pAYLA6" class="tag">
+                    线段树
+                  </a>
+                
+                  <a href="https://steven-mhy.github.io/tag/5IAZYzF_y6F" class="tag">
+                    树链剖分
+                  </a>
+                
+              </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://steven-mhy.github.io/post/P1505-国家集训队-旅游">
+                  <h3 class="post-title">
+                    P1505 [国家集训队]旅游
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+              
+                <div id="gitalk-container" data-aos="fade-in"></div>
+              
+
+              
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+<script type="application/javascript">
+
+AOS.init();
+
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+
+  
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+
+      var gitalk = new Gitalk({
+        clientID: '0381bd48f354d449038e',
+        clientSecret: 'a325a1b671eb2071d75fc107561dfeedaa1485cf',
+        repo: 'steven-mhy.github.io',
+        owner: 'steven-mhy',
+        admin: ['steven-mhy'],
+        id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+      gitalk.render('gitalk-container')
+
+    </script>
+  
+
+  
+
+
+
+
+  </body>
+</html>

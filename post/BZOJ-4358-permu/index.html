@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>BZOJ 4358 permu | Steven_Meng&#39;s Blog</title>
+<meta name="description" content="白鳥は　かなしからずや　空の青 海のあをにも　染まずただよふ">
+<meta name="referrer" content="no-referrer" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://steven-mhy.github.io/favicon.ico?v=1571390602731">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://steven-mhy.github.io/styles/main.css">
+
+
+  
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
+  
+
+  
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+
+
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://steven-mhy.github.io">
+        <img src="https://steven-mhy.github.io/images/avatar.png?v=1571390602731" class="site-logo">
+        <h1 class="site-title">Steven_Meng&#39;s Blog</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      白鳥は　かなしからずや　空の青 海のあをにも　染まずただよふ
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://steven-mhy.github.io/atom.xml" target="_blank">RSS</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">BZOJ 4358 permu</h2>
+            <div class="post-date">2019-08-07</div>
+            
+            <div class="post-content">
+              <p><a href="https://www.lydsy.com/JudgeOnline/problem.php?id=4358">BZOJ</a></p>
+<p><a href="http://119.29.55.79/problem/361">GDOI</a></p>
+<p>首先，安利一下巨佬ypy的<a href="https://www.cnblogs.com/birchtree/p/11310436.html">博客</a>，我的思路是参照ypy博客的。</p>
+<p>先说一下我的思路，首先，将问题抽象为往一个数轴上面放<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span>，求最长连续<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span>的值。</p>
+<h2 id="sol1">Sol1:</h2>
+<p>线段树维护连续<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span>的最大值，代码非常简单，维护区间连续<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span>最大值<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>m</mi><mi>a</mi><mi>x</mi><mi>n</mi></mrow><annotation encoding="application/x-tex">maxn</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">m</span><span class="mord mathdefault">a</span><span class="mord mathdefault">x</span><span class="mord mathdefault">n</span></span></span></span>，从左边开始连续<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span>最大值<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>l</mi><mi>m</mi><mi>a</mi><mi>x</mi></mrow><annotation encoding="application/x-tex">lmax</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord mathdefault">m</span><span class="mord mathdefault">a</span><span class="mord mathdefault">x</span></span></span></span>，从右边开始连续<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span>最大值<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>r</mi><mi>m</mi><mi>a</mi><mi>x</mi></mrow><annotation encoding="application/x-tex">rmax</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mord mathdefault">m</span><span class="mord mathdefault">a</span><span class="mord mathdefault">x</span></span></span></span>，区间<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span>的和<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>v</mi><mi>a</mi><mi>l</mi></mrow><annotation encoding="application/x-tex">val</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">v</span><span class="mord mathdefault">a</span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span></span></span></span>。</p>
+<p>时间复杂度<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><mi>n</mi><msqrt><mi>n</mi></msqrt><mi>log</mi><mo>⁡</mo><mi>n</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">O(n \sqrt n \log n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.05028em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mord sqrt"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8002800000000001em;"><span class="svg-align" style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord mathdefault" style="padding-left:0.833em;">n</span></span><span style="top:-2.76028em;"><span class="pstrut" style="height:3em;"></span><span class="hide-tail" style="min-width:0.853em;height:1.08em;"><svg width='400em' height='1.08em' viewBox='0 0 400000 1080' preserveAspectRatio='xMinYMin slice'><path d='M95,702c-2.7,0,-7.17,-2.7,-13.5,-8c-5.8,-5.3,-9.5,
+-10,-9.5,-14c0,-2,0.3,-3.3,1,-4c1.3,-2.7,23.83,-20.7,67.5,-54c44.2,-33.3,65.8,
+-50.3,66.5,-51c1.3,-1.3,3,-2,5,-2c4.7,0,8.7,3.3,12,10s173,378,173,378c0.7,0,
+35.3,-71,104,-213c68.7,-142,137.5,-285,206.5,-429c69,-144,104.5,-217.7,106.5,
+-221c5.3,-9.3,12,-14,20,-14H400000v40H845.2724s-225.272,467,-225.272,467
+s-235,486,-235,486c-2.7,4.7,-9,7,-19,7c-6,0,-10,-1,-12,-3s-194,-422,-194,-422
+s-65,47,-65,47z M834 80H400000v40H845z'/></svg></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.23972em;"><span></span></span></span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mop">lo<span style="margin-right:0.01389em;">g</span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">n</span><span class="mclose">)</span></span></span></span>，在<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>B</mi><mi>Z</mi><mi>O</mi><mi>J</mi></mrow><annotation encoding="application/x-tex">BZOJ</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.05017em;">B</span><span class="mord mathdefault" style="margin-right:0.07153em;">Z</span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mord mathdefault" style="margin-right:0.09618em;">J</span></span></span></span>上面<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="normal">A</mi><mi mathvariant="normal">C</mi></mrow><annotation encoding="application/x-tex">\rm AC</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord"><span class="mord mathrm">A</span><span class="mord mathrm">C</span></span></span></span></span>，但是在<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>G</mi><mi>D</mi><mi>O</mi><mi>I</mi></mrow><annotation encoding="application/x-tex">GDOI</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault">G</span><span class="mord mathdefault" style="margin-right:0.02778em;">D</span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mord mathdefault" style="margin-right:0.07847em;">I</span></span></span></span>上面<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>T</mi><mi>L</mi><mi>E</mi></mrow><annotation encoding="application/x-tex">TLE</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">T</span><span class="mord mathdefault">L</span><span class="mord mathdefault" style="margin-right:0.05764em;">E</span></span></span></span></p>
+<pre><code class="language-cpp">#include &lt;bits/stdc++.h&gt;
+#define MAXN 50005
+using namespace std;
+inline int read(){
+    int x=0,f=1;
+    char ch=getchar();
+    while (ch&lt;'0'||ch&gt;'9'){
+        if (ch=='-') f=-1;
+        ch=getchar();
+    }
+    while (ch&gt;='0'&amp;&amp;ch&lt;='9'){
+        x=(x&lt;&lt;3)+(x&lt;&lt;1)+(ch^'0');
+        ch=getchar();
+    }
+    return x*f;
+}
+namespace SegmentTree{
+    struct node{
+        int l,r,val;
+        int lmax,rmax,maxn;
+        inline int len(){
+            return r-l+1;
+        }
+    }tree[MAXN&lt;&lt;2];
+    #define lc i&lt;&lt;1
+    #define rc i&lt;&lt;1|1
+    inline void Change(int i){
+        tree[i].lmax=1-tree[i].lmax;
+        tree[i].rmax=1-tree[i].rmax;
+        tree[i].maxn=1-tree[i].maxn;
+        tree[i].val=1-tree[i].val;
+    }
+    inline void pushup(int i){
+        tree[i].val=tree[lc].val+tree[rc].val;
+        tree[i].lmax=tree[lc].lmax;
+        if (tree[lc].val==tree[lc].len()) tree[i].lmax=max(tree[i].lmax,tree[lc].len()+tree[rc].lmax);
+        tree[i].rmax=tree[rc].rmax;
+        if (tree[rc].val==tree[rc].len()) tree[i].rmax=max(tree[i].rmax,tree[rc].len()+tree[lc].rmax);
+        tree[i].maxn=max(max(tree[lc].maxn,tree[rc].maxn),tree[lc].rmax+tree[rc].lmax);
+    }
+    void Update(int i,int l,int r,int pos){
+        if (l==r){
+            Change(i);
+            return ;
+        }
+        int mid=(l+r)&gt;&gt;1;
+        if (pos&lt;=mid) Update(lc,l,mid,pos);
+        else Update(rc,mid+1,r,pos);
+        pushup(i);
+    }
+    void Build(int i,int l,int r){
+        tree[i].l=l,tree[i].r=r;
+        if (l==r){
+            return ;
+        }
+        int mid=(l+r)&gt;&gt;1;
+        Build(lc,l,mid);
+        Build(rc,mid+1,r);
+    }
+}
+using namespace SegmentTree;
+int a[MAXN],pos[MAXN];
+struct Query{
+    int l,r,id;
+}q[MAXN];
+inline bool operator &lt; (const Query &amp;a,const Query &amp;b){
+    return pos[a.l]&lt;pos[b.l]||(pos[a.l]==pos[b.l]&amp;&amp;((pos[a.l]&amp;1)?a.r&lt;b.r:a.r&gt;b.r));
+}
+int Ans[MAXN];
+int main(){
+    int n=read(),m=read();
+    int Size=sqrt(n);
+    for (register int i=1;i&lt;=n;++i){
+        a[i]=read();
+        pos[i]=(i-1)/Size+1;
+    }
+    for (register int i=1;i&lt;=m;++i){
+        q[i].l=read(),q[i].r=read(),q[i].id=i;
+    }
+    sort(q+1,q+1+m);
+    int l=1,r=0;
+    Build(1,1,n);
+    for (register int i=1;i&lt;=m;++i){
+        while (l&lt;q[i].l) Update(1,1,n,a[l++]);
+        while (l&gt;q[i].l) Update(1,1,n,a[--l]);
+        while (r&lt;q[i].r) Update(1,1,n,a[++r]);
+        while (r&gt;q[i].r) Update(1,1,n,a[r--]);
+        Ans[q[i].id]=tree[1].maxn;
+    }
+    for (register int i=1;i&lt;=m;++i){
+        printf(&quot;%d\n&quot;,Ans[i]);
+    }
+}
+</code></pre>
+<h2 id="sol2">Sol2:</h2>
+<p>线段树不行，怎么搞？</p>
+<p>注意到题目说的是<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span>到<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">n</span></span></span></span>的排列，所以每个数都是不同的。</p>
+<p>首先，发现一个性质，只有往连续<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span>的端点左/右侧放<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span>，才能增加答案长♂度。</p>
+<p>我们画图理解一下：</p>
+<figure data-type="image" tabindex="1"><img src="/images/duliu.png" alt=""></figure>
+<p>其中标红代表原来就有<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span>。</p>
+<p>考虑加进一个数，用蓝色代表。</p>
+<p>显然，加进这样一个蓝色对答案没有影响，因为答案至少是<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span>。</p>
+<figure data-type="image" tabindex="2"><img src="/images/duliu2.png" alt=""></figure>
+<p>但是这样加一个蓝色对答案就有影响了。</p>
+<figure data-type="image" tabindex="3"><img src="/images/duliu3.png" alt=""></figure>
+<p>考虑维护这样一个<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>M</mi><mi>a</mi><mi>x</mi><mo>[</mo><mi>i</mi><mo>]</mo></mrow><annotation encoding="application/x-tex">Max[i]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.10903em;">M</span><span class="mord mathdefault">a</span><span class="mord mathdefault">x</span><span class="mopen">[</span><span class="mord mathdefault">i</span><span class="mclose">]</span></span></span></span>数组，其中当<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>i</mi></mrow><annotation encoding="application/x-tex">i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.65952em;vertical-align:0em;"></span><span class="mord mathdefault">i</span></span></span></span>为端点时， <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>M</mi><mi>a</mi><mi>x</mi><mo>[</mo><mi>i</mi><mo>]</mo></mrow><annotation encoding="application/x-tex">Max[i]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.10903em;">M</span><span class="mord mathdefault">a</span><span class="mord mathdefault">x</span><span class="mopen">[</span><span class="mord mathdefault">i</span><span class="mclose">]</span></span></span></span>代表连续<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span>的另一端的下标。</p>
+<p>对于这个图来说：</p>
+<figure data-type="image" tabindex="4"><img src="/images/duliu4.png" alt=""></figure>
+<p><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>M</mi><mi>a</mi><mi>x</mi><mo>[</mo><mn>2</mn><mo>]</mo><mo>=</mo><mn>4</mn><mo separator="true">,</mo><mi>M</mi><mi>a</mi><mi>x</mi><mo>[</mo><mn>4</mn><mo>]</mo><mo>=</mo><mn>2</mn><mo separator="true">,</mo><mi>M</mi><mi>a</mi><mi>x</mi><mo>[</mo><mn>6</mn><mo>]</mo><mo>=</mo><mn>6</mn></mrow><annotation encoding="application/x-tex">Max[2]=4,Max[4]=2,Max[6]=6</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.10903em;">M</span><span class="mord mathdefault">a</span><span class="mord mathdefault">x</span><span class="mopen">[</span><span class="mord">2</span><span class="mclose">]</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">4</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.10903em;">M</span><span class="mord mathdefault">a</span><span class="mord mathdefault">x</span><span class="mopen">[</span><span class="mord">4</span><span class="mclose">]</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">2</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.10903em;">M</span><span class="mord mathdefault">a</span><span class="mord mathdefault">x</span><span class="mopen">[</span><span class="mord">6</span><span class="mclose">]</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">6</span></span></span></span></p>
+<p>考虑如何维护这个<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>M</mi><mi>a</mi><mi>x</mi></mrow><annotation encoding="application/x-tex">Max</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.10903em;">M</span><span class="mord mathdefault">a</span><span class="mord mathdefault">x</span></span></span></span>数组。</p>
+<p>加进一个<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span>之后，计算加进这个<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span>后包含这个<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span>的最长连续<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span>的左右端点，用<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>L</mi></mrow><annotation encoding="application/x-tex">L</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault">L</span></span></span></span>，<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>R</mi></mrow><annotation encoding="application/x-tex">R</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.00773em;">R</span></span></span></span>表示。</p>
+<p>那么我们更新的时候直接<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>M</mi><mi>a</mi><mi>x</mi><mo>[</mo><mi>L</mi><mo>]</mo><mo>=</mo><mi>R</mi><mo separator="true">,</mo><mi>M</mi><mi>a</mi><mi>x</mi><mo>[</mo><mi>R</mi><mo>]</mo><mo>=</mo><mi>L</mi></mrow><annotation encoding="application/x-tex">Max[L]=R,Max[R]=L</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.10903em;">M</span><span class="mord mathdefault">a</span><span class="mord mathdefault">x</span><span class="mopen">[</span><span class="mord mathdefault">L</span><span class="mclose">]</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.00773em;">R</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.10903em;">M</span><span class="mord mathdefault">a</span><span class="mord mathdefault">x</span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.00773em;">R</span><span class="mclose">]</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault">L</span></span></span></span>即可。</p>
+<p>考虑如何撤销，发现这个撤销并不好搞，因为从中间断开的时候，无法知道左右端点在哪里。</p>
+<p>于是我们使用回滚莫队，具体可以参见这篇<a href="https://gaisaiyuno.github.io/archives/e8e86fd2.html">博客</a>。</p>
+<p>加入的时候，我们搞一个栈，每来一个更新操作，把修改的位置和原来的值记上，然后还原就直接从栈里面一个一个还原即可，不用所谓的撤销操作。</p>
+<p>特别特别注意一点，暴力搞完以后要把<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>a</mi><mi>n</mi><mi>s</mi></mrow><annotation encoding="application/x-tex">ans</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">a</span><span class="mord mathdefault">n</span><span class="mord mathdefault">s</span></span></span></span>设成<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span>，因为这个调了一个晚上。</p>
+<p>时间复杂度<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><mi>n</mi><msqrt><mi>n</mi></msqrt><mo>)</mo></mrow><annotation encoding="application/x-tex">O(n \sqrt n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.05028em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mord sqrt"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8002800000000001em;"><span class="svg-align" style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord mathdefault" style="padding-left:0.833em;">n</span></span><span style="top:-2.76028em;"><span class="pstrut" style="height:3em;"></span><span class="hide-tail" style="min-width:0.853em;height:1.08em;"><svg width='400em' height='1.08em' viewBox='0 0 400000 1080' preserveAspectRatio='xMinYMin slice'><path d='M95,702c-2.7,0,-7.17,-2.7,-13.5,-8c-5.8,-5.3,-9.5,
+-10,-9.5,-14c0,-2,0.3,-3.3,1,-4c1.3,-2.7,23.83,-20.7,67.5,-54c44.2,-33.3,65.8,
+-50.3,66.5,-51c1.3,-1.3,3,-2,5,-2c4.7,0,8.7,3.3,12,10s173,378,173,378c0.7,0,
+35.3,-71,104,-213c68.7,-142,137.5,-285,206.5,-429c69,-144,104.5,-217.7,106.5,
+-221c5.3,-9.3,12,-14,20,-14H400000v40H845.2724s-225.272,467,-225.272,467
+s-235,486,-235,486c-2.7,4.7,-9,7,-19,7c-6,0,-10,-1,-12,-3s-194,-422,-194,-422
+s-65,47,-65,47z M834 80H400000v40H845z'/></svg></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.23972em;"><span></span></span></span></span></span><span class="mclose">)</span></span></span></span></p>
+<pre><code class="language-cpp">#include &lt;bits/stdc++.h&gt;
+#define MAXN 100005
+using namespace std;
+inline int read(){
+    int x=0,f=1;
+    char ch=getchar();
+    while (ch&lt;'0'||ch&gt;'9'){
+        if (ch=='-') f=-1;
+        ch=getchar();
+    }
+    while (ch&gt;='0'&amp;&amp;ch&lt;='9'){
+        x=(x&lt;&lt;3)+(x&lt;&lt;1)+(ch^'0');
+        ch=getchar();
+    }
+    return x*f;
+}
+int a[MAXN],pos[MAXN],n,m;
+struct Query{
+    int l,r,id;
+}q[MAXN];
+inline bool operator &lt; (const Query &amp;A,const Query &amp;B){
+    return pos[A.l]==pos[B.l]?A.r&lt;B.r:pos[A.l]&lt;pos[B.l];
+}
+static int Ans[MAXN];
+static int vis[MAXN];
+static int Max[MAXN];//最重要的数组，存的是这一段的另一个端点
+int ans,Size;
+struct node{
+    int pos,org;//位置，一开始的值
+}stk[MAXN];
+int top,f;
+inline void Update(int pos,int val){
+    if (f) stk[++top]=node{pos,Max[pos]};
+    Max[pos]=val;
+}
+inline void Add(int x){
+    vis[x]=1;
+    int L=vis[x-1]?Max[x-1]:x,R=vis[x+1]?Max[x+1]:x;
+    ans=max(ans,R-L+1);
+    Update(L,R);Update(R,L);
+}
+inline void Undo(){
+    for (register int i=top;i&gt;=1;--i){
+        Max[stk[i].pos]=stk[i].org;
+    }
+    top=0;
+}
+inline int BruteForce(int l,int r){
+    ans=1;
+    f=false;
+    for (register int i=l;i&lt;=r;++i){
+        Add(a[i]);
+    }
+    for (register int i=l;i&lt;=r;++i){
+        Max[a[i]]=0,vis[a[i]]=0;
+    }
+    int temp=ans;
+    ans=1;
+    return temp;
+}
+inline int MoQueue(int i,int id){
+    int R=min(n,Size*id);
+    int l=R,r=R-1;
+    ans=1;
+    memset(vis,0,sizeof(vis));
+    memset(Max,0,sizeof(Max));
+    top=0;
+    while (pos[q[i].l]==id){
+        if (pos[q[i].l]==pos[q[i].r]){
+            Ans[q[i].id]=BruteForce(q[i].l,q[i].r);
+            i++;
+            continue;
+        }
+        f=false;
+        while (r&lt;q[i].r) Add(a[++r]);
+        int temp=ans;
+        f=true;
+        while (l&gt;q[i].l) Add(a[--l]);
+        Ans[q[i].id]=ans;
+        while (l&lt;R) vis[a[l++]]=0;
+        Undo();
+        ans=temp;
+        i++;
+    }
+    return i;
+}
+int main(){
+    n=read(),m=read();
+    Size=(int)(n/sqrt(m));
+    for (register int i=1;i&lt;=n;++i){
+        a[i]=read();
+        pos[i]=(i-1)/Size+1;
+    }
+    for (register int i=1;i&lt;=m;++i){
+        q[i].l=read(),q[i].r=read(),q[i].id=i;
+    }
+    sort(q+1,q+1+m);
+    int ptr=1;
+    for (register int i=1;i&lt;=pos[n];++i){
+        ptr=MoQueue(ptr,i);
+    }
+    for (register int i=1;i&lt;=m;++i){
+        printf(&quot;%d\n&quot;,Ans[i]);
+    }
+}
+</code></pre>
+
+            </div>
+            
+              <div class="tag-container">
+                
+                  <a href="https://steven-mhy.github.io/tag/tz8jnsnOVd" class="tag">
+                    题解
+                  </a>
+                
+                  <a href="https://steven-mhy.github.io/tag/dPrJjUjkSk" class="tag">
+                    莫队
+                  </a>
+                
+                  <a href="https://steven-mhy.github.io/tag/u5Tym0HXSZT" class="tag">
+                    回滚莫队
+                  </a>
+                
+              </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://steven-mhy.github.io/post/AT1219-歴史の研究">
+                  <h3 class="post-title">
+                    AT1219 歴史の研究
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+              
+                <div id="gitalk-container" data-aos="fade-in"></div>
+              
+
+              
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+<script type="application/javascript">
+
+AOS.init();
+
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+
+  
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+
+      var gitalk = new Gitalk({
+        clientID: '0381bd48f354d449038e',
+        clientSecret: 'a325a1b671eb2071d75fc107561dfeedaa1485cf',
+        repo: 'steven-mhy.github.io',
+        owner: 'steven-mhy',
+        admin: ['steven-mhy'],
+        id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+      gitalk.render('gitalk-container')
+
+    </script>
+  
+
+  
+
+
+
+
+  </body>
+</html>

@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>P2572 BZOJ1858 [SCOI2010]序列操作  | Steven_Meng&#39;s Blog</title>
+<meta name="description" content="白鳥は　かなしからずや　空の青 海のあをにも　染まずただよふ">
+<meta name="referrer" content="no-referrer" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://steven-mhy.github.io/favicon.ico?v=1571390602731">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://steven-mhy.github.io/styles/main.css">
+
+
+  
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
+  
+
+  
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+
+
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://steven-mhy.github.io">
+        <img src="https://steven-mhy.github.io/images/avatar.png?v=1571390602731" class="site-logo">
+        <h1 class="site-title">Steven_Meng&#39;s Blog</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      白鳥は　かなしからずや　空の青 海のあをにも　染まずただよふ
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://steven-mhy.github.io/atom.xml" target="_blank">RSS</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">P2572 BZOJ1858 [SCOI2010]序列操作 </h2>
+            <div class="post-date">2019-07-30</div>
+            
+            <div class="post-content">
+              <p><a href="https://www.luogu.org/problem/P2572">洛谷</a></p>
+<p><a href="https://www.lydsy.com/JudgeOnline/problem.php?id=1858">BZOJ</a></p>
+<p>线段树维护，每个节点上面记录<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>6</mn></mrow><annotation encoding="application/x-tex">6</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">6</span></span></span></span>个值<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>l</mi><mn>0</mn><mo separator="true">,</mo><mi>l</mi><mn>1</mn><mo separator="true">,</mo><mi>r</mi><mn>0</mn><mo separator="true">,</mo><mi>r</mi><mn>1</mn><mo separator="true">,</mo><mi>m</mi><mn>0</mn><mo separator="true">,</mo><mi>m</mi><mn>1</mn></mrow><annotation encoding="application/x-tex">l0,l1,r0,r1,m0,m1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord">0</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord">1</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mord">0</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mord">1</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">m</span><span class="mord">0</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">m</span><span class="mord">1</span></span></span></span>（套路），代表从左开始最长<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>0</mn></mrow><annotation encoding="application/x-tex">0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span></span></span></span>的序列长度，最长<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span>的序列的长度，从右开始的......，中间的......（懒）</p>
+<p>翻转就是把他们两两交换，<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="normal">p</mi><mi mathvariant="normal">u</mi><mi mathvariant="normal">s</mi><mi mathvariant="normal">h</mi><mi mathvariant="normal">u</mi><mi mathvariant="normal">p</mi></mrow><annotation encoding="application/x-tex">\rm pushup</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord"><span class="mord mathrm">p</span><span class="mord mathrm">u</span><span class="mord mathrm">s</span><span class="mord mathrm">h</span><span class="mord mathrm">u</span><span class="mord mathrm">p</span></span></span></span></span>也都是套路。</p>
+<p>注意覆盖标记比翻转标记优先级高，于是区间覆盖的时候会把翻转标记设成<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>0</mn></mrow><annotation encoding="application/x-tex">0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span></span></span></span>，<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="normal">p</mi><mi mathvariant="normal">u</mi><mi mathvariant="normal">s</mi><mi mathvariant="normal">h</mi><mi mathvariant="normal">d</mi><mi mathvariant="normal">o</mi><mi mathvariant="normal">w</mi><mi mathvariant="normal">n</mi></mrow><annotation encoding="application/x-tex">\rm pushdown</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord"><span class="mord mathrm">p</span><span class="mord mathrm">u</span><span class="mord mathrm">s</span><span class="mord mathrm">h</span><span class="mord mathrm">d</span><span class="mord mathrm">o</span><span class="mord mathrm" style="margin-right:0.01389em;">w</span><span class="mord mathrm">n</span></span></span></span></span>的时候也是先判断区间覆盖标记。</p>
+<pre><code class="language-cpp">#include &lt;bits/stdc++.h&gt;
+#define MAXN 100005
+using namespace std;
+inline int read(){
+    int x=0,f=1;
+    char ch=getchar();
+    while (ch&lt;'0'||ch&gt;'9'){
+        if (ch=='-') f=-1;
+        ch=getchar();
+    }
+    while (ch&gt;='0'&amp;&amp;ch&lt;='9'){
+        x=(x&lt;&lt;3)+(x&lt;&lt;1)+(ch^'0');
+        ch=getchar();
+    }
+    return x*f;
+}
+int a[MAXN];
+namespace SegmentTree{
+    struct node{
+        int l,r;
+        int l0,r0,l1,r1,m0,m1;
+        int sum,tag;
+        bool rev;
+        inline int len(){return r-l+1;}
+    }tree[MAXN&lt;&lt;2];
+    #define lc i&lt;&lt;1
+    #define rc i&lt;&lt;1|1
+    inline void Rev(int i){
+        tree[i].sum=tree[i].len()-tree[i].sum;
+        swap(tree[i].l0,tree[i].l1);
+        swap(tree[i].r0,tree[i].r1);
+        swap(tree[i].m0,tree[i].m1);
+        tree[i].rev^=1;
+    }
+    inline void Cover(int i,int val){
+        tree[i].tag=val;
+        tree[i].sum=val*tree[i].len();
+        tree[i].l0=tree[i].r0=tree[i].m0=(1-val)*tree[i].len();
+        tree[i].r1=tree[i].l1=tree[i].m1=val*tree[i].len();
+        tree[i].rev=0;
+    }
+    inline void pushdown(int i){
+        if (tree[i].l==tree[i].r) return ;
+        if (tree[i].tag!=-1){
+            Cover(lc,tree[i].tag),Cover(rc,tree[i].tag);
+            tree[i].tag=-1;
+        }
+        if (tree[i].rev){
+            Rev(lc),Rev(rc);
+            tree[i].rev=0;
+        }
+    }
+    node operator + (node a,node b){
+        node c;
+        c.l=a.l,c.r=b.r;
+        c.l0=a.l0;
+        if (a.sum==0) c.l0=max(c.l0,a.len()+b.l0);
+        c.l1=a.l1;
+        if (a.sum==a.len()) c.l1=max(c.l1,a.len()+b.l1);
+        c.r0=b.r0;
+        if (b.sum==0) c.r0=max(c.r0,b.len()+a.r0);
+        c.r1=b.r1;
+        if (b.sum==b.len()) c.r1=max(c.r1,b.len()+a.r1);
+        c.m0=max(max(a.m0,b.m0),a.r0+b.l0);
+        c.m1=max(max(a.m1,b.m1),a.r1+b.l1);
+        c.sum=a.sum+b.sum;
+        return c;
+    }
+    inline void pushup(int i){
+        int temp1=tree[i].rev,temp2=tree[i].tag;
+        tree[i]=tree[lc]+tree[rc];
+        tree[i].rev=temp1,tree[i].tag=temp2;
+    }
+    void Build(int i,int l,int r){
+        tree[i].l=l,tree[i].r=r;
+        tree[i].tag=-1;
+        if (l==r){
+            Cover(i,a[l]);
+            return ;
+        }
+        int mid=(l+r)&gt;&gt;1;
+        Build(lc,l,mid);
+        Build(rc,mid+1,r);
+        pushup(i);
+    }
+    void Update(int i,int L,int R,int val){
+        if (L&lt;=tree[i].l&amp;&amp;tree[i].r&lt;=R){
+            Cover(i,val);
+            return ;
+        }
+        int mid=(tree[i].l+tree[i].r)&gt;&gt;1;
+        pushdown(i);
+        if (L&lt;=mid) Update(lc,L,R,val);
+        if (mid&lt;R) Update(rc,L,R,val);
+        pushup(i);
+    }
+    void Reverse(int i,int L,int R){
+        if (L&lt;=tree[i].l&amp;&amp;tree[i].r&lt;=R){
+            Rev(i);
+            return ;
+        }
+        int mid=(tree[i].l+tree[i].r)&gt;&gt;1;
+        pushdown(i);
+        if (L&lt;=mid) Reverse(lc,L,R);
+        if (mid&lt;R) Reverse(rc,L,R);
+        pushup(i);
+    }
+    int QuerySum(int i,int L,int R){
+        if (L&lt;=tree[i].l&amp;&amp;tree[i].r&lt;=R){
+            return tree[i].sum;
+        }
+        int mid=(tree[i].l+tree[i].r)&gt;&gt;1,ans=0;
+        pushdown(i);
+        if (L&lt;=mid) ans+=QuerySum(lc,L,R);
+        if (mid&lt;R) ans+=QuerySum(rc,L,R);
+        return ans;
+    }
+    node QueryMax(int i,int L,int R){
+        if (L&lt;=tree[i].l&amp;&amp;tree[i].r&lt;=R){
+            return tree[i];
+        }
+        int mid=(tree[i].l+tree[i].r)&gt;&gt;1;
+        pushdown(i);
+        if (mid&gt;=R) return QueryMax(lc,L,R);
+        else if (L&gt;mid) return QueryMax(rc,L,R);
+        else return QueryMax(lc,L,R)+QueryMax(rc,L,R);
+    }
+}
+using namespace SegmentTree;
+int main(){
+    int n=read(),m=read();
+    for (register int i=1;i&lt;=n;++i){
+        a[i]=read();
+    }
+    Build(1,1,n);
+    while (m--){
+        int opr=read(),l=read()+1,r=read()+1;
+        if (opr==0) Update(1,l,r,0);
+        if (opr==1) Update(1,l,r,1);
+        if (opr==2) Reverse(1,l,r);
+        if (opr==3) printf(&quot;%d\n&quot;,QuerySum(1,l,r));
+        if (opr==4) printf(&quot;%d\n&quot;,QueryMax(1,l,r).m1);
+    }
+}
+</code></pre>
+
+            </div>
+            
+              <div class="tag-container">
+                
+                  <a href="https://steven-mhy.github.io/tag/tz8jnsnOVd" class="tag">
+                    题解
+                  </a>
+                
+                  <a href="https://steven-mhy.github.io/tag/915M0pAYLA6" class="tag">
+                    线段树
+                  </a>
+                
+              </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://steven-mhy.github.io/post/P2146-NOI2015-软件包管理器">
+                  <h3 class="post-title">
+                    P2146 [NOI2015]软件包管理器
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+              
+                <div id="gitalk-container" data-aos="fade-in"></div>
+              
+
+              
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+<script type="application/javascript">
+
+AOS.init();
+
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+
+  
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+
+      var gitalk = new Gitalk({
+        clientID: '0381bd48f354d449038e',
+        clientSecret: 'a325a1b671eb2071d75fc107561dfeedaa1485cf',
+        repo: 'steven-mhy.github.io',
+        owner: 'steven-mhy',
+        admin: ['steven-mhy'],
+        id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+      gitalk.render('gitalk-container')
+
+    </script>
+  
+
+  
+
+
+
+
+  </body>
+</html>

@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>圆方树学习笔记 | Steven_Meng&#39;s Blog</title>
+<meta name="description" content="白鳥は　かなしからずや　空の青 海のあをにも　染まずただよふ">
+<meta name="referrer" content="no-referrer" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://steven-mhy.github.io/favicon.ico?v=1571390602731">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://steven-mhy.github.io/styles/main.css">
+
+
+  
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
+  
+
+  
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+
+
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://steven-mhy.github.io">
+        <img src="https://steven-mhy.github.io/images/avatar.png?v=1571390602731" class="site-logo">
+        <h1 class="site-title">Steven_Meng&#39;s Blog</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      白鳥は　かなしからずや　空の青 海のあをにも　染まずただよふ
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://steven-mhy.github.io/atom.xml" target="_blank">RSS</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">圆方树学习笔记</h2>
+            <div class="post-date">2019-07-31</div>
+            
+            <div class="post-content">
+              <blockquote>
+<p>圆方树这个东西咕了好久都没学，今天一看还是比较简单的</p>
+</blockquote>
+<p>先讲一下仙人掌的定义：任意一条边至多只出现在一条简单回路的无向连通图称为仙人掌。</p>
+<p>放几张图：</p>
+<figure data-type="image" tabindex="1"><img src="/images/xrz4.png" alt=""></figure>
+<p>え、 放错了，不过还是比较形象的（估计就是仙人掌名字的又来吧）：</p>
+<p>放一个真·仙人掌：</p>
+<figure data-type="image" tabindex="2"><img src="/images/xrz2.png" alt=""></figure>
+<p><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="normal">f</mi><mi mathvariant="normal">r</mi><mi mathvariant="normal">o</mi><mi mathvariant="normal">m</mi><mi mathvariant="normal">B</mi><mi mathvariant="normal">Z</mi><mi mathvariant="normal">O</mi><mi mathvariant="normal">J</mi><mn>1023</mn></mrow><annotation encoding="application/x-tex">\rm from BZOJ 1023</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord"><span class="mord mathrm" style="margin-right:0.07778em;">f</span><span class="mord mathrm">r</span><span class="mord mathrm">o</span><span class="mord mathrm">m</span><span class="mord mathrm">B</span><span class="mord mathrm">Z</span><span class="mord mathrm">O</span><span class="mord mathrm">J</span><span class="mord mathrm">1</span><span class="mord mathrm">0</span><span class="mord mathrm">2</span><span class="mord mathrm">3</span></span></span></span></span></p>
+<p>我自己画的仙人掌图：</p>
+<figure data-type="image" tabindex="3"><img src="/images/xrz.png" alt=""></figure>
+<p>考虑解决仙人掌上面问题，上面的环很讨厌，我们要想一种办法把环缩掉。</p>
+<p>当然不能直接上<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="normal">t</mi><mi mathvariant="normal">a</mi><mi mathvariant="normal">r</mi><mi mathvariant="normal">j</mi><mi mathvariant="normal">a</mi><mi mathvariant="normal">n</mi></mrow><annotation encoding="application/x-tex">\rm tarjan</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8623000000000001em;vertical-align:-0.19444em;"></span><span class="mord"><span class="mord mathrm">t</span><span class="mord mathrm">a</span><span class="mord mathrm">r</span><span class="mord mathrm">j</span><span class="mord mathrm">a</span><span class="mord mathrm">n</span></span></span></span></span>缩环，因为<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="normal">t</mi><mi mathvariant="normal">a</mi><mi mathvariant="normal">r</mi><mi mathvariant="normal">j</mi><mi mathvariant="normal">a</mi><mi mathvariant="normal">n</mi></mrow><annotation encoding="application/x-tex">\rm tarjan</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8623000000000001em;vertical-align:-0.19444em;"></span><span class="mord"><span class="mord mathrm">t</span><span class="mord mathrm">a</span><span class="mord mathrm">r</span><span class="mord mathrm">j</span><span class="mord mathrm">a</span><span class="mord mathrm">n</span></span></span></span></span>会把很多性质破坏掉，比如两点之间距离之类。</p>
+<p>考虑把环缩成菊花图：</p>
+<figure data-type="image" tabindex="4"><img src="/images/yfs.png" alt=""></figure>
+<p>我们叫原来仙人掌上面的点圆点，新加进的菊花图的中心节点为方点，这样形成一棵圆方树。</p>
+<p>（其实圆方树就是这样一个简单的东西，把环萎♂进去形成一个菊花图，网上的很多题解都写复杂了）</p>
+<p>为什么不是仙人掌不能建立圆方树？考虑这样一个图：</p>
+<figure data-type="image" tabindex="5"><img src="/images/notxrz.png" alt=""></figure>
+<p>把它的（伪）圆方树建出来，变成介个样子：</p>
+<figure data-type="image" tabindex="6"><img src="/images/notyfs.png" alt=""></figure>
+<p>发现这并不是一棵树，因为有环。造成这个环的本质是有一条边在两个环上面都出现了一次。</p>
+<p>专业一点来说，对于一条边<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>&lt;</mo><mi>u</mi><mo separator="true">,</mo><mi>v</mi><mo>&gt;</mo></mrow><annotation encoding="application/x-tex">&lt;u,v&gt;</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5782em;vertical-align:-0.0391em;"></span><span class="mrel">&lt;</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.7335400000000001em;vertical-align:-0.19444em;"></span><span class="mord mathdefault">u</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">v</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">&gt;</span></span></span></span>，设它同时存在两个环建立出的两个菊花图的中心节点为<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>s</mi><mn>1</mn></msub><mo separator="true">,</mo><msub><mi>s</mi><mn>2</mn></msub></mrow><annotation encoding="application/x-tex">s_1,s_2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord"><span class="mord mathdefault">s</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathdefault">s</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>，那么必有<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>u</mi><mo>−</mo><msub><mi>s</mi><mn>1</mn></msub><mo>−</mo><mi>v</mi><mo>−</mo><msub><mi>s</mi><mn>2</mn></msub></mrow><annotation encoding="application/x-tex">u-s_1-v-s_2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord mathdefault">u</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.73333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault">s</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">v</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.58056em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault">s</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>这个环。</p>
+<p>按照边数排个序：非联通图<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>&lt;</mo></mrow><annotation encoding="application/x-tex">&lt;</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5782em;vertical-align:-0.0391em;"></span><span class="mrel">&lt;</span></span></span></span>树（其实是仙人掌）<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>&lt;</mo></mrow><annotation encoding="application/x-tex">&lt;</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5782em;vertical-align:-0.0391em;"></span><span class="mrel">&lt;</span></span></span></span>基环树（其实也是仙人掌）<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>≤</mo></mrow><annotation encoding="application/x-tex">\le</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7719400000000001em;vertical-align:-0.13597em;"></span><span class="mrel">≤</span></span></span></span>仙人掌<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>≤</mo></mrow><annotation encoding="application/x-tex">\le</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7719400000000001em;vertical-align:-0.13597em;"></span><span class="mrel">≤</span></span></span></span>非仙人掌的连通图</p>
+<hr>
+<p>讲完定义之后，我们来看怎么实现：</p>
+<h2 id="静态仙人掌">静态仙人掌</h2>
+<p><a href="https://www.luogu.org/problem/P5236">P5236 【模板】静态仙人掌</a></p>
+<p>仙人掌图上面求节点<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>u</mi></mrow><annotation encoding="application/x-tex">u</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">u</span></span></span></span>，<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>v</mi></mrow><annotation encoding="application/x-tex">v</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">v</span></span></span></span>之间最短路<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>d</mi></mrow><annotation encoding="application/x-tex">d</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault">d</span></span></span></span>。</p>
+<p>先建好一棵圆方树（<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="normal">t</mi><mi mathvariant="normal">a</mi><mi mathvariant="normal">r</mi><mi mathvariant="normal">j</mi><mi mathvariant="normal">a</mi><mi mathvariant="normal">n</mi></mrow><annotation encoding="application/x-tex">\rm tarjan</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8623000000000001em;vertical-align:-0.19444em;"></span><span class="mord"><span class="mord mathrm">t</span><span class="mord mathrm">a</span><span class="mord mathrm">r</span><span class="mord mathrm">j</span><span class="mord mathrm">a</span><span class="mord mathrm">n</span></span></span></span></span>实现）：</p>
+<p>考虑第一件事，上面标红的那些边边权怎么弄，才不能破坏最短路的性质，也就是说，从红色边上面走相当于从环上面走。</p>
+<p>考虑先钦定一个环上面的点<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>a</mi><mi>l</mi><mi>b</mi></mrow><annotation encoding="application/x-tex">alb</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault">a</span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord mathdefault">b</span></span></span></span>，我们强制经过<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>a</mi><mi>l</mi><mi>b</mi></mrow><annotation encoding="application/x-tex">alb</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault">a</span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord mathdefault">b</span></span></span></span>，所以从<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>u</mi></mrow><annotation encoding="application/x-tex">u</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">u</span></span></span></span>到<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>v</mi></mrow><annotation encoding="application/x-tex">v</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">v</span></span></span></span>相当于<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>u</mi><mo>−</mo><mi>a</mi><mi>l</mi><mi>b</mi><mo>−</mo><mi>v</mi></mrow><annotation encoding="application/x-tex">u-alb-v</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord mathdefault">u</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.77777em;vertical-align:-0.08333em;"></span><span class="mord mathdefault">a</span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord mathdefault">b</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">v</span></span></span></span></p>
+<p>具体实现的时候，记录一个<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>s</mi><mi>u</mi><mi>m</mi></mrow><annotation encoding="application/x-tex">sum</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">s</span><span class="mord mathdefault">u</span><span class="mord mathdefault">m</span></span></span></span>代表边权的前缀和。</p>
+<p>考虑第二件事，如何查询两个节点之间最短路？</p>
+<p>设<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>l</mi><mi>c</mi><mi>a</mi></mrow><annotation encoding="application/x-tex">lca</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord mathdefault">c</span><span class="mord mathdefault">a</span></span></span></span>为<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>L</mi><mi>C</mi><mi>A</mi><mo>(</mo><mi>u</mi><mo separator="true">,</mo><mi>v</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">LCA(u,v)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">L</span><span class="mord mathdefault" style="margin-right:0.07153em;">C</span><span class="mord mathdefault">A</span><span class="mopen">(</span><span class="mord mathdefault">u</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">v</span><span class="mclose">)</span></span></span></span></p>
+<p><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1.</mn></mrow><annotation encoding="application/x-tex">1.</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord">.</span></span></span></span><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>l</mi><mi>c</mi><mi>a</mi></mrow><annotation encoding="application/x-tex">lca</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord mathdefault">c</span><span class="mord mathdefault">a</span></span></span></span>为圆点：<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>d</mi></mrow><annotation encoding="application/x-tex">d</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault">d</span></span></span></span>为树上<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>u</mi></mrow><annotation encoding="application/x-tex">u</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">u</span></span></span></span>，<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>v</mi></mrow><annotation encoding="application/x-tex">v</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">v</span></span></span></span>之间距离，即<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>d</mi><mo>=</mo><mi>d</mi><mi>i</mi><mi>s</mi><mo>(</mo><mi>u</mi><mo separator="true">,</mo><mi>v</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">d=dis(u,v)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault">d</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">d</span><span class="mord mathdefault">i</span><span class="mord mathdefault">s</span><span class="mopen">(</span><span class="mord mathdefault">u</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">v</span><span class="mclose">)</span></span></span></span></p>
+<p><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>2.</mn></mrow><annotation encoding="application/x-tex">2.</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">2</span><span class="mord">.</span></span></span></span><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>l</mi><mi>c</mi><mi>a</mi></mrow><annotation encoding="application/x-tex">lca</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord mathdefault">c</span><span class="mord mathdefault">a</span></span></span></span>为方点：较为复杂，因为方点连出的边不存在，所以不能直接像上面一样搞，设<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>l</mi><mi>c</mi><mi>a</mi></mrow><annotation encoding="application/x-tex">lca</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord mathdefault">c</span><span class="mord mathdefault">a</span></span></span></span>的儿子中为<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>u</mi></mrow><annotation encoding="application/x-tex">u</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">u</span></span></span></span>，<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>v</mi></mrow><annotation encoding="application/x-tex">v</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">v</span></span></span></span>两个节点的祖先的两个节点为<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>a</mi></mrow><annotation encoding="application/x-tex">a</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">a</span></span></span></span>，<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>b</mi></mrow><annotation encoding="application/x-tex">b</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault">b</span></span></span></span>，这样说有些复杂，不妨画图理解。</p>
+<figure data-type="image" tabindex="7"><img src="/images/xrz3.png" alt=""></figure>
+<p>如图，<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>l</mi><mi>c</mi><mi>a</mi></mrow><annotation encoding="application/x-tex">lca</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord mathdefault">c</span><span class="mord mathdefault">a</span></span></span></span>往<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>a</mi></mrow><annotation encoding="application/x-tex">a</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">a</span></span></span></span>，<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>b</mi></mrow><annotation encoding="application/x-tex">b</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault">b</span></span></span></span>连的两条边是不存在的，所以不能经过，所以只能从<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>u</mi></mrow><annotation encoding="application/x-tex">u</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">u</span></span></span></span>向上跳到<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>a</mi></mrow><annotation encoding="application/x-tex">a</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">a</span></span></span></span>，然后在环上面走一段路程到<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>b</mi></mrow><annotation encoding="application/x-tex">b</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault">b</span></span></span></span>，最后从<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>b</mi></mrow><annotation encoding="application/x-tex">b</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault">b</span></span></span></span>往下跳到<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>v</mi></mrow><annotation encoding="application/x-tex">v</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">v</span></span></span></span>，所以<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>d</mi><mo>=</mo><mi>d</mi><mi>i</mi><mi>s</mi><mo>(</mo><mi>u</mi><mo separator="true">,</mo><mi>a</mi><mo>)</mo><mo>+</mo><mi>d</mi><mi>i</mi><mi>s</mi><mo>(</mo><mi>a</mi><mo separator="true">,</mo><mi>b</mi><mo>)</mo><mo>+</mo><mi>d</mi><mi>i</mi><mi>s</mi><mo>(</mo><mi>b</mi><mo separator="true">,</mo><mi>v</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">d=dis(u,a)+dis(a,b)+dis(b,v)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault">d</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">d</span><span class="mord mathdefault">i</span><span class="mord mathdefault">s</span><span class="mopen">(</span><span class="mord mathdefault">u</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">a</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">d</span><span class="mord mathdefault">i</span><span class="mord mathdefault">s</span><span class="mopen">(</span><span class="mord mathdefault">a</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">b</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">d</span><span class="mord mathdefault">i</span><span class="mord mathdefault">s</span><span class="mopen">(</span><span class="mord mathdefault">b</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">v</span><span class="mclose">)</span></span></span></span></p>
+<p><strong>注意：在环上面走有两种走法，不能忘记</strong></p>
+<p>实现起来还是有点细节的。</p>
+<pre><code class="language-cpp">#include &lt;bits/stdc++.h&gt;
+#define MAXN 40005
+#define MAXM 23
+using namespace std;
+inline int read(){
+    int x=0,f=1;
+    char ch=getchar();
+    while (ch&lt;'0'||ch&gt;'9'){
+        if (ch=='-') f=-1;
+        ch=getchar();
+    }
+    while (ch&gt;='0'&amp;&amp;ch&lt;='9'){
+        x=(x&lt;&lt;3)+(x&lt;&lt;1)+(ch^'0');
+        ch=getchar();
+    }
+    return x*f;
+}
+struct Edge{
+    int to,len;
+};
+vector&lt;Edge&gt;G1[MAXN],G2[MAXN];//G1为原图，G2为圆方树
+inline void _AddEdge1(int u,int v,int w){
+    G1[u].push_back(Edge{v,w});
+}
+inline void AddEdge1(int u,int v,int w){
+    _AddEdge1(u,v,w),_AddEdge1(v,u,w);
+}
+inline void _AddEdge2(int u,int v,int w){
+    G2[u].push_back(Edge{v,w});
+}
+inline void AddEdge2(int u,int v,int w){
+    _AddEdge2(u,v,w),_AddEdge2(v,u,w);
+}
+namespace Lca{
+    int anc[MAXN][MAXM],dis[MAXN],dep[MAXN];
+    void dfs(int u,int father){
+        anc[u][0]=father;
+        for (register int i=1;i&lt;MAXM;++i){
+            anc[u][i]=anc[anc[u][i-1]][i-1];
+        }
+        for (register int i=0;i&lt;G2[u].size();++i){
+            int v=G2[u][i].to,w=G2[u][i].len;
+            if (v!=father){
+                dep[v]=dep[u]+1;
+                dis[v]=dis[u]+w;
+                dfs(v,u);
+            }
+        }
+    }
+    inline int LCA(int u,int v){
+        if (dep[u]&lt;dep[v]) swap(u,v);
+        for (register int i=MAXM-1;i&gt;=0;--i){
+            if (dep[anc[u][i]]&gt;=dep[v]){
+                u=anc[u][i];
+            }
+        }
+        if (u==v){
+            return v;
+        }
+        for (register int i=MAXM-1;i&gt;=0;--i){
+            if (anc[u][i]!=anc[v][i]){
+                u=anc[u][i];
+                v=anc[v][i];
+            }
+        }
+        return anc[u][0];
+    }
+    inline int Jump(int u,int lca){//H♂p
+        for (register int i=MAXM-1;i&gt;=0;--i){
+            if (dep[anc[u][i]]&gt;dep[lca]){
+                u=anc[u][i];
+            }
+        }
+        return u;
+    }
+    inline int Dis(int u,int v){
+        return dis[u]+dis[v]-dis[LCA(u,v)]*2;
+    }
+}
+using namespace Lca;
+int square;//方点
+int sum[MAXN];//一个类似于前缀和的东西，求环上边权的时候可以方便地相减得出答案
+namespace RS_Tree{//Round Square Tree ???
+    int dfn[MAXN],low[MAXN],cnt,fa[MAXN],tofa[MAXN];
+    void tarjan(int u,int father){
+        dfn[u]=low[u]=++cnt;
+        for (register int i=0;i&lt;G1[u].size();++i){
+            int v=G1[u][i].to,w=G1[u][i].len;
+            if (v!=father){
+                if (!dfn[v]){fa[v]=u;tofa[v]=w;tarjan(v,u);low[u]=min(low[u],low[v]);}
+                else{low[u]=min(low[u],dfn[v]);}
+                if (low[v]&lt;=dfn[u]) continue;
+                AddEdge2(u,v,w);//原来的仙人掌上面边不在环里面的边要保留
+            }
+        }
+        for (register int i=0;i&lt;G1[u].size();++i){
+            int v=G1[u][i].to;
+            if (fa[v]==u||dfn[v]&lt;=dfn[u]) continue;
+            //找到非树边
+            ++square;//新建方点
+            int s=G1[u][i].len,t=v;
+            while (t!=fa[u]){//在环上面绕圈圈
+                sum[t]=s;
+                s+=tofa[t];
+                t=fa[t];
+            }
+            sum[square]=sum[u];sum[u]=0;
+            //求出整个圈上面边权之和，u多算了，所以设成0
+            //为什么记录sum[square]哪？往下看
+            t=v;
+            while (t!=fa[u]){
+                AddEdge2(t,square,min(sum[t],sum[square]-sum[t]));//加上不存在的边
+                //其实就是把环上走的一大堆路程压到一条边上面
+                //可以往前面绕，也可以后面绕，所以取一个min
+                t=fa[t];
+            }
+        }
+    }
+}
+using namespace RS_Tree;
+int n,m;
+int main(){
+    n=read(),m=read();
+    int q=read();
+    for (register int i=1;i&lt;=m;++i){
+        int u=read(),v=read(),w=read();
+        AddEdge1(u,v,w);
+    }
+    square=n;
+    tarjan(1,0);
+    dfs(1,1);
+    while (q--){
+        int u=read(),v=read();
+        int lca=LCA(u,v);
+        if (lca&lt;=n){//圆点
+            printf(&quot;%d\n&quot;,Dis(u,v));
+        }
+        else {//方点
+            int A=Jump(u,lca),B=Jump(v,lca);//前面说的a,b
+            int ans=Dis(u,A)+Dis(B,v);
+            if (sum[A]&lt;sum[B]) swap(A,B);//避免负数（不知道alb在A,B的哪里）
+            printf(&quot;%d\n&quot;,ans+min(sum[A]-sum[B],sum[lca]+sum[B]-sum[A]));
+            //直接调用sum[lca]体现出记录sum[square]的好处
+        }
+    }
+}
+</code></pre>
+<p>倍增写的，跑的比较慢。</p>
+<hr>
+<h2 id="link-cut-cactus">Link-Cut Cactus</h2>
+<p>咕咕</p>
+<p>（我连LCT都不会哪）</p>
+
+            </div>
+            
+              <div class="tag-container">
+                
+                  <a href="https://steven-mhy.github.io/tag/9ReFIqkzwMU" class="tag">
+                    tarjan
+                  </a>
+                
+                  <a href="https://steven-mhy.github.io/tag/W-mJ1F_3IkR" class="tag">
+                    仙人掌
+                  </a>
+                
+                  <a href="https://steven-mhy.github.io/tag/K5v-3Ob0La-" class="tag">
+                    圆方树
+                  </a>
+                
+              </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://steven-mhy.github.io/post/P1712-NOI2016-区间">
+                  <h3 class="post-title">
+                    P1712 [NOI2016]区间
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+              
+                <div id="gitalk-container" data-aos="fade-in"></div>
+              
+
+              
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+<script type="application/javascript">
+
+AOS.init();
+
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+
+  
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+
+      var gitalk = new Gitalk({
+        clientID: '0381bd48f354d449038e',
+        clientSecret: 'a325a1b671eb2071d75fc107561dfeedaa1485cf',
+        repo: 'steven-mhy.github.io',
+        owner: 'steven-mhy',
+        admin: ['steven-mhy'],
+        id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+      gitalk.render('gitalk-container')
+
+    </script>
+  
+
+  
+
+
+
+
+  </body>
+</html>

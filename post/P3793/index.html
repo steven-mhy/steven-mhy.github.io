@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>P3793 由乃救爷爷 | Steven_Meng&#39;s Blog</title>
+<meta name="description" content="白鳥は　かなしからずや　空の青 海のあをにも　染まずただよふ">
+<meta name="referrer" content="no-referrer" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://steven-mhy.github.io/favicon.ico?v=1571390602731">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://steven-mhy.github.io/styles/main.css">
+
+
+  
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
+  
+
+  
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+
+
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://steven-mhy.github.io">
+        <img src="https://steven-mhy.github.io/images/avatar.png?v=1571390602731" class="site-logo">
+        <h1 class="site-title">Steven_Meng&#39;s Blog</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      白鳥は　かなしからずや　空の青 海のあをにも　染まずただよふ
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://steven-mhy.github.io/atom.xml" target="_blank">RSS</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">P3793 由乃救爷爷</h2>
+            <div class="post-date">2019-07-21</div>
+            
+            <div class="post-content">
+              <p><a href="https://www.luogu.org/problemnew/show/P3793">传送门</a></p>
+<p>毒瘤<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>l</mi><mi>x</mi><mi>l</mi></mrow><annotation encoding="application/x-tex">lxl</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord mathdefault">x</span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span></span></span></span>数据结构题。</p>
+<p>首先，考虑传统的<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>S</mi><mi>T</mi></mrow><annotation encoding="application/x-tex">ST</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span><span class="mord mathdefault" style="margin-right:0.13889em;">T</span></span></span></span>表，发现<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>n</mi><mo>=</mo><mn>2000000</mn></mrow><annotation encoding="application/x-tex">n=2000000</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">n</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">2</span><span class="mord">0</span><span class="mord">0</span><span class="mord">0</span><span class="mord">0</span><span class="mord">0</span><span class="mord">0</span></span></span></span>，空间开不下。</p>
+<p>考虑分块<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>+</mo><mi>S</mi><mi>T</mi></mrow><annotation encoding="application/x-tex">+ST</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.76666em;vertical-align:-0.08333em;"></span><span class="mord">+</span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span><span class="mord mathdefault" style="margin-right:0.13889em;">T</span></span></span></span>表，每个块里面存的是块内前缀最大值，后缀最大值。</p>
+<p>最后<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>S</mi><mi>T</mi></mrow><annotation encoding="application/x-tex">ST</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span><span class="mord mathdefault" style="margin-right:0.13889em;">T</span></span></span></span>表查询的是块的最大值。</p>
+<p>注意查询的区间<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>[</mo><mi>l</mi><mo separator="true">,</mo><mi>r</mi><mo>]</mo></mrow><annotation encoding="application/x-tex">[l,r]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mclose">]</span></span></span></span>在同一块内需要暴力搞一下，发现数据随机，所以出现这种情况不多。</p>
+<p>为了卡常数，需要预处理<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>log</mi><mo>⁡</mo></mrow><annotation encoding="application/x-tex">\log</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mop">lo<span style="margin-right:0.01389em;">g</span></span></span></span></span>，注意查询时要特判<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>l</mi><mo>&gt;</mo><mi>r</mi></mrow><annotation encoding="application/x-tex">l&gt;r</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.73354em;vertical-align:-0.0391em;"></span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">&gt;</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span></span></span></span></p>
+<p>还有一点非常玄学，块大小要开<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>5000</mn></mrow><annotation encoding="application/x-tex">5000</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">5</span><span class="mord">0</span><span class="mord">0</span><span class="mord">0</span></span></span></span>，要不然会<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>T</mi><mi>L</mi><mi>E</mi></mrow><annotation encoding="application/x-tex">TLE</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">T</span><span class="mord mathdefault">L</span><span class="mord mathdefault" style="margin-right:0.05764em;">E</span></span></span></span></p>
+<p>时间复杂度<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><mi>n</mi><mo>+</mo><mi>log</mi><mo>⁡</mo><mn>5000</mn><mo>×</mo><mn>5000</mn><mo>+</mo><mi>a</mi><mo>×</mo><mn>5000</mn><mo>+</mo><mi>b</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">O(n+\log5000 \times 5000+a \times 5000 + b)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mop">lo<span style="margin-right:0.01389em;">g</span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">5</span><span class="mord">0</span><span class="mord">0</span><span class="mord">0</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="mord">5</span><span class="mord">0</span><span class="mord">0</span><span class="mord">0</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord mathdefault">a</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="mord">5</span><span class="mord">0</span><span class="mord">0</span><span class="mord">0</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">b</span><span class="mclose">)</span></span></span></span>，其中<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>a</mi></mrow><annotation encoding="application/x-tex">a</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">a</span></span></span></span>表示查询区间<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>[</mo><mi>l</mi><mo separator="true">,</mo><mi>r</mi><mo>]</mo></mrow><annotation encoding="application/x-tex">[l,r]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mclose">]</span></span></span></span>在同一块的情况总数，<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>b</mi></mrow><annotation encoding="application/x-tex">b</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault">b</span></span></span></span>表示查询区间<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>[</mo><mi>l</mi><mo separator="true">,</mo><mi>r</mi><mo>]</mo></mrow><annotation encoding="application/x-tex">[l,r]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mclose">]</span></span></span></span>不在同一块的情况总数。</p>
+<p>空间复杂度<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><mi>n</mi><mo>+</mo><mi>log</mi><mo>⁡</mo><mn>5000</mn><mo>×</mo><mn>5000</mn><mo>)</mo></mrow><annotation encoding="application/x-tex">O(n+\log5000 \times 5000)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mop">lo<span style="margin-right:0.01389em;">g</span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">5</span><span class="mord">0</span><span class="mord">0</span><span class="mord">0</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">5</span><span class="mord">0</span><span class="mord">0</span><span class="mord">0</span><span class="mclose">)</span></span></span></span>，反正不会<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>M</mi><mi>L</mi><mi>E</mi></mrow><annotation encoding="application/x-tex">MLE</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.10903em;">M</span><span class="mord mathdefault">L</span><span class="mord mathdefault" style="margin-right:0.05764em;">E</span></span></span></span></p>
+<p>注意此代码常数蜃大，提交前需要洗一把脸。</p>
+<pre><code class="language-cpp">// luogu-judger-enable-o2
+#include &lt;bits/stdc++.h&gt;
+#define MAXN 20000005
+#define BMAX 5005 //块的最大值
+#define STMAX 13
+#define max(a,b) (a&gt;b?a:b)
+#define min(a,b) (a&lt;b?a:b)
+using namespace std;
+inline int read(){
+    int x=0,f=1;
+    char ch=getchar();
+    while (ch&lt;'0'||ch&gt;'9'){
+        if (ch=='-') f=-1;
+        ch=getchar();
+    }
+    while (ch&gt;='0'&amp;&amp;ch&lt;='9'){
+        x=(x&lt;&lt;3)+(x&lt;&lt;1)+(ch^'0');
+        ch=getchar();
+    }
+    return x*f;
+}
+namespace GenHelper{
+    unsigned z1,z2,z3,z4,b;
+    inline unsigned rand_(){
+        b=((z1&lt;&lt;6)^z1)&gt;&gt;13;
+        z1=((z1&amp;4294967294U)&lt;&lt;18)^b;
+        b=((z2&lt;&lt;2)^z2)&gt;&gt;27;
+        z2=((z2&amp;4294967288U)&lt;&lt;2)^b;
+        b=((z3&lt;&lt;13)^z3)&gt;&gt;21;
+        z3=((z3&amp;4294967280U)&lt;&lt;7)^b;
+        b=((z4&lt;&lt;3)^z4)&gt;&gt;12;
+        z4=((z4&amp;4294967168U)&lt;&lt;13)^b;
+        return (z1^z2^z3^z4);
+    }
+}
+inline void srand(unsigned x){
+    using namespace GenHelper;
+    z1=x; z2=(~x)^0x233333333U; z3=x^0x1234598766U; z4=(~x)+51;
+}
+inline int _read(){
+    using namespace GenHelper;
+    return (rand_()&amp;32767)*32768+(rand_()&amp;32767);
+}
+static int Block_L[MAXN],Block_R[MAXN],a[MAXN];
+static int id[MAXN],lg[BMAX];
+int Size;
+//ST表处理Block最大值
+static int ST[STMAX][BMAX];
+inline void Init_ST(int n){
+    for (register int i=1;i&lt;STMAX;++i){
+        for (register int j=1;j+(1&lt;&lt;i)-1&lt;BMAX;++j){
+            ST[i][j]=max(ST[i-1][j],ST[i-1][j+(1&lt;&lt;(i-1))]);
+        }
+    }
+}
+inline int Query(int l,int r){
+    if (l&gt;r) return 0;
+    int k=lg[r-l+1];
+    return max(ST[k][l],ST[k][r-(1&lt;&lt;k)+1]);
+}
+inline void Init(int n){
+    for (register int i=1;i&lt;=n;++i){//前缀和
+        Block_L[i]=(((id[i]-1)*Size+1)==i)?a[i]:max(Block_L[i-1],a[i]);
+    }
+    for (register int i=n;i&gt;=1;--i){//后缀和
+        Block_R[i]=(min(id[i]*Size,n)==i)?a[i]:max(Block_R[i+1],a[i]);
+    }
+    for (register int i=1;i&lt;=n;++i){//整块的最大值
+        ST[0][id[i]]=max(ST[0][id[i]],a[i]);
+    }
+    Init_ST(n);
+}
+#define ull unsigned long long
+int main(){
+    int n=read(),m=read(),s=read();
+    srand(s);
+    Size=5000;
+    for (register int i=1;i&lt;=n;++i){
+        a[i]=_read();
+        id[i]=(i-1)/Size+1;
+    }
+    lg[0]=-1;
+    for (register int i=1;i&lt;BMAX;++i) lg[i]=lg[i&gt;&gt;1]+1;
+    Init(n);
+    ull ans=0;
+    while (m--){
+        int l=_read()%n+1,r=_read()%n+1;
+        if (l&gt;r) swap(l,r);
+        if (id[l]==id[r]){//Brute_Force
+            int maxn=0;
+            for (register int i=l;i&lt;=r;++i){
+                maxn=max(maxn,a[i]);
+            }
+            ans+=(ull)maxn;
+        }
+        else {
+            ans+=(ull)(max(max(Block_L[r],Block_R[l]),Query(id[l]+1,id[r]-1)));
+        }
+    }
+    cout&lt;&lt;ans&lt;&lt;endl;
+}
+</code></pre>
+
+            </div>
+            
+              <div class="tag-container">
+                
+                  <a href="https://steven-mhy.github.io/tag/tz8jnsnOVd" class="tag">
+                    题解
+                  </a>
+                
+                  <a href="https://steven-mhy.github.io/tag/0j24aW2eag" class="tag">
+                    分块
+                  </a>
+                
+                  <a href="https://steven-mhy.github.io/tag/iAf8h7itv2W" class="tag">
+                    毒瘤
+                  </a>
+                
+                  <a href="https://steven-mhy.github.io/tag/-KO5HIF9VLh" class="tag">
+                    卡常
+                  </a>
+                
+                  <a href="https://steven-mhy.github.io/tag/iR96k5MKv6D" class="tag">
+                    ST表
+                  </a>
+                
+              </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://steven-mhy.github.io/post/CF833B">
+                  <h3 class="post-title">
+                    CF833B The Bakery 线段树 动态规划
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+              
+                <div id="gitalk-container" data-aos="fade-in"></div>
+              
+
+              
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+<script type="application/javascript">
+
+AOS.init();
+
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+
+  
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+
+      var gitalk = new Gitalk({
+        clientID: '0381bd48f354d449038e',
+        clientSecret: 'a325a1b671eb2071d75fc107561dfeedaa1485cf',
+        repo: 'steven-mhy.github.io',
+        owner: 'steven-mhy',
+        admin: ['steven-mhy'],
+        id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+      gitalk.render('gitalk-container')
+
+    </script>
+  
+
+  
+
+
+
+
+  </body>
+</html>

@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>SP1043 GSS1 - Can you answer these queries I 线段树 | Steven_Meng&#39;s Blog</title>
+<meta name="description" content="白鳥は　かなしからずや　空の青 海のあをにも　染まずただよふ">
+<meta name="referrer" content="no-referrer" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://steven-mhy.github.io/favicon.ico?v=1571390602731">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://steven-mhy.github.io/styles/main.css">
+
+
+  
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
+  
+
+  
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+
+
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://steven-mhy.github.io">
+        <img src="https://steven-mhy.github.io/images/avatar.png?v=1571390602731" class="site-logo">
+        <h1 class="site-title">Steven_Meng&#39;s Blog</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      白鳥は　かなしからずや　空の青 海のあをにも　染まずただよふ
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://steven-mhy.github.io/atom.xml" target="_blank">RSS</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">SP1043 GSS1 - Can you answer these queries I 线段树</h2>
+            <div class="post-date">2019-07-13</div>
+            
+            <div class="post-content">
+              <p><a href="https://www.luogu.org/problemnew/show/SP1043">传送门</a><br>
+<strong>线段树每个节点中存的值：</strong></p>
+<p><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>v</mi><mi>a</mi><mi>l</mi><mo>[</mo><mo>]</mo></mrow><annotation encoding="application/x-tex">val[]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">v</span><span class="mord mathdefault">a</span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mopen">[</span><span class="mclose">]</span></span></span></span> ——区间所有数之和<br>
+<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>l</mi><mi>m</mi><mi>a</mi><mi>x</mi><mo>[</mo><mo>]</mo></mrow><annotation encoding="application/x-tex">lmax[]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord mathdefault">m</span><span class="mord mathdefault">a</span><span class="mord mathdefault">x</span><span class="mopen">[</span><span class="mclose">]</span></span></span></span> ——选的<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>a</mi><mo>[</mo><mi>i</mi><mo>]</mo></mrow><annotation encoding="application/x-tex">a[i]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">a</span><span class="mopen">[</span><span class="mord mathdefault">i</span><span class="mclose">]</span></span></span></span>在区间内，且包括<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>a</mi><mo>[</mo><mi>l</mi><mo>]</mo></mrow><annotation encoding="application/x-tex">a[l]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">a</span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mclose">]</span></span></span></span>，连续<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>a</mi><mo>[</mo><mi>i</mi><mo>]</mo></mrow><annotation encoding="application/x-tex">a[i]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">a</span><span class="mopen">[</span><span class="mord mathdefault">i</span><span class="mclose">]</span></span></span></span>之和的最大值<br>
+<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>r</mi><mi>m</mi><mi>a</mi><mi>x</mi><mo>[</mo><mo>]</mo></mrow><annotation encoding="application/x-tex">rmax[]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mord mathdefault">m</span><span class="mord mathdefault">a</span><span class="mord mathdefault">x</span><span class="mopen">[</span><span class="mclose">]</span></span></span></span> ——选的<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>a</mi><mo>[</mo><mi>i</mi><mo>]</mo></mrow><annotation encoding="application/x-tex">a[i]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">a</span><span class="mopen">[</span><span class="mord mathdefault">i</span><span class="mclose">]</span></span></span></span>在区间内，且包括<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>a</mi><mo>[</mo><mi>r</mi><mo>]</mo></mrow><annotation encoding="application/x-tex">a[r]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">a</span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mclose">]</span></span></span></span>，连续<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>a</mi><mo>[</mo><mi>i</mi><mo>]</mo></mrow><annotation encoding="application/x-tex">a[i]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">a</span><span class="mopen">[</span><span class="mord mathdefault">i</span><span class="mclose">]</span></span></span></span>之和的最大值<br>
+<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>m</mi><mi>a</mi><mi>x</mi><mi>n</mi><mo>[</mo><mo>]</mo></mrow><annotation encoding="application/x-tex">maxn[]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">m</span><span class="mord mathdefault">a</span><span class="mord mathdefault">x</span><span class="mord mathdefault">n</span><span class="mopen">[</span><span class="mclose">]</span></span></span></span> ——选的<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>a</mi><mo>[</mo><mi>i</mi><mo>]</mo></mrow><annotation encoding="application/x-tex">a[i]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">a</span><span class="mopen">[</span><span class="mord mathdefault">i</span><span class="mclose">]</span></span></span></span>在区间内，连续<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>a</mi><mo>[</mo><mi>i</mi><mo>]</mo></mrow><annotation encoding="application/x-tex">a[i]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">a</span><span class="mopen">[</span><span class="mord mathdefault">i</span><span class="mclose">]</span></span></span></span>之和的最大值（即本题答案）<br>
+之所以要计算<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>l</mi><mi>m</mi><mi>a</mi><mi>x</mi></mrow><annotation encoding="application/x-tex">lmax</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord mathdefault">m</span><span class="mord mathdefault">a</span><span class="mord mathdefault">x</span></span></span></span>，<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>r</mi><mi>m</mi><mi>a</mi><mi>x</mi></mrow><annotation encoding="application/x-tex">rmax</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mord mathdefault">m</span><span class="mord mathdefault">a</span><span class="mord mathdefault">x</span></span></span></span>，<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>v</mi><mi>a</mi><mi>l</mi></mrow><annotation encoding="application/x-tex">val</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">v</span><span class="mord mathdefault">a</span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span></span></span></span>，是为了合并节点时，能计算出<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>m</mi><mi>a</mi><mi>x</mi><mi>n</mi></mrow><annotation encoding="application/x-tex">maxn</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">m</span><span class="mord mathdefault">a</span><span class="mord mathdefault">x</span><span class="mord mathdefault">n</span></span></span></span>的值</p>
+<hr>
+<p>这里介绍一种比较简洁的写法<br>
+这道题中线段树的重点是节点合并，即<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>p</mi><mi>u</mi><mi>s</mi><mi>h</mi><mi>u</mi><mi>p</mi></mrow><annotation encoding="application/x-tex">pushup</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord mathdefault">p</span><span class="mord mathdefault">u</span><span class="mord mathdefault">s</span><span class="mord mathdefault">h</span><span class="mord mathdefault">u</span><span class="mord mathdefault">p</span></span></span></span>的过程<br>
+不妨<strong>将节点合并的操作定义为+</strong><br>
+这样Query时就不用再敲一遍相同的代码，直接将查询结果相&quot;+&quot;即可</p>
+<pre><code class="language-cpp">#include &lt;bits/stdc++.h&gt;
+#define MAXN 50005
+using namespace std;
+inline int read(){
+    int x=0,f=1;
+    char ch=getchar();
+    while (ch&lt;'0'||ch&gt;'9'){
+        if (ch=='-') f=-1;
+        ch=getchar();
+    }
+    while (ch&gt;='0'&amp;&amp;ch&lt;='9'){
+        x=(x&lt;&lt;3)+(x&lt;&lt;1)+(ch^'0');
+        ch=getchar();
+    }
+    return x*f;
+}
+int a[MAXN];
+namespace SegmentTree{
+    struct node{
+        int l,r;
+        int lmax,rmax,maxn;
+        //从左端开始最大值，从右端开始最大值，整段最大值
+        int val;//这段的和
+    }tree[MAXN&lt;&lt;2];
+    #define lc i&lt;&lt;1
+    #define rc i&lt;&lt;1|1
+    node operator + (node A,node B){//定义合并操作+
+        node temp;
+        temp.lmax=max(B.lmax+A.val,A.lmax);
+        //可以左区间全部选，加上右区间lmax,也可以直接用左区间lmax
+        temp.rmax=max(A.rmax+B.val,B.rmax);
+        //同理
+        temp.maxn=max(max(A.maxn,B.maxn),A.rmax+B.lmax);
+        //可以直接用左右区间maxn,也可以将左右区间rmax,lmax合并
+        temp.val=A.val+B.val;
+        temp.l=A.l,temp.r=B.r;
+        return temp;
+    }
+    void pushup(int i){
+        tree[i]=tree[lc]+tree[rc];
+    }
+    void Build(int l,int r,int i){//建树
+        if (l==r){
+            tree[i].lmax=tree[i].rmax=tree[i].maxn=tree[i].val=a[l];
+            tree[i].l=tree[i].r=l;
+            return ;
+        }
+        int mid=(l+r)&gt;&gt;1;
+        Build(l,mid,lc);
+        Build(mid+1,r,rc);
+        pushup(i);
+    }
+    node Query(int L,int R,int i){
+        if (L&lt;=tree[i].l&amp;&amp;tree[i].r&lt;=R){
+            return tree[i];
+        }
+        int mid=(tree[i].l+tree[i].r)&gt;&gt;1;
+        if (L&gt;mid) return Query(L,R,rc);
+        else if (R&lt;=mid) return Query(L,R,lc);
+        else return Query(L,R,lc)+Query(L,R,rc);
+        //这里就不用再重复一遍节点合并的过程
+    }
+};
+using namespace SegmentTree;
+int main(){
+    int n=read();
+    for (register int i=1;i&lt;=n;++i){
+        a[i]=read();
+    }
+    Build(1,n,1);
+    int q=read();
+    while (q--){
+        int L=read(),R=read();
+        node temp=Query(L,R,1);
+        printf(&quot;%d\n&quot;,temp.maxn);
+    }
+}
+</code></pre>
+<p>猫树：</p>
+<pre><code class="language-cpp">// luogu-judger-enable-o2
+#include &lt;bits/stdc++.h&gt;
+#define MAXN (1&lt;&lt;20)+7
+#define MAXM 23
+using namespace std;
+inline int read(){
+    int x=0,f=1;
+    char ch=getchar();
+    while (ch&lt;'0'||ch&gt;'9'){
+        if (ch=='-') f=-1;
+        ch=getchar();
+    }
+    while (ch&gt;='0'&amp;&amp;ch&lt;='9'){
+        x=(x&lt;&lt;3)+(x&lt;&lt;1)+(ch^'0');
+        ch=getchar();
+    }
+    return x*f;
+}
+int cnt[MAXN];
+inline void Init(int len){
+    cnt[1]=0;
+    for(register int i=2;i&lt;=len&lt;&lt;1;++i){
+        cnt[i]=cnt[i&gt;&gt;1]+1;
+    }
+}
+inline void write(int x){
+    if(x&lt;0)putchar('-'),x*=-1;
+    if(!x)putchar(48);
+    static int sta[45],tp;
+    for(tp=0;x;x/=10)sta[++tp]=x%10;
+    for(;tp;putchar(sta[tp--]^48));
+    putchar('\n');
+}
+int a[MAXN];
+namespace Meow_Tree{
+    int pos[MAXN];//编号
+    int maxn[MAXM][MAXN],pmax[MAXM][MAXN];//区间最大值，包含端点最大值
+    void Build(int l,int r,int i,int d){
+        if (l==r) {
+            pos[l]=i;
+            return ;
+        }
+        int mid=(l+r)&gt;&gt;1;
+        int sum,Max;
+        sum=pmax[d][mid]=maxn[d][mid]=a[mid],Max=max(a[mid],0);
+        for (register int i=mid-1;i&gt;=l;--i){
+            sum+=a[i],Max+=a[i];
+            pmax[d][i]=max(pmax[d][i+1],sum);
+            maxn[d][i]=max(maxn[d][i+1],Max);
+            Max=max(Max,0);
+        }
+        sum=pmax[d][mid+1]=maxn[d][mid+1]=a[mid+1],Max=max(a[mid+1],0);
+        for (register int i=mid+2;i&lt;=r;++i){
+            sum+=a[i],Max+=a[i];
+            pmax[d][i]=max(pmax[d][i-1],sum);
+            maxn[d][i]=max(maxn[d][i-1],Max);
+            Max=max(Max,0);
+        }
+        Build(l,mid,i&lt;&lt;1,d+1);
+        Build(mid+1,r,i&lt;&lt;1|1,d+1);
+    }
+    inline int Query(int l,int r){
+        if (l==r) return a[l];
+        int p=cnt[pos[l]]-cnt[pos[l]^pos[r]];
+        return max(max(maxn[p][l],maxn[p][r]),pmax[p][l]+pmax[p][r]);
+    }
+}
+using namespace Meow_Tree;
+int main(){
+    int n=read();
+    for (register int i=1;i&lt;=n;++i) {
+        a[i]=read();
+    }
+    int len=2;
+    while (len&lt;n) len&lt;&lt;=1;//要建完全2叉树
+    Init(len);
+    Build(1,len,1,1);
+    int m=read();
+    while (m--){
+        int l=read(),r=read();
+        printf(&quot;%d\n&quot;,Query(l,r));
+    }
+}
+</code></pre>
+
+            </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://steven-mhy.github.io/post/SP1716 GSS3 - Can you answer these queries III">
+                  <h3 class="post-title">
+                    SP1716 GSS3 - Can you answer these queries III 线段树
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+              
+                <div id="gitalk-container" data-aos="fade-in"></div>
+              
+
+              
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+<script type="application/javascript">
+
+AOS.init();
+
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+
+  
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+
+      var gitalk = new Gitalk({
+        clientID: '0381bd48f354d449038e',
+        clientSecret: 'a325a1b671eb2071d75fc107561dfeedaa1485cf',
+        repo: 'steven-mhy.github.io',
+        owner: 'steven-mhy',
+        admin: ['steven-mhy'],
+        id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+      gitalk.render('gitalk-container')
+
+    </script>
+  
+
+  
+
+
+
+
+  </body>
+</html>

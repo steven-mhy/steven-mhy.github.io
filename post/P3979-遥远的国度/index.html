@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>P3979 遥远的国度 | Steven_Meng&#39;s Blog</title>
+<meta name="description" content="白鳥は　かなしからずや　空の青 海のあをにも　染まずただよふ">
+<meta name="referrer" content="no-referrer" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://steven-mhy.github.io/favicon.ico?v=1571390602731">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://steven-mhy.github.io/styles/main.css">
+
+
+  
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
+  
+
+  
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+
+
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://steven-mhy.github.io">
+        <img src="https://steven-mhy.github.io/images/avatar.png?v=1571390602731" class="site-logo">
+        <h1 class="site-title">Steven_Meng&#39;s Blog</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      白鳥は　かなしからずや　空の青 海のあをにも　染まずただよふ
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://steven-mhy.github.io/atom.xml" target="_blank">RSS</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">P3979 遥远的国度</h2>
+            <div class="post-date">2019-08-02</div>
+            
+            <div class="post-content">
+              <p><a href="https://www.luogu.org/problem/P3979">传送门</a></p>
+<p>本质一样的<a href="https://gaisaiyuno.github.io/archives/220575f0.html">一道YNOI</a></p>
+<p>首先明确一件事情，这个换根其实是吓你的，</p>
+<p><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1.</mn></mrow><annotation encoding="application/x-tex">1.</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord">.</span></span></span></span>只有最近的一次换根才会对答案有影响（显然）</p>
+<p><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>2.</mn></mrow><annotation encoding="application/x-tex">2.</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">2</span><span class="mord">.</span></span></span></span>分情况讨论，我们始终以<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span>节点为根，设现在查询的节点为<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>u</mi></mrow><annotation encoding="application/x-tex">u</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">u</span></span></span></span>，上一次换根的根为<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>r</mi><mi>t</mi></mrow><annotation encoding="application/x-tex">rt</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.61508em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mord mathdefault">t</span></span></span></span>（<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>r</mi><mi>t</mi></mrow><annotation encoding="application/x-tex">rt</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.61508em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mord mathdefault">t</span></span></span></span>是一个假的根） ，我们画出<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>3</mn></mrow><annotation encoding="application/x-tex">3</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">3</span></span></span></span>个图：</p>
+<p>若<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>u</mi><mo>=</mo><mo>=</mo><mi>r</mi><mi>t</mi></mrow><annotation encoding="application/x-tex">u==rt</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">u</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span></span><span class="base"><span class="strut" style="height:0.36687em;vertical-align:0em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.61508em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mord mathdefault">t</span></span></span></span>，显然现在查询的是整棵树，对应到区间<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>[</mo><mn>1</mn><mo separator="true">,</mo><mi>n</mi><mo>]</mo></mrow><annotation encoding="application/x-tex">[1,n]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span class="mord">1</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">n</span><span class="mclose">]</span></span></span></span>：</p>
+<figure data-type="image" tabindex="1"><img src="/images/rt1.png" alt=""></figure>
+<p>若<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>L</mi><mi>C</mi><mi>A</mi><mo>(</mo><mi>u</mi><mo separator="true">,</mo><mi>r</mi><mi>t</mi><mo>)</mo><mo>=</mo><mo>=</mo><mi>u</mi></mrow><annotation encoding="application/x-tex">LCA(u,rt)==u</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">L</span><span class="mord mathdefault" style="margin-right:0.07153em;">C</span><span class="mord mathdefault">A</span><span class="mopen">(</span><span class="mord mathdefault">u</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mord mathdefault">t</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span></span><span class="base"><span class="strut" style="height:0.36687em;vertical-align:0em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">u</span></span></span></span>（或者说<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>r</mi><mi>t</mi></mrow><annotation encoding="application/x-tex">rt</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.61508em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mord mathdefault">t</span></span></span></span>在<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>u</mi></mrow><annotation encoding="application/x-tex">u</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">u</span></span></span></span>的子树中），</p>
+<figure data-type="image" tabindex="2"><img src="/images/rt2.png" alt=""></figure>
+<p>我们想象一下，把<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>r</mi><mi>t</mi></mrow><annotation encoding="application/x-tex">rt</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.61508em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mord mathdefault">t</span></span></span></span>从底下提上来，查询的就是红色圈圈起来的部分</p>
+<figure data-type="image" tabindex="3"><img src="/images/rt4.png" alt=""></figure>
+<p>再把这个红色圈圈起来的部分对应回去</p>
+<figure data-type="image" tabindex="4"><img src="/images/rt3.png" alt=""></figure>
+<p>原来就是整棵树去掉<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>v</mi></mrow><annotation encoding="application/x-tex">v</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">v</span></span></span></span>的子树的部分，其中<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>v</mi></mrow><annotation encoding="application/x-tex">v</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">v</span></span></span></span>为<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>u</mi></mrow><annotation encoding="application/x-tex">u</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">u</span></span></span></span>的孩子，<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>r</mi><mi>t</mi></mrow><annotation encoding="application/x-tex">rt</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.61508em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mord mathdefault">t</span></span></span></span>的祖先（可以树上倍增搞一下）</p>
+<p>这个可以对应到两个区间<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>[</mo><mn>1</mn><mo separator="true">,</mo><mi>L</mi><mo>[</mo><mi>v</mi><mo>]</mo><mo>−</mo><mn>1</mn><mo>]</mo></mrow><annotation encoding="application/x-tex">[1,L[v]-1]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span class="mord">1</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">L</span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.03588em;">v</span><span class="mclose">]</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mclose">]</span></span></span></span>，<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>[</mo><mi>R</mi><mo>[</mo><mi>v</mi><mo>]</mo><mo>+</mo><mn>1</mn><mo separator="true">,</mo><mi>n</mi><mo>]</mo></mrow><annotation encoding="application/x-tex">[R[v]+1,n]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.00773em;">R</span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.03588em;">v</span><span class="mclose">]</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">n</span><span class="mclose">]</span></span></span></span></p>
+<p>最后一种情况，若<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>L</mi><mi>C</mi><mi>A</mi><mo>(</mo><mi>u</mi><mo separator="true">,</mo><mi>r</mi><mi>t</mi><mo>)</mo><mo>!</mo><mo>=</mo><mi>u</mi></mrow><annotation encoding="application/x-tex">LCA(u,rt)!=u</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">L</span><span class="mord mathdefault" style="margin-right:0.07153em;">C</span><span class="mord mathdefault">A</span><span class="mopen">(</span><span class="mord mathdefault">u</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mord mathdefault">t</span><span class="mclose">)</span><span class="mclose">!</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">u</span></span></span></span>，那么我们再画一个图：</p>
+<figure data-type="image" tabindex="5"><img src="/images/rt5.png" alt=""></figure>
+<p>发现这个换根和没换一样，所以就是查询区间<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>[</mo><mi>L</mi><mo>[</mo><mi>u</mi><mo>]</mo><mo separator="true">,</mo><mi>R</mi><mo>[</mo><mi>u</mi><mo>]</mo><mo>]</mo></mrow><annotation encoding="application/x-tex">[L[u],R[u]]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span class="mord mathdefault">L</span><span class="mopen">[</span><span class="mord mathdefault">u</span><span class="mclose">]</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.00773em;">R</span><span class="mopen">[</span><span class="mord mathdefault">u</span><span class="mclose">]</span><span class="mclose">]</span></span></span></span></p>
+<p>所以这道题我们就解决。。。。了吗？</p>
+<p>首先，为了准确求出<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>d</mi><mi>f</mi><mi>n</mi></mrow><annotation encoding="application/x-tex">dfn</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord mathdefault">d</span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mord mathdefault">n</span></span></span></span> 序，我们要把<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>d</mi><mi>f</mi><mi>s</mi><mn>2</mn></mrow><annotation encoding="application/x-tex">dfs2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord mathdefault">d</span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mord mathdefault">s</span><span class="mord">2</span></span></span></span>魔改成这个样子</p>
+<pre><code class="language-cpp">void dfs2(int u,int t){
+    if (!u) return ;
+    seq[L[u]=++cnt]=u;
+    top[u]=t;
+    dfs2(son[u],t);
+    for (register int i=0;i&lt;G[u].size();++i){
+        int v=G[u][i];
+        if (v!=son[u]&amp;&amp;v!=fa[u]){
+            dfs2(v,v);
+        }
+    }
+    R[u]=cnt;
+}
+</code></pre>
+<p>然后，这道题还要有一个很孙的特判，如果<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>u</mi><mo>=</mo><mo>=</mo><mn>1</mn><mi mathvariant="normal">∣</mi><mi mathvariant="normal">∣</mi><mi>v</mi><mo>=</mo><mo>=</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">u==1||v==1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">u</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span></span><span class="base"><span class="strut" style="height:0.36687em;vertical-align:0em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mord">∣</span><span class="mord">∣</span><span class="mord mathdefault" style="margin-right:0.03588em;">v</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span></span><span class="base"><span class="strut" style="height:0.36687em;vertical-align:0em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span>则返回根节点：</p>
+<pre><code class="language-cpp">inline int LCA(int u,int v){
+    if (u==1||v==1) return 1;
+    if (dep[u]&lt;dep[v]) swap(u,v);
+    for (register int i=MAXM-1;i&gt;=0;--i){
+        if (dep[anc[u][i]]&gt;=dep[v]){
+            u=anc[u][i];
+        }
+    }
+    if (u==v) return u;
+    for (register int i=MAXM-1;i&gt;=0;--i){
+        if (anc[u][i]!=anc[v][i]){
+            u=anc[u][i],v=anc[v][i];
+        }
+    }
+    return anc[u][0];
+}
+</code></pre>
+<p>献上<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>W</mi><mi>A</mi></mrow><annotation encoding="application/x-tex">WA</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">W</span><span class="mord mathdefault">A</span></span></span></span>无数次的代码：</p>
+<pre><code class="language-cpp">#include &lt;bits/stdc++.h&gt;
+#define MAXN 200005
+#define MAXM 25
+using namespace std;
+inline int read(){
+    int x=0,f=1;
+    char ch=getchar();
+    while (ch&lt;'0'||ch&gt;'9'){
+        if (ch=='-') f=-1;
+        ch=getchar();
+    }
+    while (ch&gt;='0'&amp;&amp;ch&lt;='9'){
+        x=(x&lt;&lt;3)+(x&lt;&lt;1)+(ch^'0');
+        ch=getchar();
+    }
+    return x*f;
+}
+vector&lt;int&gt;G[MAXN];
+inline void AddEdge(int u,int v){
+    G[u].push_back(v);
+}
+int a[MAXN];
+int fa[MAXN],dep[MAXN],top[MAXN],sz[MAXN],tofa[MAXN],son[MAXN];
+int anc[MAXN][MAXM];
+void dfs1(int u,int father){
+    sz[u]=1;
+    anc[u][0]=father;
+    for (register int i=1;i&lt;MAXM;++i){
+        anc[u][i]=anc[anc[u][i-1]][i-1];
+    }
+    for (register int i=0;i&lt;G[u].size();++i){
+        int v=G[u][i];
+        if (v!=father){
+            dep[v]=dep[u]+1;
+            fa[v]=u;
+            dfs1(v,u);
+            sz[u]+=sz[v];
+            if (sz[son[u]]&lt;sz[v]) son[u]=v;
+        }
+    }
+}
+int L[MAXN],R[MAXN],seq[MAXN],cnt;
+void dfs2(int u,int t){
+    if (!u) return ;
+    seq[L[u]=++cnt]=u;
+    top[u]=t;
+    dfs2(son[u],t);
+    for (register int i=0;i&lt;G[u].size();++i){
+        int v=G[u][i];
+        if (v!=son[u]&amp;&amp;v!=fa[u]){
+            dfs2(v,v);
+        }
+    }
+    R[u]=cnt;
+}
+inline int LCA(int u,int v){
+    if (u==1||v==1) return 1;
+    if (dep[u]&lt;dep[v]) swap(u,v);
+    for (register int i=MAXM-1;i&gt;=0;--i){
+        if (dep[anc[u][i]]&gt;=dep[v]){
+            u=anc[u][i];
+        }
+    }
+    if (u==v) return u;
+    for (register int i=MAXM-1;i&gt;=0;--i){
+        if (anc[u][i]!=anc[v][i]){
+            u=anc[u][i],v=anc[v][i];
+        }
+    }
+    return anc[u][0];
+}
+inline int Hop(int u,int lca){
+    for (register int i=MAXM-1;i&gt;=0;--i){
+        if (dep[anc[u][i]]&gt;dep[lca]) {
+            u=anc[u][i];
+        }
+    }
+    return u;
+}
+int val[MAXN];
+namespace SegmentTree{
+    struct node{
+        int l,r;
+        int mino,tag;
+    }tree[MAXN&lt;&lt;1];
+    #define lc i&lt;&lt;1
+    #define rc i&lt;&lt;1|1
+    inline void Cover(int i,int val){
+        tree[i].mino=tree[i].tag=val;
+    }
+    inline void pushup(int i){
+        tree[i].mino=min(tree[lc].mino,tree[rc].mino);
+    }
+    inline void pushdown(int i){
+        if (tree[i].tag!=-1){
+            Cover(lc,tree[i].tag);
+            Cover(rc,tree[i].tag);
+            tree[i].tag=-1;
+        }
+    }
+    void Build(int i,int l,int r){
+        tree[i].l=l,tree[i].r=r;
+        tree[i].tag=-1;
+        if (l==r){
+            tree[i].mino=a[seq[l]];
+            return ;
+        }
+        int mid=(l+r)&gt;&gt;1;
+        Build(lc,l,mid);
+        Build(rc,mid+1,r);
+        pushup(i);
+    }
+    void Update(int i,int L,int R,int val){
+        if (L&lt;=tree[i].l&amp;&amp;tree[i].r&lt;=R){
+            Cover(i,val);
+            return ;
+        }
+        int mid=(tree[i].l+tree[i].r)&gt;&gt;1;
+        pushdown(i);
+        if (L&lt;=mid) Update(lc,L,R,val);
+        if (mid&lt;R) Update(rc,L,R,val);
+        pushup(i);
+    }
+    int Query(int i,int L,int R){
+        if (L&lt;=tree[i].l&amp;&amp;tree[i].r&lt;=R){
+            return tree[i].mino;
+        }
+        int mid=(tree[i].l+tree[i].r)&gt;&gt;1,ans=0x7fffffff;
+        pushdown(i);
+        if (L&lt;=mid) ans=min(ans,Query(lc,L,R));
+        if (mid&lt;R) ans=min(ans,Query(rc,L,R));
+        return ans;
+    }
+}
+using namespace SegmentTree;
+inline void UpdateChain(int u,int v,int val){
+    while (top[u]!=top[v]){
+        if (dep[top[u]]&lt;dep[top[v]]) swap(u,v);
+        Update(1,L[top[u]],L[u],val);
+        u=anc[top[u]][0];
+    }
+    if (dep[u]&gt;dep[v]) swap(u,v);
+    Update(1,L[u],L[v],val);
+}
+int main(){
+    int n=read(),m=read();
+    for (register int i=1;i&lt;n;++i){
+        int u=read(),v=read();
+        AddEdge(u,v);
+        AddEdge(v,u);
+    }
+    for (register int i=1;i&lt;=n;++i){
+        a[i]=read();
+    }
+    dfs1(1,0);
+    dfs2(1,1);
+    Build(1,1,n);
+    int rt=read();
+    while (m--){
+        int opr=read();
+        if (opr==1){
+            rt=read();
+        }
+        else if (opr==2){
+            int u=read(),v=read(),val=read();
+            UpdateChain(u,v,val);
+        }
+        else if (opr==3){
+            int u=read();
+            if (u==rt){
+                printf(&quot;%d\n&quot;,Query(1,1,n));
+            }
+            else if (LCA(u,rt)==u){
+                int v=Hop(rt,u);
+                printf(&quot;%d\n&quot;,min(Query(1,1,L[v]-1),Query(1,R[v]+1,n)));
+            }
+            else {
+                printf(&quot;%d\n&quot;,Query(1,L[u],R[u]));
+            }
+        }
+    }
+}
+</code></pre>
+
+            </div>
+            
+              <div class="tag-container">
+                
+                  <a href="https://steven-mhy.github.io/tag/tz8jnsnOVd" class="tag">
+                    题解
+                  </a>
+                
+                  <a href="https://steven-mhy.github.io/tag/eAsxztIi3b4" class="tag">
+                    LCA
+                  </a>
+                
+                  <a href="https://steven-mhy.github.io/tag/5IAZYzF_y6F" class="tag">
+                    树链剖分
+                  </a>
+                
+              </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://steven-mhy.github.io/post/P3792-由乃与大母神原型和偶像崇拜">
+                  <h3 class="post-title">
+                    P3792 由乃与大母神原型和偶像崇拜
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+              
+                <div id="gitalk-container" data-aos="fade-in"></div>
+              
+
+              
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+<script type="application/javascript">
+
+AOS.init();
+
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+
+  
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+
+      var gitalk = new Gitalk({
+        clientID: '0381bd48f354d449038e',
+        clientSecret: 'a325a1b671eb2071d75fc107561dfeedaa1485cf',
+        repo: 'steven-mhy.github.io',
+        owner: 'steven-mhy',
+        admin: ['steven-mhy'],
+        id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+      gitalk.render('gitalk-container')
+
+    </script>
+  
+
+  
+
+
+
+
+  </body>
+</html>

@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>BZOJ3262 陌上花开 | Steven_Meng&#39;s Blog</title>
+<meta name="description" content="白鳥は　かなしからずや　空の青 海のあをにも　染まずただよふ">
+<meta name="referrer" content="no-referrer" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://steven-mhy.github.io/favicon.ico?v=1571390602731">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://steven-mhy.github.io/styles/main.css">
+
+
+  
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
+  
+
+  
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+
+
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://steven-mhy.github.io">
+        <img src="https://steven-mhy.github.io/images/avatar.png?v=1571390602731" class="site-logo">
+        <h1 class="site-title">Steven_Meng&#39;s Blog</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      白鳥は　かなしからずや　空の青 海のあをにも　染まずただよふ
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://steven-mhy.github.io/atom.xml" target="_blank">RSS</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">BZOJ3262 陌上花开</h2>
+            <div class="post-date">2019-08-04</div>
+            
+            <div class="post-content">
+              <p>首先，以<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>a</mi></mrow><annotation encoding="application/x-tex">a</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">a</span></span></span></span>为第一关键字排序，<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>b</mi></mrow><annotation encoding="application/x-tex">b</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault">b</span></span></span></span>为第二关键字排序，<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>c</mi></mrow><annotation encoding="application/x-tex">c</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">c</span></span></span></span>为第三关键字排序，这样从左到右扫过去，发现<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>a</mi><mi>i</mi></msub></mrow><annotation encoding="application/x-tex">a_i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.58056em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>一定是递增的，所以只要考虑后面两维即可。</p>
+<p>不妨考虑画一个图：</p>
+<figure data-type="image" tabindex="1"><img src="/images/flower.png" alt=""></figure>
+<p>发现只有在蓝色框框里面的才是合法的解（如<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>(</mo><msub><mi>b</mi><mi>j</mi></msub><mo separator="true">,</mo><msub><mi>c</mi><mi>j</mi></msub><mo>)</mo></mrow><annotation encoding="application/x-tex">(b_j,c_j)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.036108em;vertical-align:-0.286108em;"></span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault">b</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.311664em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.05724em;">j</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathdefault">c</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.311664em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.05724em;">j</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span>，<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>(</mo><msub><mi>b</mi><mi>k</mi></msub><mo separator="true">,</mo><msub><mi>c</mi><mi>k</mi></msub><mo>)</mo></mrow><annotation encoding="application/x-tex">(b_k,c_k)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault">b</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.03148em;">k</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathdefault">c</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.03148em;">k</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span>） 。</p>
+<h2 id="sol1">Sol1</h2>
+<p>我们用树套树（线段树套动态开点线段树，又称二维线段树）来维护这个二维前缀和。</p>
+<p>第二维用动态开点是因为防爆空间。</p>
+<p>但是发现线段树常数太大，会超时，我们可以把第一维的线段树改成树状数组。</p>
+<p>注意：数组开大一点。</p>
+<p>实现的细节：考虑到可能有多个相同的花，我们统计当前相同的花的个数，等到一个不同的花加入时一起统计，相同的花只能一起统计，如果分开统计，会导致他们的<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>f</mi></mrow><annotation encoding="application/x-tex">f</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span></span></span></span>值不一样。</p>
+<p>时间复杂度为<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><mi>n</mi><msup><mi>log</mi><mo>⁡</mo><mn>2</mn></msup><mi>n</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">O(n \log^2 n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.148448em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mop"><span class="mop">lo<span style="margin-right:0.01389em;">g</span></span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8984479999999999em;"><span style="top:-3.1473400000000002em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">n</span><span class="mclose">)</span></span></span></span>代码如下：</p>
+<pre><code class="language-cpp">#include &lt;bits/stdc++.h&gt;
+#define MAXN 200005
+using namespace std;
+inline int read(){
+    int x=0,f=1;
+    char ch=getchar();
+    while (ch&lt;'0'||ch&gt;'9'){
+        if (ch=='-') f=-1;
+        ch=getchar();
+    }
+    while (ch&gt;='0'&amp;&amp;ch&lt;='9'){
+        x=(x&lt;&lt;3)+(x&lt;&lt;1)+(ch^'0');
+        ch=getchar();
+    }
+    return x*f;
+}
+int rt[MAXN];
+namespace SegmentTree{
+    struct node{
+        int l,r;
+        int val;
+    }tree[MAXN*150];
+    int tot;
+    #define lc tree[i].l
+    #define rc tree[i].r
+    inline void pushup(int i){
+        tree[i].val=tree[lc].val+tree[rc].val;
+    }
+    void Update(int &amp;i,int pos,int val,int l,int r){
+        if (!i) i=++tot;
+        if (l==r){
+            tree[i].val+=val;
+            return ;
+        }
+        int mid=(l+r)&gt;&gt;1;
+        if (pos&lt;=mid) Update(lc,pos,val,l,mid);
+        else Update(rc,pos,val,mid+1,r);
+        pushup(i);
+    }
+    int Query(int i,int L,int R,int l,int r){
+        if (L&lt;=l&amp;&amp;r&lt;=R){
+            return tree[i].val;
+        }
+        int mid=(l+r)&gt;&gt;1,ans=0;
+        if (L&lt;=mid) ans+=Query(lc,L,R,l,mid);
+        if (mid&lt;R) ans+=Query(rc,L,R,mid+1,r);
+        return ans;
+    }
+}
+using namespace SegmentTree;
+struct Flower{
+    int a,b,c;
+}f[MAXN];
+inline bool operator &lt; (const Flower &amp;A,const Flower &amp;B){
+    if (A.a!=B.a)  return A.a&lt;B.a;
+    else if (A.b!=B.b) return A.b&lt;B.b;
+    return A.c&lt;B.c;
+}
+#define lowbit(x) x&amp;(-x)
+int k;
+inline void upd(int x,int y,int val){
+    for (register int i=x;i&lt;=k;i+=lowbit(i)){
+        Update(rt[i],y,val,1,k);
+    }
+}
+inline int qry(int x,int y){
+    int ans=0;
+    for (register int i=x;i&gt;0;i-=lowbit(i)){
+        ans+=Query(rt[i],1,y,1,k);
+    }
+    return ans;
+}
+int Ans[MAXN];
+int main(){
+    int n=read();k=read();
+    for (register int i=1;i&lt;=n;++i){
+        f[i].a=read(),f[i].b=read(),f[i].c=read();
+    }
+    sort(f+1,f+1+n);
+    int same=1;//副本
+    for (register int i=1;i&lt;=n;++i){
+        if (f[i+1].a==f[i].a&amp;&amp;f[i+1].b==f[i].b&amp;&amp;f[i+1].c==f[i].c){//注意相同的时候会出锅，所以要统计副本个数
+            same++;
+        }
+        else {//来了一个不同的，大力统计
+            upd(f[i].b,f[i].c,same);
+            Ans[qry(f[i].b,f[i].c)]+=same;
+            same=1;//重置副本为1
+        }
+    }
+    for (register int i=1;i&lt;=n;++i){
+        printf(&quot;%d\n&quot;,Ans[i]);
+    }
+}
+</code></pre>
+<h2 id="sol2">Sol2</h2>
+<p>刚才我们用的是动态开点线段树，发现动态开点便于理解，但是大材小用了。</p>
+<p>观察下面两句：</p>
+<pre><code class="language-cpp">Update(rt[i],y,val,1,k);
+ans+=Query(rt[i],1,y,1,k);
+</code></pre>
+<p>实现的是什么功能呢？插入一个数，询问比小于等于这个数的数的总数。</p>
+<p>这不就是平衡树吗？</p>
+<p>在刚才的代码的基础上魔改，得到以下：</p>
+<p>（相同的数暴♂力插♂入，我实在是太懒了）</p>
+<pre><code class="language-cpp">#include &lt;bits/stdc++.h&gt;
+#define MAXN 200005
+using namespace std;
+inline int read(){
+    int x=0,f=1;
+    char ch=getchar();
+    while (ch&lt;'0'||ch&gt;'9'){
+        if (ch=='-') f=-1;
+        ch=getchar();
+    }
+    while (ch&gt;='0'&amp;&amp;ch&lt;='9'){
+        x=(x&lt;&lt;3)+(x&lt;&lt;1)+(ch^'0');
+        ch=getchar();
+    }
+    return x*f;
+}
+int rt[MAXN*150];
+namespace FHQTreap{
+    struct node{
+        int l,r;
+        int val,pri,sz;
+    }tree[MAXN*150];
+    int tot;
+    #define lc(i) tree[i].l
+    #define rc(i) tree[i].r
+    inline void Update(const int &amp;x){
+        tree[x].sz=tree[lc(x)].sz+tree[rc(x)].sz+1;
+    }
+    inline int New(int v){
+        tree[++tot].val=v;
+        tree[tot].pri=rand();
+        tree[tot].sz=1;
+        return tot;
+    }
+    #define Rson rc(x),y
+    #define Lson x,lc(y)
+    int Merge(int x,int y){
+        if (!x||!y) return x+y;
+        if (tree[x].pri&lt;tree[y].pri){
+            rc(x)=Merge(Rson),Update(x);
+            return x;
+        }
+        else {
+            lc(y)=Merge(Lson),Update(y);
+            return y;
+        }
+    }
+    void Split(int i,int k,int &amp;x,int &amp;y){
+        if (!i){//叶节点
+            x=y=0;
+        }
+        else {
+            if (tree[i].val&lt;=k) x=i,Split(rc(i),k,Rson);
+            else y=i,Split(lc(i),k,Lson);
+            Update(i);
+        }
+    }
+    inline void Insert(int &amp;rt,int val,int num){
+        for (register int i=1;i&lt;=num;++i){//懒。。。
+            int x=0,y=0;
+            Split(rt,val,x,y);
+            rt=Merge(Merge(x,New(val)),y);
+        }
+    }
+    inline int GetRank(int rt,int val){
+        int x=0,y=0;
+        Split(rt,val,x,y);
+        int ans=tree[x].sz;
+        rt=Merge(x,y);
+        return ans;
+    }
+}
+using namespace FHQTreap;
+struct Flower{
+    int a,b,c;
+}f[MAXN];
+inline bool operator &lt; (const Flower &amp;A,const Flower &amp;B){
+    if (A.a!=B.a)  return A.a&lt;B.a;
+    else if (A.b!=B.b) return A.b&lt;B.b;
+    return A.c&lt;B.c;
+}
+#define lowbit(x) x&amp;(-x)
+int k;
+inline void upd(int x,int y,int val){
+    for (register int i=x;i&lt;=k;i+=lowbit(i)){
+        Insert(rt[i],y,val);
+    }
+}
+inline int qry(int x,int y){
+    int ans=0;
+    for (register int i=x;i&gt;0;i-=lowbit(i)){
+        ans+=GetRank(rt[i],y);
+    }
+    return ans;
+}
+int Ans[MAXN];
+int main(){
+    int n=read();k=read();
+    for (register int i=1;i&lt;=n;++i){
+        f[i].a=read(),f[i].b=read(),f[i].c=read();
+    }
+    sort(f+1,f+1+n);
+    int same=1;//副本
+    for (register int i=1;i&lt;=n;++i){
+        if (f[i+1].a==f[i].a&amp;&amp;f[i+1].b==f[i].b&amp;&amp;f[i+1].c==f[i].c){//注意相同的时候会出锅，所以要统计副本个数
+            same++;
+        }
+        else {//来了一个不同的，大力统计
+            upd(f[i].b,f[i].c,same);
+            Ans[qry(f[i].b,f[i].c)]+=same;
+            same=1;//重置副本为1
+        }
+    }
+    for (register int i=1;i&lt;=n;++i){
+        printf(&quot;%d\n&quot;,Ans[i]);
+    }
+}
+</code></pre>
+<p>结果，时间竟然变成3s。</p>
+<p>所以，还是建议敲动态开点线段树吧，不仅好写好想，而且常数小。</p>
+<h1 id="sol3">Sol3</h1>
+<p>cdq分治，暂时咕咕</p>
+
+            </div>
+            
+              <div class="tag-container">
+                
+                  <a href="https://steven-mhy.github.io/tag/tz8jnsnOVd" class="tag">
+                    题解
+                  </a>
+                
+                  <a href="https://steven-mhy.github.io/tag/KTnBubzJhur" class="tag">
+                    树状数组
+                  </a>
+                
+                  <a href="https://steven-mhy.github.io/tag/DjMD1f4nzqu" class="tag">
+                    权值线段树
+                  </a>
+                
+              </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://steven-mhy.github.io/post/P2221-HAOI2012-高速公路">
+                  <h3 class="post-title">
+                    P2221 [HAOI2012]高速公路
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+              
+                <div id="gitalk-container" data-aos="fade-in"></div>
+              
+
+              
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+<script type="application/javascript">
+
+AOS.init();
+
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+
+  
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+
+      var gitalk = new Gitalk({
+        clientID: '0381bd48f354d449038e',
+        clientSecret: 'a325a1b671eb2071d75fc107561dfeedaa1485cf',
+        repo: 'steven-mhy.github.io',
+        owner: 'steven-mhy',
+        admin: ['steven-mhy'],
+        id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+      gitalk.render('gitalk-container')
+
+    </script>
+  
+
+  
+
+
+
+
+  </body>
+</html>

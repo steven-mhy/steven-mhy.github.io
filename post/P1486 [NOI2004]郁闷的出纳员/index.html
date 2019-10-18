@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>P1486 [NOI2004]郁闷的出纳员 FHQ Treap | Steven_Meng&#39;s Blog</title>
+<meta name="description" content="白鳥は　かなしからずや　空の青 海のあをにも　染まずただよふ">
+<meta name="referrer" content="no-referrer" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://steven-mhy.github.io/favicon.ico?v=1571390602731">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://steven-mhy.github.io/styles/main.css">
+
+
+  
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
+  
+
+  
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+
+
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://steven-mhy.github.io">
+        <img src="https://steven-mhy.github.io/images/avatar.png?v=1571390602731" class="site-logo">
+        <h1 class="site-title">Steven_Meng&#39;s Blog</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      白鳥は　かなしからずや　空の青 海のあをにも　染まずただよふ
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://steven-mhy.github.io/atom.xml" target="_blank">RSS</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">P1486 [NOI2004]郁闷的出纳员 FHQ Treap</h2>
+            <div class="post-date">2019-07-13</div>
+            
+            <div class="post-content">
+              <p><a href="https://www.luogu.org/problemnew/show/P1486">传送门</a><br>
+这道题比较有意思<br>
+考虑记录一个<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>t</mi><mi>a</mi><mi>g</mi></mrow><annotation encoding="application/x-tex">tag</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.80952em;vertical-align:-0.19444em;"></span><span class="mord mathdefault">t</span><span class="mord mathdefault">a</span><span class="mord mathdefault" style="margin-right:0.03588em;">g</span></span></span></span>表示员工工资应该加上多少。<br>
+加工资的操作不会导致员工离开<br>
+但是扣工资的操作会导致工资所有小于<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>m</mi><mi>i</mi><mi>n</mi><mo>−</mo><mi>t</mi><mi>a</mi><mi>g</mi></mrow><annotation encoding="application/x-tex">min-tag</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.74285em;vertical-align:-0.08333em;"></span><span class="mord mathdefault">m</span><span class="mord mathdefault">i</span><span class="mord mathdefault">n</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.80952em;vertical-align:-0.19444em;"></span><span class="mord mathdefault">t</span><span class="mord mathdefault">a</span><span class="mord mathdefault" style="margin-right:0.03588em;">g</span></span></span></span>的员工离开</p>
+<p>怎么删除所有小于<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>m</mi><mi>i</mi><mi>n</mi><mo>−</mo><mi>t</mi><mi>a</mi><mi>g</mi></mrow><annotation encoding="application/x-tex">min-tag</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.74285em;vertical-align:-0.08333em;"></span><span class="mord mathdefault">m</span><span class="mord mathdefault">i</span><span class="mord mathdefault">n</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.80952em;vertical-align:-0.19444em;"></span><span class="mord mathdefault">t</span><span class="mord mathdefault">a</span><span class="mord mathdefault" style="margin-right:0.03588em;">g</span></span></span></span>的值呢？<br>
+yy一下，发现FHQ Treap中<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>n</mi><mi>u</mi><mi>m</mi></mrow><annotation encoding="application/x-tex">num</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">n</span><span class="mord mathdefault">u</span><span class="mord mathdefault">m</span></span></span></span>左子树的值都小于num<br>
+于是每次删除所有小于<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>m</mi><mi>i</mi><mi>n</mi><mo>−</mo><mi>t</mi><mi>a</mi><mi>g</mi></mrow><annotation encoding="application/x-tex">min-tag</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.74285em;vertical-align:-0.08333em;"></span><span class="mord mathdefault">m</span><span class="mord mathdefault">i</span><span class="mord mathdefault">n</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.80952em;vertical-align:-0.19444em;"></span><span class="mord mathdefault">t</span><span class="mord mathdefault">a</span><span class="mord mathdefault" style="margin-right:0.03588em;">g</span></span></span></span>的值时，删除其左子树即可</p>
+<pre><code class="language-cpp">// luogu-judger-enable-o2
+#include &lt;bits/stdc++.h&gt;
+#define MAXN 500005
+using namespace std;
+inline int read() {
+    int x=0,f=1;
+    char ch=getchar();
+    while (ch&lt;'0'||ch&gt;'9') {
+        if (ch=='-') f=-1;
+        ch=getchar();
+    }
+    while (ch&gt;='0'&amp;&amp;ch&lt;='9') {
+        x=(x*10)+(ch-'0');
+        ch=getchar();
+    }
+    return x*f;
+}
+namespace FHQ_Treap{
+	struct node{
+		int l,r;
+		int val;//每个点的权值 
+		int pri;//优先级（随机生成）
+		int sz; 
+	}tree[MAXN];
+	int tot;
+	#define lc(i) tree[i].l
+	#define rc(i) tree[i].r
+	inline void Update(int x){
+		tree[x].sz=tree[lc(x)].sz+tree[rc(x)].sz+1;
+	}
+	inline int New(int v){
+		tree[++tot].val=v;
+		tree[tot].pri=rand();
+		tree[tot].sz=1;
+		return tot;
+	}
+	int Merge(int x,int y){
+		if (!x||!y) return x+y;
+		if (tree[x].pri&lt;tree[y].pri){
+			rc(x)=Merge(rc(x),y),Update(x);
+			return x;
+		}
+		else {
+			lc(y)=Merge(x,lc(y)),Update(y);
+			return y;
+		}
+	}
+	void Split(int i,int k,int &amp;x,int &amp;y){
+		if (!i){//叶节点
+			x=y=0;
+		}
+		else {
+			if (tree[i].val&lt;=k){x=i,Split(rc(i),k,rc(i),y);}
+			else{y=i,Split(lc(i),k,x,lc(i));}
+			Update(i);
+		}
+	}
+	int kth(int i,int k){//排名为k
+		while (true){
+			if (k&lt;=tree[lc(i)].sz){
+				i=lc(i);
+			}
+			else if (k==tree[lc(i)].sz+1){
+				return i;
+			}
+			else{
+				k-=tree[lc(i)].sz+1;
+				i=rc(i);
+			}
+		}
+	}
+    //以上为FHQ Treap
+    int root,x,y,z;
+    void Init(){
+        tot=0;
+        memset(tree,0,sizeof(tree));
+        root=0;
+        srand(19260817);
+    }
+    inline void Add(int num){
+		Split(root,num,x,y);
+		root=Merge(Merge(x,New(num)),y);
+    }
+    inline void Del(int num){
+		Split(root,num,x,z);
+		Split(x,num-1,x,y);
+		y=Merge(lc(y),rc(y));
+		root=Merge(Merge(x,y),z);
+    }
+	#define Get_K(rt,rk) tree[kth(rt,rk)].val
+    inline int Kth(int k){//获得数组中第k大
+        if (tree[root].sz&lt;k) return -1;
+		return Get_K(root,tree[root].sz-k+1);
+    }
+    inline int Pre(int num){
+        Split(root,num-1,x,y);
+		int temp=Get_K(x,tree[x].sz);
+		root=Merge(x,y);
+        return temp;
+    }
+    inline int Delete_Pre(int num){
+        //删除全部小于num的数，直接删除左子树
+        Split(root,num-1,x,y);//x:左边
+        root=y;
+        return tree[x].sz;
+    }
+};
+using namespace FHQ_Treap;
+#define INF 0x3f3f3f3f
+inline char gc(){
+    char ch=getchar();
+    while (ch!='I'&amp;&amp;ch!='A'&amp;&amp;ch!='S'&amp;&amp;ch!='F') ch=getchar();
+    return ch;
+}
+int main(){
+    Init();
+    // Add(INF),Add(-INF);
+    int n=read(),Min=read();
+    int tag=0;//每个人的工资加上多少，类似于lazytag
+    int sum=0;
+    while (n--){
+        char opr=gc();
+        int num=read();
+        if (opr=='I'){
+            if (num&lt;Min){continue;}//员工直接离开
+            Add(num-tag);
+        }
+        else if (opr=='A'){
+            tag+=num;//加工资的操作不会导致员工离开
+        }
+        else if (opr=='S'){
+            tag-=num;
+            sum+=Delete_Pre(Min-tag);
+        }
+        else if (opr=='F'){
+            int ans=Kth(num);
+            if (ans==-1) printf(&quot;-1\n&quot;);
+            else printf(&quot;%d\n&quot;,ans+tag);
+        }
+    }
+    printf(&quot;%d\n&quot;,sum);
+}
+</code></pre>
+
+            </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://steven-mhy.github.io/post/P1627 [CQOI2009]中位数">
+                  <h3 class="post-title">
+                    P1627 [CQOI2009]中位数 前缀和
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+              
+                <div id="gitalk-container" data-aos="fade-in"></div>
+              
+
+              
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+<script type="application/javascript">
+
+AOS.init();
+
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+
+  
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+
+      var gitalk = new Gitalk({
+        clientID: '0381bd48f354d449038e',
+        clientSecret: 'a325a1b671eb2071d75fc107561dfeedaa1485cf',
+        repo: 'steven-mhy.github.io',
+        owner: 'steven-mhy',
+        admin: ['steven-mhy'],
+        id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+      gitalk.render('gitalk-container')
+
+    </script>
+  
+
+  
+
+
+
+
+  </body>
+</html>

@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>P1259 黑白棋子的移动 找规律 | Steven_Meng&#39;s Blog</title>
+<meta name="description" content="白鳥は　かなしからずや　空の青 海のあをにも　染まずただよふ">
+<meta name="referrer" content="no-referrer" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://steven-mhy.github.io/favicon.ico?v=1571390602731">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://steven-mhy.github.io/styles/main.css">
+
+
+  
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
+  
+
+  
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+
+
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://steven-mhy.github.io">
+        <img src="https://steven-mhy.github.io/images/avatar.png?v=1571390602731" class="site-logo">
+        <h1 class="site-title">Steven_Meng&#39;s Blog</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      白鳥は　かなしからずや　空の青 海のあをにも　染まずただよふ
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://steven-mhy.github.io/atom.xml" target="_blank">RSS</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">P1259 黑白棋子的移动 找规律</h2>
+            <div class="post-date">2019-07-13</div>
+            
+            <div class="post-content">
+              <p><a href="https://www.luogu.org/problemnew/show/P1259">传送门</a><br>
+我们先分析一下样例</p>
+<pre><code>ooooooo*******--
+
+oooooo--******o*
+oooooo******--o*
+
+ooooo--*****o*o*
+ooooo*****--o*o*
+
+oooo--****o*o*o*
+oooo****--o*o*o*
+
+ooo--***o*o*o*o*
+
+ooo*o**--*o*o*o*
+o--*o**oo*o*o*o*
+o*o*o*--o*o*o*o*
+--o*o*o*o*o*o*o*
+</code></pre>
+<p>每两行分一组的时候,可以很明显地看到规律.</p>
+<ul>
+<li>中间的 &quot;o*&quot; 与 &quot;--&quot; 交换</li>
+<li>最左边的 &quot;**&quot; 与 &quot;--&quot; 交换</li>
+</ul>
+<p>然而后四行我并没有发现什么规律,于是无耻地打了一个表.</p>
+<p>打表原理:</p>
+<pre><code>ooo*o**--* o*o*o*
+o--*o**oo* o*o*o*
+o*o*o*--o* o*o*o*
+--o*o*o*o* o*o*o*
+后6个字符为固定的&quot;o*o*o*&quot;
+于是只要记录
+	ooo*o**--*,
+	o--*o**oo*,
+	o*o*o*--o*,
+	--o*o*o*o*
+</code></pre>
+<p>代码如下</p>
+<pre><code class="language-cpp">#include &lt;cstdio&gt;
+#include &lt;iostream&gt;
+using namespace std;
+int n;
+char ch[205];//存储棋子的状态
+void swap(char &amp;a, char &amp;b)//交换函数
+{
+    char t = a;
+    a = b;
+    b = t;
+}
+void output(){//输出
+    for (int i = 0; i &lt; 2 * n + 2; i++)
+        putchar(ch[i]);
+    putchar('\n');
+}
+void movechess(int start, int end)
+{//移动棋子
+    swap(ch[start], ch[end]);
+    swap(ch[start + 1], ch[end + 1]);
+    output();
+}
+string out[4] = {&quot;ooo*o**--*&quot;, &quot;o--*o**oo*&quot;, &quot;o*o*o*--o*&quot;, &quot;--o*o*o*o*&quot;};
+//打表qwq
+int main()
+{
+    scanf(&quot;%d&quot;, &amp;n);
+    for (int i = 0; i &lt; n; i++)
+        ch[i] = 'o';
+    for (int i = n; i &lt; 2 * n; i++)
+        ch[i] = '*';
+    ch[2 * n] = '-';
+    ch[2 * n + 1] = '-';
+    //打印初始状态
+    output();
+    int len = n;
+    //需要移动的黑/白棋子
+    while (true)
+    {
+        movechess(len - 1, 2 * len);
+        //中间的 &quot;o*&quot; 与 &quot;--&quot; 交换
+        len--;
+        if (len == 3)
+        //不符合上述规律,开始输出打表内容
+            break;
+        movechess(len, 2 * len);
+        //最左边的 &quot;**&quot; 与 &quot;--&quot; 交换
+    }
+    string ss;
+    for (int i = 0; i &lt; n - 4; i++)
+        ss += &quot;o*&quot;;
+    for (int i = 0; i &lt; 4; i++)
+        cout &lt;&lt; out[i] &lt;&lt; ss &lt;&lt; endl;
+}
+</code></pre>
+
+            </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://steven-mhy.github.io/post/P1486 [NOI2004]郁闷的出纳员">
+                  <h3 class="post-title">
+                    P1486 [NOI2004]郁闷的出纳员 FHQ Treap
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+              
+                <div id="gitalk-container" data-aos="fade-in"></div>
+              
+
+              
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+<script type="application/javascript">
+
+AOS.init();
+
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+
+  
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+
+      var gitalk = new Gitalk({
+        clientID: '0381bd48f354d449038e',
+        clientSecret: 'a325a1b671eb2071d75fc107561dfeedaa1485cf',
+        repo: 'steven-mhy.github.io',
+        owner: 'steven-mhy',
+        admin: ['steven-mhy'],
+        id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+      gitalk.render('gitalk-container')
+
+    </script>
+  
+
+  
+
+
+
+
+  </body>
+</html>

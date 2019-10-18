@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>「BZOJ3289」Mato的文件管理 | Steven_Meng&#39;s Blog</title>
+<meta name="description" content="白鳥は　かなしからずや　空の青 海のあをにも　染まずただよふ">
+<meta name="referrer" content="no-referrer" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://steven-mhy.github.io/favicon.ico?v=1571390602731">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://steven-mhy.github.io/styles/main.css">
+
+
+  
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
+  
+
+  
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+
+
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://steven-mhy.github.io">
+        <img src="https://steven-mhy.github.io/images/avatar.png?v=1571390602731" class="site-logo">
+        <h1 class="site-title">Steven_Meng&#39;s Blog</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      白鳥は　かなしからずや　空の青 海のあをにも　染まずただよふ
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://steven-mhy.github.io/atom.xml" target="_blank">RSS</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">「BZOJ3289」Mato的文件管理</h2>
+            <div class="post-date">2019-08-05</div>
+            
+            <div class="post-content">
+              <p><a href="https://www.lydsy.com/JudgeOnline/problem.php?id=3289">BZOJ</a></p>
+<p><a href="http://119.29.55.79/problem/358">GDOI</a></p>
+<p>一句话题意：给你<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>l</mi><mo separator="true">,</mo><mi>r</mi></mrow><annotation encoding="application/x-tex">l,r</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span></span></span></span>，求<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>a</mi><mo>[</mo><mi>l</mi><mo>]</mo><mo separator="true">,</mo><mi>a</mi><mo>[</mo><mi>l</mi><mo>+</mo><mn>1</mn><mo>]</mo><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mi>a</mi><mo>[</mo><mi>r</mi><mo>]</mo></mrow><annotation encoding="application/x-tex">a[l],a[l+1]...a[r]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">a</span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mclose">]</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">a</span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mclose">]</span><span class="mord">.</span><span class="mord">.</span><span class="mord">.</span><span class="mord mathdefault">a</span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mclose">]</span></span></span></span>逆序对个数。</p>
+<p>按照套路，我们先离散化。</p>
+<p>然后考虑加入一个数会对逆序对做出多少贡献，先考虑我们从左边加入一个数，如图：</p>
+<figure data-type="image" tabindex="1"><img src="/images/nxd.png" alt=""></figure>
+<p>显然，只有<strong>严格</strong>小于他的数才会对答案产生贡献。</p>
+<p>再考虑在右边加入一个数，如图：</p>
+<figure data-type="image" tabindex="2"><img src="/images/nxd2.png" alt=""></figure>
+<p>显然，只有<strong>严格</strong>大于他的数才会对答案产生贡献。</p>
+<p>删除也是类似的贡献法考虑。</p>
+<hr>
+<p>所以，我们用树状数组维护即可。</p>
+<pre><code class="language-cpp">#include &lt;bits/stdc++.h&gt;
+#define MAXN 50005
+using namespace std;
+inline int read(){
+    int x=0,f=1;
+    char ch=getchar();
+    while (ch&lt;'0'||ch&gt;'9'){
+        if (ch=='-') f=-1;
+        ch=getchar();
+    }
+    while (ch&gt;='0'&amp;&amp;ch&lt;='9'){
+        x=(x&lt;&lt;3)+(x&lt;&lt;1)+(ch^'0');
+        ch=getchar();
+    }
+    return x*f;
+}
+int a[MAXN],b[MAXN],n;
+namespace BIT{
+    int c[MAXN];
+    #define lowbit(x) (x&amp;-x)
+    inline void Update(int pos,int val){
+        for (register int i=pos;i&lt;MAXN;i+=lowbit(i)){
+            c[i]+=val;
+        }
+    }
+    inline int GetSmaller(int pos){
+        pos--;
+        int ans=0;
+        for (register int i=pos;i&gt;0;i-=lowbit(i)){
+            ans+=c[i];
+        }
+        return ans;
+    }
+    inline int GetBigger(int num){
+        return GetSmaller(MAXN-1)-GetSmaller(num+1);
+    }
+}
+using namespace BIT;
+inline void discrete(){
+    for (register int i=1;i&lt;=n;++i){
+        b[i]=a[i];
+    }
+    sort(b+1,b+1+n);
+    for (register int i=1;i&lt;=n;++i){
+        a[i]=lower_bound(b+1,b+1+n,a[i])-b;
+    }
+}
+
+int pos[MAXN];
+struct Query{
+    int l,r,id;
+}q[MAXN];
+inline bool operator &lt; (const Query &amp;a,const Query &amp;b){
+    return pos[a.l]&lt;pos[b.l]||(pos[a.l]==pos[b.l]&amp;&amp;((pos[a.l]&amp;1)?a.r&lt;b.r:a.r&gt;b.r));
+}
+int Ans[MAXN];
+int main(){
+    n=read();
+    int Size=sqrt(n);
+    for (register int i=1;i&lt;=n;++i){
+        a[i]=read();
+        pos[i]=(i-1)/Size+1;
+    }
+    discrete();
+    int m=read();
+    for (register int i=1;i&lt;=m;++i){
+        q[i].l=read(),q[i].r=read(),q[i].id=i;
+    }
+    sort(q+1,q+1+m);
+    int l=1,r=0,ans=0;
+    for (register int i=1;i&lt;=m;++i){
+        while (l&lt;q[i].l){
+            Update(a[l],-1);
+            ans-=GetSmaller(a[l++]);
+        }
+        while (l&gt;q[i].l){
+            Update(a[--l],1);
+            ans+=GetSmaller(a[l]);
+        }
+        while (r&lt;q[i].r){
+            Update(a[++r],1);
+            ans+=GetBigger(a[r]);
+        }
+        while (r&gt;q[i].r){
+            Update(a[r],-1);
+            ans-=GetBigger(a[r--]);
+        }
+        Ans[q[i].id]=ans;
+    }
+    for (register int i=1;i&lt;=m;++i){
+        printf(&quot;%d\n&quot;,Ans[i]);
+    }
+}
+</code></pre>
+
+            </div>
+            
+              <div class="tag-container">
+                
+                  <a href="https://steven-mhy.github.io/tag/tz8jnsnOVd" class="tag">
+                    题解
+                  </a>
+                
+                  <a href="https://steven-mhy.github.io/tag/dPrJjUjkSk" class="tag">
+                    莫队
+                  </a>
+                
+                  <a href="https://steven-mhy.github.io/tag/KTnBubzJhur" class="tag">
+                    树状数组
+                  </a>
+                
+              </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://steven-mhy.github.io/post/暑假集训作业">
+                  <h3 class="post-title">
+                    暑假集训作业
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+              
+                <div id="gitalk-container" data-aos="fade-in"></div>
+              
+
+              
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+<script type="application/javascript">
+
+AOS.init();
+
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+
+  
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+
+      var gitalk = new Gitalk({
+        clientID: '0381bd48f354d449038e',
+        clientSecret: 'a325a1b671eb2071d75fc107561dfeedaa1485cf',
+        repo: 'steven-mhy.github.io',
+        owner: 'steven-mhy',
+        admin: ['steven-mhy'],
+        id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+      gitalk.render('gitalk-container')
+
+    </script>
+  
+
+  
+
+
+
+
+  </body>
+</html>

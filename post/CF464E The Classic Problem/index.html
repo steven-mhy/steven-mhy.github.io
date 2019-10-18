@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>CF464E The Classic Problem 主席树 | Steven_Meng&#39;s Blog</title>
+<meta name="description" content="白鳥は　かなしからずや　空の青 海のあをにも　染まずただよふ">
+<meta name="referrer" content="no-referrer" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://steven-mhy.github.io/favicon.ico?v=1571390602731">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://steven-mhy.github.io/styles/main.css">
+
+
+  
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
+  
+
+  
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+
+
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://steven-mhy.github.io">
+        <img src="https://steven-mhy.github.io/images/avatar.png?v=1571390602731" class="site-logo">
+        <h1 class="site-title">Steven_Meng&#39;s Blog</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      白鳥は　かなしからずや　空の青 海のあをにも　染まずただよふ
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://steven-mhy.github.io/atom.xml" target="_blank">RSS</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">CF464E The Classic Problem 主席树</h2>
+            <div class="post-date">2019-07-13</div>
+            
+            <div class="post-content">
+              <p><a href="https://www.luogu.org/problemnew/show/CF464E">传送门</a><br>
+一眼看上去：这不就是最短路的模板吗？<br>
+两眼：边权太大了，怎么开的下？<br>
+考虑还是用<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="normal">D</mi><mi mathvariant="normal">i</mi><mi mathvariant="normal">j</mi><mi mathvariant="normal">k</mi><mi mathvariant="normal">s</mi><mi mathvariant="normal">t</mi><mi mathvariant="normal">r</mi><mi mathvariant="normal">a</mi></mrow><annotation encoding="application/x-tex">\rm Dijkstra</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord"><span class="mord mathrm">D</span><span class="mord mathrm">i</span><span class="mord mathrm">j</span><span class="mord mathrm">k</span><span class="mord mathrm">s</span><span class="mord mathrm">t</span><span class="mord mathrm">r</span><span class="mord mathrm">a</span></span></span></span></span>解决，每个点开一棵线段树，存储二进制的状态</p>
+<p>我们要实现的功能:<br>
+1.给二进制数加上<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msup><mn>2</mn><mi>k</mi></msup></mrow><annotation encoding="application/x-tex">2^k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.849108em;vertical-align:0em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.849108em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.03148em;">k</span></span></span></span></span></span></span></span></span></span></span>，这可以看成把<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>k</mi></mrow><annotation encoding="application/x-tex">k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span></span></span></span>位后所有连续的<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span>变成0，再把所有连续<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span>后的那一个<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>0</mn></mrow><annotation encoding="application/x-tex">0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span></span></span></span>变成<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span><br>
+2.比较两个二进制数的大小，先比较高位，再比较低位。</p>
+<p>但是用普通线段树实现，空间为<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><mi>n</mi><mi>m</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">O(nm)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mord mathdefault">m</span><span class="mclose">)</span></span></span></span>会爆掉。<br>
+考虑使用主席树，每次只要新开<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>log</mi><mo>⁡</mo><mi>n</mi></mrow><annotation encoding="application/x-tex">\log n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mop">lo<span style="margin-right:0.01389em;">g</span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">n</span></span></span></span>的节点，空间复杂度为<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><mi>n</mi><mi>log</mi><mo>⁡</mo><mi>n</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">O(n \log n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mop">lo<span style="margin-right:0.01389em;">g</span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">n</span><span class="mclose">)</span></span></span></span></p>
+<p>代码细节比较多，比较烦人</p>
+<pre><code class="language-cpp">#include &lt;bits/stdc++.h&gt;
+#define MAXN 500005
+#define MOD 1000000007
+#define int long long
+using namespace std;
+inline int read(){
+    int x=0,f=1;
+    char ch=getchar();
+    while (ch&lt;'0'||ch&gt;'9'){
+        if (ch=='-') f=-1;
+        ch=getchar();
+    }
+    while (ch&gt;='0'&amp;&amp;ch&lt;='9'){
+        x=(x&lt;&lt;3)+(x&lt;&lt;1)+(ch^'0');
+        ch=getchar();
+    }
+    return x*f;
+}
+int pow2[MAXN];
+inline void Init(){
+    pow2[0]=1;
+    for (register int i=1;i&lt;MAXN;++i){
+        pow2[i]=(pow2[i-1]&lt;&lt;1)%MOD;
+    }
+}
+namespace SegmentTree{
+    struct node{
+        int l,r;
+        int v;
+    }tree[MAXN*30];
+    #define lc(i) tree[i].l
+    #define rc(i) tree[i].r
+    inline void pushup(int i,int len){
+        //维护区间[l,r]代表的二进制数MOD1e7的值
+        tree[i].v=(tree[lc(i)].v+tree[rc(i)].v*pow2[len]%MOD)%MOD;
+    }
+    int tot;
+    #define Lson lc(x),lc(y),L,mid
+    #define Rson rc(x),rc(y),mid+1,R
+    int Update(int x,int &amp;y,int L,int R,int index){
+        y=++tot;
+        lc(y)=lc(x),rc(y)=rc(x);
+        if (L==R){
+            tree[y].v=tree[x].v^1;
+            return tree[x].v;//有进位：1，没进位：0
+        }
+        int mid=(L+R)&gt;&gt;1,ans;
+        if (index&lt;=mid){
+            ans=Update(Lson,index);
+            if (ans!=0) ans=Update(Rson,index);//如果进位到右边，还要继续修改右子树
+        }
+        else {//右边的不可能进位
+            ans=Update(Rson,index);
+        }
+        pushup(y,mid-L+1);
+        return ans;
+    }
+    bool Compare(int x,int y,int L,int R){
+        //比较可持久化线段树x,y对应二进制数的大小
+        if (L==R) {
+            return tree[x].v&gt;tree[y].v;
+        }
+        int mid=(L+R)&gt;&gt;1;
+        if (tree[rc(x)].v==tree[rc(y)].v){//优先比较右边
+            return Compare(Lson);
+        }
+        else {
+            return Compare(Rson);
+        }
+    }
+}
+using namespace SegmentTree;
+ 
+int maxn;
+struct Node{
+    int u,rt;
+};
+bool operator &lt; (Node A,Node B){
+    return Compare(A.rt,B.rt,0,maxn);
+}
+ 
+struct Edge{
+    int to,len;
+};
+vector&lt;Edge&gt;G[MAXN];
+inline void AddEdge(int u,int v,int w){
+    Edge temp;
+    temp.to=v,temp.len=w;
+    G[u].push_back(temp);
+}
+int vis[MAXN],dis[MAXN],rt[MAXN],pre[MAXN],dep[MAXN];
+int s,t;
+void Out(int u,int dep){//输出路径
+    if (u==s){printf(&quot;%I64d\n%I64d &quot;,dep,s);return ;}
+    Out(pre[u],dep+1);
+    printf(&quot;%I64d &quot;,u);
+}
+#undef int
+int main(){
+#define int long long
+    Init();
+    int n=read(),m=read();
+    for (register int i=1;i&lt;=m;++i){
+        int u=read(),v=read(),w=read();
+        AddEdge(u,v,w);
+        AddEdge(v,u,w);
+        maxn=max(maxn,w);
+    }
+    maxn+=log2(m)+1;//最多进log2(m)次位
+    
+    s=read(),t=read();
+    priority_queue&lt;Node&gt;Q;
+    Q.push(Node{s,0});
+    while (Q.size()){
+        int u=Q.top().u,R=Q.top().rt;
+        Q.pop();
+        if (vis[u]) continue;
+        vis[u]=true;
+        for (register int i=0;i&lt;G[u].size();++i){
+            int v=G[u][i].to,w=G[u][i].len,_rt=0;
+            Update(R,_rt,0,maxn,w);
+            if (!rt[v]||Compare(rt[v],_rt,0,maxn)){
+                rt[v]=_rt,pre[v]=u;
+                dep[v]=dep[u]+1;
+                Q.push(Node{v,rt[v]});
+            }
+        }
+    }
+    if (!vis[t]){
+        printf(&quot;-1\n&quot;);
+    }
+    else {
+        printf(&quot;%I64d\n&quot;,tree[rt[t]].v);
+        Out(t,1);
+    }
+}
+</code></pre>
+
+            </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://steven-mhy.github.io/post/CF482B Interesting Array">
+                  <h3 class="post-title">
+                    CF482B Interesting Array 线段树
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+              
+                <div id="gitalk-container" data-aos="fade-in"></div>
+              
+
+              
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+<script type="application/javascript">
+
+AOS.init();
+
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+
+  
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+
+      var gitalk = new Gitalk({
+        clientID: '0381bd48f354d449038e',
+        clientSecret: 'a325a1b671eb2071d75fc107561dfeedaa1485cf',
+        repo: 'steven-mhy.github.io',
+        owner: 'steven-mhy',
+        admin: ['steven-mhy'],
+        id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+      gitalk.render('gitalk-container')
+
+    </script>
+  
+
+  
+
+
+
+
+  </body>
+</html>

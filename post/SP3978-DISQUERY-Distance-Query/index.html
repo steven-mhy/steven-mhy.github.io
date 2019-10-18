@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>SP3978 DISQUERY - Distance Query | Steven_Meng&#39;s Blog</title>
+<meta name="description" content="白鳥は　かなしからずや　空の青 海のあをにも　染まずただよふ">
+<meta name="referrer" content="no-referrer" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://steven-mhy.github.io/favicon.ico?v=1571390602731">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://steven-mhy.github.io/styles/main.css">
+
+
+  
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
+  
+
+  
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+
+
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://steven-mhy.github.io">
+        <img src="https://steven-mhy.github.io/images/avatar.png?v=1571390602731" class="site-logo">
+        <h1 class="site-title">Steven_Meng&#39;s Blog</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      白鳥は　かなしからずや　空の青 海のあをにも　染まずただよふ
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://steven-mhy.github.io/atom.xml" target="_blank">RSS</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">SP3978 DISQUERY - Distance Query</h2>
+            <div class="post-date">2019-07-31</div>
+            
+            <div class="post-content">
+              <p><a href="https://www.luogu.org/problem/SP3978">传送门</a></p>
+<p>树链剖分裸题</p>
+<pre><code class="language-cpp">#include &lt;bits/stdc++.h&gt;
+#define MAXN 100005
+using namespace std;
+inline int read(){
+    int x=0,f=1;
+    char ch=getchar();
+    while (ch&lt;'0'||ch&gt;'9'){
+        if (ch=='-') f=-1;
+        ch=getchar();
+    }
+    while (ch&gt;='0'&amp;&amp;ch&lt;='9'){
+        x=(x&lt;&lt;3)+(x&lt;&lt;1)+(ch^'0');
+        ch=getchar();
+    }
+    return x*f;
+}
+struct Edge{int to,len;};
+vector&lt;Edge&gt;G[MAXN];
+inline void AddEdge(int u,int v,int w){
+    Edge temp;
+    temp.to=v;
+    temp.len=w;
+    G[u].push_back(temp);
+}
+int fa[MAXN],dep[MAXN],tofa[MAXN],dfn[MAXN],seq[MAXN],cnt,top[MAXN],sz[MAXN],son[MAXN];
+void dfs1(int u,int father){
+    sz[u]=1;
+    for (register int i=0;i&lt;G[u].size();++i){
+        int v=G[u][i].to,w=G[u][i].len;
+        if (v!=father){
+            fa[v]=u,dep[v]=dep[u]+1;
+            tofa[v]=w;
+            dfs1(v,u);
+            sz[u]+=sz[v];
+            if (sz[v]&gt;sz[son[u]]) son[u]=v;
+        }
+    }
+}
+void dfs2(int u,int t){
+    seq[dfn[u]=++cnt]=u;
+    top[u]=t;
+    if (son[u]) dfs2(son[u],t);
+    else return ;
+    for (register int i=0;i&lt;G[u].size();++i){
+        int v=G[u][i].to;
+        if (v!=son[u]&amp;&amp;v!=fa[u]){
+            dfs2(v,v);
+        }
+    }
+}
+namespace SegmentTree{
+    struct node{
+        int l,r;
+        int maxn,mino;
+    }tree[MAXN&lt;&lt;2];
+    #define lc i&lt;&lt;1
+    #define rc i&lt;&lt;1|1
+    inline void pushup(int i){
+        tree[i].maxn=max(tree[lc].maxn,tree[rc].maxn);
+        tree[i].mino=min(tree[lc].mino,tree[rc].mino);
+    }
+    void Build(int i,int l,int r){
+        tree[i].l=l,tree[i].r=r;
+        if (l==r){
+            tree[i].maxn=tree[i].mino=tofa[seq[l]];
+            return ;
+        }
+        int mid=(l+r)&gt;&gt;1;
+        Build(lc,l,mid);
+        Build(rc,mid+1,r);
+        pushup(i);
+    }
+    int QueryMax(int i,int L,int R){
+        if (L&lt;=tree[i].l&amp;&amp;tree[i].r&lt;=R){
+            return tree[i].maxn;
+        }
+        int mid=(tree[i].l+tree[i].r)&gt;&gt;1,ans=-0x7fffffff;
+        if (L&lt;=mid) ans=max(ans,QueryMax(lc,L,R));
+        if (mid&lt;R) ans=max(ans,QueryMax(rc,L,R));
+        return ans;
+    }
+    int QueryMin(int i,int L,int R){
+        if (L&lt;=tree[i].l&amp;&amp;tree[i].r&lt;=R){
+            return tree[i].mino;
+        }
+        int mid=(tree[i].l+tree[i].r)&gt;&gt;1,ans=0x7fffffff;
+        if (L&lt;=mid) ans=min(ans,QueryMin(lc,L,R));
+        if (mid&lt;R) ans=min(ans,QueryMin(rc,L,R));
+        return ans;
+    }
+}
+using namespace SegmentTree;
+inline int QueryChainMax(int u,int v){
+    int ans=-0x7fffffff;
+    while (top[u]!=top[v]){
+        if (dep[top[u]]&lt;dep[top[v]]) swap(u,v);
+        ans=max(ans,QueryMax(1,dfn[top[u]],dfn[u]));
+        u=fa[top[u]];
+    }
+    if (u==v) return ans;
+    if (dep[u]&gt;dep[v]) swap(u,v);
+    return max(ans,QueryMax(1,dfn[u]+1,dfn[v]));
+}
+inline int QueryChainMin(int u,int v){
+    int ans=0x7fffffff;
+    while (top[u]!=top[v]){
+        if (dep[top[u]]&lt;dep[top[v]]) swap(u,v);
+        ans=min(ans,QueryMin(1,dfn[top[u]],dfn[u]));
+        u=fa[top[u]];
+    }
+    if (u==v) return ans;
+    if (dep[u]&gt;dep[v]) swap(u,v);
+    return min(ans,QueryMin(1,dfn[u]+1,dfn[v]));
+}
+int main(){
+    int n=read();
+    for (register int i=1;i&lt;n;++i){
+        int u=read(),v=read(),w=read();
+        AddEdge(u,v,w);
+        AddEdge(v,u,w);
+    }
+    dfs1(1,0);
+    dfs2(1,1);
+    Build(1,1,n);
+    int q=read();
+    while (q--){
+        int u=read(),v=read();
+        printf(&quot;%d %d\n&quot;,QueryChainMin(u,v),QueryChainMax(u,v));
+    }
+}
+</code></pre>
+
+            </div>
+            
+              <div class="tag-container">
+                
+                  <a href="https://steven-mhy.github.io/tag/tz8jnsnOVd" class="tag">
+                    题解
+                  </a>
+                
+                  <a href="https://steven-mhy.github.io/tag/915M0pAYLA6" class="tag">
+                    线段树
+                  </a>
+                
+                  <a href="https://steven-mhy.github.io/tag/5IAZYzF_y6F" class="tag">
+                    树链剖分
+                  </a>
+                
+              </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://steven-mhy.github.io/post/P5002-专心OI-找祖先">
+                  <h3 class="post-title">
+                    P5002 专心OI - 找祖先
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+              
+                <div id="gitalk-container" data-aos="fade-in"></div>
+              
+
+              
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+<script type="application/javascript">
+
+AOS.init();
+
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+
+  
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+
+      var gitalk = new Gitalk({
+        clientID: '0381bd48f354d449038e',
+        clientSecret: 'a325a1b671eb2071d75fc107561dfeedaa1485cf',
+        repo: 'steven-mhy.github.io',
+        owner: 'steven-mhy',
+        admin: ['steven-mhy'],
+        id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+      gitalk.render('gitalk-container')
+
+    </script>
+  
+
+  
+
+
+
+
+  </body>
+</html>

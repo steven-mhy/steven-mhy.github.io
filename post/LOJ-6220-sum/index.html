@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>LOJ #6220.sum | Steven_Meng&#39;s Blog</title>
+<meta name="description" content="白鳥は　かなしからずや　空の青 海のあをにも　染まずただよふ">
+<meta name="referrer" content="no-referrer" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://steven-mhy.github.io/favicon.ico?v=1571390602731">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://steven-mhy.github.io/styles/main.css">
+
+
+  
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
+  
+
+  
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+
+
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://steven-mhy.github.io">
+        <img src="https://steven-mhy.github.io/images/avatar.png?v=1571390602731" class="site-logo">
+        <h1 class="site-title">Steven_Meng&#39;s Blog</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      白鳥は　かなしからずや　空の青 海のあをにも　染まずただよふ
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://steven-mhy.github.io/atom.xml" target="_blank">RSS</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">LOJ #6220.sum</h2>
+            <div class="post-date">2019-07-21</div>
+            
+            <div class="post-content">
+              <p><a href="https://loj.ac/problem/6220">传送门</a></p>
+<p>大家好，我非常喜欢随机化，所以用<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="normal">r</mi><mi mathvariant="normal">a</mi><mi mathvariant="normal">n</mi><mi mathvariant="normal">d</mi><mi mathvariant="normal">o</mi><mi mathvariant="normal">m</mi><mi mathvariant="normal">s</mi><mi mathvariant="normal">h</mi><mi mathvariant="normal">u</mi><mi mathvariant="normal">f</mi><mi mathvariant="normal">f</mi><mi mathvariant="normal">l</mi><mi mathvariant="normal">e</mi></mrow><annotation encoding="application/x-tex">\rm randomshuffle</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord"><span class="mord mathrm">r</span><span class="mord mathrm">a</span><span class="mord mathrm">n</span><span class="mord mathrm">d</span><span class="mord mathrm">o</span><span class="mord mathrm">m</span><span class="mord mathrm">s</span><span class="mord mathrm">h</span><span class="mord mathrm">u</span><span class="mord mathrm" style="margin-right:0.07778em;">f</span><span class="mord mathrm" style="margin-right:0.07778em;">f</span><span class="mord mathrm">l</span><span class="mord mathrm">e</span></span></span></span></span> AC了此题。</p>
+<p>每次<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="normal">r</mi><mi mathvariant="normal">a</mi><mi mathvariant="normal">n</mi><mi mathvariant="normal">d</mi><mi mathvariant="normal">o</mi><mi mathvariant="normal">m</mi><mi mathvariant="normal">s</mi><mi mathvariant="normal">h</mi><mi mathvariant="normal">u</mi><mi mathvariant="normal">f</mi><mi mathvariant="normal">f</mi><mi mathvariant="normal">l</mi><mi mathvariant="normal">e</mi></mrow><annotation encoding="application/x-tex">\rm randomshuffle</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord"><span class="mord mathrm">r</span><span class="mord mathrm">a</span><span class="mord mathrm">n</span><span class="mord mathrm">d</span><span class="mord mathrm">o</span><span class="mord mathrm">m</span><span class="mord mathrm">s</span><span class="mord mathrm">h</span><span class="mord mathrm">u</span><span class="mord mathrm" style="margin-right:0.07778em;">f</span><span class="mord mathrm" style="margin-right:0.07778em;">f</span><span class="mord mathrm">l</span><span class="mord mathrm">e</span></span></span></span></span>整个序列，判断前缀的和是否是<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">n</span></span></span></span>的倍数。</p>
+<p>你一定会怀疑这个算法的时间复杂度，但是它就是AC了，所以不要怀疑<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="normal">s</mi><mi mathvariant="normal">r</mi><mi mathvariant="normal">a</mi><mi mathvariant="normal">n</mi><mi mathvariant="normal">d</mi><mo>(</mo><mn>19260817</mn><mo>)</mo></mrow><annotation encoding="application/x-tex">\rm srand(19260817)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathrm">s</span><span class="mord mathrm">r</span><span class="mord mathrm">a</span><span class="mord mathrm">n</span><span class="mord mathrm">d</span><span class="mopen">(</span><span class="mord mathrm">1</span><span class="mord mathrm">9</span><span class="mord mathrm">2</span><span class="mord mathrm">6</span><span class="mord mathrm">0</span><span class="mord mathrm">8</span><span class="mord mathrm">1</span><span class="mord mathrm">7</span><span class="mclose">)</span></span></span></span></span>，它会让你的程序以<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><mo>−</mo><mn>1</mn><mo>)</mo></mrow><annotation encoding="application/x-tex">O(-1)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord">−</span><span class="mord">1</span><span class="mclose">)</span></span></span></span> 的时间跑过数据。</p>
+<pre><code class="language-cpp">#include &lt;bits/stdc++.h&gt;
+#define MAXN 1000011
+#define int long long
+using namespace std;
+inline int read(){
+    int x=0,f=1;
+    char ch=getchar();
+    while (ch&lt;'0'||ch&gt;'9'){
+        if (ch=='-') f=-1;
+        ch=getchar(); 
+    }
+    while (ch&gt;='0'&amp;&amp;ch&lt;='9'){
+        x=(x&lt;&lt;3)+(x&lt;&lt;1)+(ch^'0');
+        ch=getchar();
+    }
+    return x*f;
+}
+int a[MAXN],b[MAXN];
+#undef int
+int main(){
+#define int long long
+    srand(19260817);
+    int n=read();
+    for (register int i=1;i&lt;=n;++i){
+        a[i]=read();
+    }
+    for (register int i=1;i&lt;=n;++i){
+        b[i]=i;
+    }
+    for (register int t=1;t&lt;=100000;++t){
+        random_shuffle(b+1,b+1+n);
+        int sum=0;
+        for (register int i=1;i&lt;=n;++i){
+            sum+=a[b[i]];
+            if (sum%n==0){
+                for (register int j=1;j&lt;=i;++j){
+                    printf(&quot;%lld %lld\n&quot;,b[j],a[b[j]]);
+                }
+                printf(&quot;\n&quot;);
+                return 0;
+            }
+        }
+    }
+}
+</code></pre>
+
+            </div>
+            
+              <div class="tag-container">
+                
+                  <a href="https://steven-mhy.github.io/tag/tz8jnsnOVd" class="tag">
+                    题解
+                  </a>
+                
+                  <a href="https://steven-mhy.github.io/tag/lDsum5_xuv" class="tag">
+                    随机化
+                  </a>
+                
+              </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://steven-mhy.github.io/post/CF914F-Substrings-in-a-String">
+                  <h3 class="post-title">
+                    CF914F Substrings in a String
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+              
+                <div id="gitalk-container" data-aos="fade-in"></div>
+              
+
+              
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+<script type="application/javascript">
+
+AOS.init();
+
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+
+  
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+
+      var gitalk = new Gitalk({
+        clientID: '0381bd48f354d449038e',
+        clientSecret: 'a325a1b671eb2071d75fc107561dfeedaa1485cf',
+        repo: 'steven-mhy.github.io',
+        owner: 'steven-mhy',
+        admin: ['steven-mhy'],
+        id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+      gitalk.render('gitalk-container')
+
+    </script>
+  
+
+  
+
+
+
+
+  </body>
+</html>

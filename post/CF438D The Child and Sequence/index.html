@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>CF438D The Child and Sequence 线段树 | Steven_Meng&#39;s Blog</title>
+<meta name="description" content="白鳥は　かなしからずや　空の青 海のあをにも　染まずただよふ">
+<meta name="referrer" content="no-referrer" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://steven-mhy.github.io/favicon.ico?v=1571390602731">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://steven-mhy.github.io/styles/main.css">
+
+
+  
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
+  
+
+  
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+
+
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://steven-mhy.github.io">
+        <img src="https://steven-mhy.github.io/images/avatar.png?v=1571390602731" class="site-logo">
+        <h1 class="site-title">Steven_Meng&#39;s Blog</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      白鳥は　かなしからずや　空の青 海のあをにも　染まずただよふ
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://steven-mhy.github.io/atom.xml" target="_blank">RSS</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">CF438D The Child and Sequence 线段树</h2>
+            <div class="post-date">2019-07-13</div>
+            
+            <div class="post-content">
+              <p><a href="https://www.luogu.org/problemnew/show/CF438D">传送门</a></p>
+<p>线段树的神奇操作<br>
+考虑维护区间和，区间最大值。<br>
+取模的时候，若当前区间的最大值小于<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="normal">M</mi><mi mathvariant="normal">o</mi><mi mathvariant="normal">d</mi></mrow><annotation encoding="application/x-tex">\rm Mod</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord"><span class="mord mathrm">M</span><span class="mord mathrm">o</span><span class="mord mathrm">d</span></span></span></span></span><br>
+你就会发现这个区间的所有数都不会变，直接<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="normal">r</mi><mi mathvariant="normal">e</mi><mi mathvariant="normal">t</mi><mi mathvariant="normal">u</mi><mi mathvariant="normal">r</mi><mi mathvariant="normal">n</mi></mrow><annotation encoding="application/x-tex">\rm return</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.61508em;vertical-align:0em;"></span><span class="mord"><span class="mord mathrm">r</span><span class="mord mathrm">e</span><span class="mord mathrm">t</span><span class="mord mathrm">u</span><span class="mord mathrm">r</span><span class="mord mathrm">n</span></span></span></span></span> ，不用继续维护。</p>
+<hr>
+<p>记得开<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="normal">l</mi><mi mathvariant="normal">o</mi><mi mathvariant="normal">n</mi><mi mathvariant="normal">g</mi></mrow><annotation encoding="application/x-tex">\rm long</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord"><span class="mord mathrm">l</span><span class="mord mathrm">o</span><span class="mord mathrm">n</span><span class="mord mathrm" style="margin-right:0.01389em;">g</span></span></span></span></span> <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="normal">l</mi><mi mathvariant="normal">o</mi><mi mathvariant="normal">n</mi><mi mathvariant="normal">g</mi></mrow><annotation encoding="application/x-tex">\rm long</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord"><span class="mord mathrm">l</span><span class="mord mathrm">o</span><span class="mord mathrm">n</span><span class="mord mathrm" style="margin-right:0.01389em;">g</span></span></span></span></span>，我被<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="normal">l</mi><mi mathvariant="normal">o</mi><mi mathvariant="normal">n</mi><mi mathvariant="normal">g</mi></mrow><annotation encoding="application/x-tex">\rm long</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord"><span class="mord mathrm">l</span><span class="mord mathrm">o</span><span class="mord mathrm">n</span><span class="mord mathrm" style="margin-right:0.01389em;">g</span></span></span></span></span> <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="normal">l</mi><mi mathvariant="normal">o</mi><mi mathvariant="normal">n</mi><mi mathvariant="normal">g</mi></mrow><annotation encoding="application/x-tex">\rm long</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord"><span class="mord mathrm">l</span><span class="mord mathrm">o</span><span class="mord mathrm">n</span><span class="mord mathrm" style="margin-right:0.01389em;">g</span></span></span></span></span>孙了很久</p>
+<pre><code class="language-cpp">#include &lt;bits/stdc++.h&gt;
+#define int long long
+#define MAXN 100005
+using namespace std;
+inline int read(){
+    int x=0,f=1;
+    char ch=getchar();
+    while (ch&lt;'0'||ch&gt;'9'){
+        if (ch=='-') f=-1;
+        ch=getchar();
+    }
+    while (ch&gt;='0'&amp;&amp;ch&lt;='9'){
+        x=(x&lt;&lt;3)+(x&lt;&lt;1)+(ch^'0');
+        ch=getchar();
+    }
+    return x*f;
+}
+int a[MAXN];
+namespace SegmentTree{
+    struct node{
+        int l,r;
+        int val,maxn;
+    }tree[MAXN&lt;&lt;2];
+    #define lc i&lt;&lt;1
+    #define rc i&lt;&lt;1|1
+    void pushup(int i){
+        tree[i].val=tree[lc].val+tree[rc].val;
+        tree[i].maxn=max(tree[lc].maxn,tree[rc].maxn);
+    }
+    void Build(int i,int l,int r){
+        tree[i].l=l,tree[i].r=r;
+        if (l==r){
+            tree[i].val=tree[i].maxn=a[l];
+            return ;
+        }
+        int mid=(l+r)&gt;&gt;1;
+        Build(lc,l,mid);
+        Build(rc,mid+1,r);
+        pushup(i);
+    }
+    void Update(int i,int index,int val){
+        if (tree[i].l==tree[i].r){
+            tree[i].val=tree[i].maxn=val;
+            return ;
+        }
+        int mid=(tree[i].l+tree[i].r)&gt;&gt;1;
+        if (index&lt;=mid) Update(lc,index,val);
+        else Update(rc,index,val);
+        pushup(i);
+    }
+    void Mod(int i,int L,int R,int M){
+        if (tree[i].maxn&lt;M) return ;//取模以后结果肯定不变
+        if (tree[i].l==tree[i].r){
+            tree[i].val=tree[i].maxn=(tree[i].val%M);
+            return ;
+        }
+        int mid=(tree[i].l+tree[i].r)&gt;&gt;1;
+        if (L&lt;=mid) Mod(lc,L,R,M);
+        if (mid&lt;R) Mod(rc,L,R,M);
+        pushup(i);
+    }
+    int Query(int i,int L,int R){
+        if (L&lt;=tree[i].l&amp;&amp;tree[i].r&lt;=R){
+            return tree[i].val;
+        }
+        int mid=(tree[i].l+tree[i].r)&gt;&gt;1;
+        int ans=0;
+        if (L&lt;=mid) ans+=Query(lc,L,R);
+        if (mid&lt;R) ans+=Query(rc,L,R);
+        return ans;
+    }
+}
+using namespace SegmentTree;
+#undef int
+int main(){
+#define int long long
+    int n=read(),m=read();
+    for (register int i=1;i&lt;=n;++i){
+        a[i]=read();
+    }
+    Build(1,1,n);
+    while (m--){
+        int opr=read();
+        if (opr==1){
+            int l=read(),r=read();
+            printf(&quot;%lld\n&quot;,Query(1,l,r));
+        }
+        else if (opr==2){
+            int l=read(),r=read(),x=read();
+            Mod(1,l,r,x);
+        }
+        else {
+            int k=read(),x=read();
+            Update(1,k,x);
+        }
+    }
+}```
+</code></pre>
+
+            </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://steven-mhy.github.io/post/CF464E The Classic Problem">
+                  <h3 class="post-title">
+                    CF464E The Classic Problem 主席树
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+              
+                <div id="gitalk-container" data-aos="fade-in"></div>
+              
+
+              
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+<script type="application/javascript">
+
+AOS.init();
+
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+
+  
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+
+      var gitalk = new Gitalk({
+        clientID: '0381bd48f354d449038e',
+        clientSecret: 'a325a1b671eb2071d75fc107561dfeedaa1485cf',
+        repo: 'steven-mhy.github.io',
+        owner: 'steven-mhy',
+        admin: ['steven-mhy'],
+        id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+      gitalk.render('gitalk-container')
+
+    </script>
+  
+
+  
+
+
+
+
+  </body>
+</html>

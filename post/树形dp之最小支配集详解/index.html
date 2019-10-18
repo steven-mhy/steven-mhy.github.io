@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>树形dp之最小支配集详解 | Steven_Meng&#39;s Blog</title>
+<meta name="description" content="白鳥は　かなしからずや　空の青 海のあをにも　染まずただよふ">
+<meta name="referrer" content="no-referrer" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://steven-mhy.github.io/favicon.ico?v=1571390602731">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://steven-mhy.github.io/styles/main.css">
+
+
+  
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
+  
+
+  
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+
+
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://steven-mhy.github.io">
+        <img src="https://steven-mhy.github.io/images/avatar.png?v=1571390602731" class="site-logo">
+        <h1 class="site-title">Steven_Meng&#39;s Blog</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      白鳥は　かなしからずや　空の青 海のあをにも　染まずただよふ
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://steven-mhy.github.io/atom.xml" target="_blank">RSS</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">树形dp之最小支配集详解</h2>
+            <div class="post-date">2019-08-25</div>
+            
+            <div class="post-content">
+              <p>最小支配集的定义：给你一棵树，让你选出一些节点，选出来的节点会把自己和相邻的节点全部覆盖，让你求出选出来节点的最小数量。</p>
+<p>考虑树形dp：</p>
+<p>定义:<br>
+<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>d</mi><mi>p</mi><mo>[</mo><mi>i</mi><mo>]</mo><mo>[</mo><mn>0</mn><mo>]</mo></mrow><annotation encoding="application/x-tex">dp[i][0]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">d</span><span class="mord mathdefault">p</span><span class="mopen">[</span><span class="mord mathdefault">i</span><span class="mclose">]</span><span class="mopen">[</span><span class="mord">0</span><span class="mclose">]</span></span></span></span>: 点<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>i</mi></mrow><annotation encoding="application/x-tex">i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.65952em;vertical-align:0em;"></span><span class="mord mathdefault">i</span></span></span></span>属于支配集，并且以点<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>i</mi></mrow><annotation encoding="application/x-tex">i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.65952em;vertical-align:0em;"></span><span class="mord mathdefault">i</span></span></span></span>为根的子树都被覆盖了的情况下支配集中包含的最少点数 也就是<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>i</mi></mrow><annotation encoding="application/x-tex">i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.65952em;vertical-align:0em;"></span><span class="mord mathdefault">i</span></span></span></span>支配自己</p>
+<p>合法状态举例（不一定最少）</p>
+<figure data-type="image" tabindex="1"><img src="/images/sample1.png" alt=""></figure>
+<p><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>d</mi><mi>p</mi><mo>[</mo><mi>i</mi><mo>]</mo><mo>[</mo><mn>1</mn><mo>]</mo></mrow><annotation encoding="application/x-tex">dp[i][1]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">d</span><span class="mord mathdefault">p</span><span class="mopen">[</span><span class="mord mathdefault">i</span><span class="mclose">]</span><span class="mopen">[</span><span class="mord">1</span><span class="mclose">]</span></span></span></span>: 点<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>i</mi></mrow><annotation encoding="application/x-tex">i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.65952em;vertical-align:0em;"></span><span class="mord mathdefault">i</span></span></span></span><strong>不属于</strong>支配集，且以<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>i</mi></mrow><annotation encoding="application/x-tex">i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.65952em;vertical-align:0em;"></span><span class="mord mathdefault">i</span></span></span></span>为根的子树都被覆盖，且<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>i</mi></mrow><annotation encoding="application/x-tex">i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.65952em;vertical-align:0em;"></span><span class="mord mathdefault">i</span></span></span></span>被其中不少于<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span>个子节点覆盖的情况下支配集包含的最少点数 也就是<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>i</mi></mrow><annotation encoding="application/x-tex">i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.65952em;vertical-align:0em;"></span><span class="mord mathdefault">i</span></span></span></span>的孩子支配<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>i</mi></mrow><annotation encoding="application/x-tex">i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.65952em;vertical-align:0em;"></span><span class="mord mathdefault">i</span></span></span></span></p>
+<figure data-type="image" tabindex="2"><img src="/images/sample2.png" alt=""></figure>
+<p><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>d</mi><mi>p</mi><mo>[</mo><mi>i</mi><mo>]</mo><mo>[</mo><mn>2</mn><mo>]</mo></mrow><annotation encoding="application/x-tex">dp[i][2]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">d</span><span class="mord mathdefault">p</span><span class="mopen">[</span><span class="mord mathdefault">i</span><span class="mclose">]</span><span class="mopen">[</span><span class="mord">2</span><span class="mclose">]</span></span></span></span>: 点<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>i</mi></mrow><annotation encoding="application/x-tex">i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.65952em;vertical-align:0em;"></span><span class="mord mathdefault">i</span></span></span></span><strong>不属于</strong>支配集，且以<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>i</mi></mrow><annotation encoding="application/x-tex">i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.65952em;vertical-align:0em;"></span><span class="mord mathdefault">i</span></span></span></span>为根的子树都被覆盖，<strong>且<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>i</mi></mrow><annotation encoding="application/x-tex">i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.65952em;vertical-align:0em;"></span><span class="mord mathdefault">i</span></span></span></span>没被子节点覆盖</strong>的情况下支配集包含的最少点数 也就是<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>i</mi></mrow><annotation encoding="application/x-tex">i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.65952em;vertical-align:0em;"></span><span class="mord mathdefault">i</span></span></span></span>由父亲支配</p>
+<figure data-type="image" tabindex="3"><img src="/images/sample3.png" alt=""></figure>
+<p>希望你们好好研究子状态，容易混淆的地方已经用粗体字标出</p>
+<hr>
+<p>初始值的设置：</p>
+<p>因为<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>u</mi></mrow><annotation encoding="application/x-tex">u</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">u</span></span></span></span>由自己支配，所以至少选<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>u</mi></mrow><annotation encoding="application/x-tex">u</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">u</span></span></span></span>自己；</p>
+<p>因为<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>u</mi></mrow><annotation encoding="application/x-tex">u</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">u</span></span></span></span>由孩子支配，而且<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>u</mi></mrow><annotation encoding="application/x-tex">u</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">u</span></span></span></span>一定不能选，所以这种情况设成INF，表示未知；</p>
+<p>因为<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>u</mi></mrow><annotation encoding="application/x-tex">u</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">u</span></span></span></span>由父亲支配，而且<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>u</mi></mrow><annotation encoding="application/x-tex">u</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">u</span></span></span></span>一定不能选，所以这种情况设成0。</p>
+<pre><code class="language-cpp">dp[u][0]=1;dp[u][1]=INF;dp[u][2]=0;//INF不能太大
+</code></pre>
+<p><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1.</mn><mi>u</mi></mrow><annotation encoding="application/x-tex">1.u</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord">.</span><span class="mord mathdefault">u</span></span></span></span>支配自己​：剩下怎么搞，都能满足节点<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>v</mi></mrow><annotation encoding="application/x-tex">v</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">v</span></span></span></span>被覆盖</p>
+<pre><code class="language-cpp">int val=min(min(dp[v][0],dp[v][1]),dp[v][2]);
+dp[u][0]+=val;
+</code></pre>
+<p>统计方案数也非常简单，只要等于最小值，都可以加入最佳方案</p>
+<pre><code class="language-cpp">ll temp=0;
+for (register int i=0;i&lt;=2;++i){
+    if (dp[v][i]==val) Add(temp,cnt[v][i]);//加入方案
+}
+Mul(cnt[u][0],temp);
+</code></pre>
+<p><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>2.</mn><mi>u</mi></mrow><annotation encoding="application/x-tex">2.u</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">2</span><span class="mord">.</span><span class="mord mathdefault">u</span></span></span></span>由孩子节点支配：</p>
+<p>这种情况是最复杂的：</p>
+<pre><code class="language-cpp">val=min(dp[u][1]+min(dp[v][0],dp[v][1]),dp[u][2]+dp[v][0]);
+temp=0;
+for (register int i=0;i&lt;=1;++i) {
+    if (dp[u][1]+dp[v][i]==val) Add(temp,cnt[v][i]);
+}
+Mul(cnt[u][1],temp);
+if (dp[u][2]+dp[v][0]==val) Add(cnt[u][1],cnt[u][2]*cnt[v][0]%MOD);
+dp[u][1]=val;//要最后更新
+</code></pre>
+<p><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>−</mo><mo>−</mo><mn>1.</mn></mrow><annotation encoding="application/x-tex">--1.</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord">.</span></span></span></span>只要<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>u</mi></mrow><annotation encoding="application/x-tex">u</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">u</span></span></span></span>已经由孩子支配了，发现<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>v</mi></mrow><annotation encoding="application/x-tex">v</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">v</span></span></span></span>可以由自己支配，也可以由孩子支配，但是不能由父亲支配，因为<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>u</mi></mrow><annotation encoding="application/x-tex">u</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">u</span></span></span></span>不支配自己。</p>
+<p><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>−</mo><mo>−</mo><mn>2.</mn></mrow><annotation encoding="application/x-tex">--2.</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">2</span><span class="mord">.</span></span></span></span>如果<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>u</mi></mrow><annotation encoding="application/x-tex">u</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">u</span></span></span></span>由父亲支配，那么加入一个自己支配自己的子节点，就可以变成一个合法的由孩子支配的状态，注意这样的状态不是由父亲支配的状态，因为前面的子状态保证了<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>u</mi></mrow><annotation encoding="application/x-tex">u</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">u</span></span></span></span>的孩子不支配<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>u</mi></mrow><annotation encoding="application/x-tex">u</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">u</span></span></span></span>，与此矛盾。</p>
+<p><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>3.</mn><mi>u</mi></mrow><annotation encoding="application/x-tex">3.u</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">3</span><span class="mord">.</span><span class="mord mathdefault">u</span></span></span></span>由父亲支配，发现<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>v</mi></mrow><annotation encoding="application/x-tex">v</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">v</span></span></span></span>只能由孩子支配，就这样完了。</p>
+<pre><code class="language-cpp">dp[u][2]+=dp[v][1];
+Mul(cnt[u][2],cnt[v][1]);
+</code></pre>
+<p>完整代码，可以求出方案数</p>
+<pre><code class="language-cpp">/*
+定义:
+dp[i][0]: 点i属于支配集，并且以点i为根的子树都被覆盖了的情况下支配集中包含的最少点数 也就是i支配自己
+dp[i][1]: 点i不属于支配集，且以i为根的子树都被覆盖，且i被其中不少于1个子节点覆盖的情况下支配集包含的最少点数 也就是i的孩子支配i
+dp[i][2]: 点i不属于支配集，且以i为根的子树都被覆盖，且i没被子节点覆盖的情况下支配集包含的最少点数 也就是i由父亲支配
+ */
+#include &lt;bits/stdc++.h&gt;
+#define INF 0x3f3f3f3f
+#define memmax(a) memset(a,0x3f,sizeof(a))
+#define MAXN 500005
+#define MOD 1032992941
+#define ll long long
+#define int long long
+using namespace std;
+inline int read(){
+    int x=0,f=1;
+    char ch=getchar();
+    while (ch&lt;'0'||ch&gt;'9'){
+        if (ch=='-') f=-1;
+        ch=getchar();
+    }
+    while (ch&gt;='0'&amp;&amp;ch&lt;='9'){
+        x=(x&lt;&lt;3)+(x&lt;&lt;1)+(ch-'0');
+        ch=getchar();
+    }
+    return x*f;
+}
+vector&lt;int&gt;G[MAXN];
+void AddEdge(int u,int v){
+    G[u].push_back(v);
+    G[v].push_back(u);
+}
+int dp[MAXN][3];
+ll cnt[MAXN][3];
+void Add(ll &amp;A,ll B){
+    A=(A+B)%MOD;
+}
+void Mul(ll &amp;A,ll B){
+    A=(A*B)%MOD;
+}
+void dfs(int u,int father){
+    dp[u][0]=1;dp[u][1]=INF;dp[u][2]=0;//INF不能太大
+    cnt[u][0]=cnt[u][1]=cnt[u][2]=1;//因为方案是乘起来的
+    for (register int i=0;i&lt;G[u].size();++i){
+        int v=G[u][i];
+        if (v!=father){
+            dfs(v,u);
+            //----------------------------------------------------------
+            //只要u支配了自己，剩下怎样都可以
+            int val=min(min(dp[v][0],dp[v][1]),dp[v][2]);
+            dp[u][0]+=val;
+
+            ll temp=0;
+            for (register int i=0;i&lt;=2;++i){
+                if (dp[v][i]==val) Add(temp,cnt[v][i]);
+            }
+            Mul(cnt[u][0],temp);
+
+            //----------------------------------------------------------
+            //1.u由其中一个子节点支配,子节点由自己或是孩子支配，而不由u支配
+            //2.u由父亲支配,子节点支配自己
+            val=min(dp[u][1]+min(dp[v][0],dp[v][1]),dp[u][2]+dp[v][0]);
+            
+            temp=0;
+            for (register int i=0;i&lt;=1;++i) {
+                if (dp[u][1]+dp[v][i]==val) Add(temp,cnt[v][i]);
+            }
+            Mul(cnt[u][1],temp);
+            if (dp[u][2]+dp[v][0]==val) Add(cnt[u][1],cnt[u][2]*cnt[v][0]%MOD);
+
+            dp[u][1]=val;//要最后更新
+
+            //----------------------------------------------------------
+            //u由父亲支配,子节点只能支配自己
+            //(子节点不能由父亲支配，因为u没有；也不能由自己支配，因为u仅仅由父亲支配)
+            dp[u][2]+=dp[v][1];
+            Mul(cnt[u][2],cnt[v][1]);
+        }
+    }
+}
+#undef int
+int main(){
+#define int long long
+    int n=read();
+    for (register int i=1;i&lt;n;++i){
+        AddEdge(read(),read());
+    }
+    dfs(1,0);
+    int val=min(dp[1][0],dp[1][1]);//1没有父亲
+    ll ans=0;
+    for (register int i=0;i&lt;=1;++i) {
+        if (dp[1][i]==val) Add(ans,cnt[1][i]);
+    }
+    printf(&quot;%d\n%lld\n&quot;,val,ans);
+}
+</code></pre>
+
+            </div>
+            
+              <div class="tag-container">
+                
+                  <a href="https://steven-mhy.github.io/tag/xQxLUgkFtO2" class="tag">
+                    树形dp
+                  </a>
+                
+              </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://steven-mhy.github.io/post/APIO2019毒瘤题记录">
+                  <h3 class="post-title">
+                    APIO2019毒瘤题记录
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+              
+                <div id="gitalk-container" data-aos="fade-in"></div>
+              
+
+              
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+<script type="application/javascript">
+
+AOS.init();
+
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+
+  
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+
+      var gitalk = new Gitalk({
+        clientID: '0381bd48f354d449038e',
+        clientSecret: 'a325a1b671eb2071d75fc107561dfeedaa1485cf',
+        repo: 'steven-mhy.github.io',
+        owner: 'steven-mhy',
+        admin: ['steven-mhy'],
+        id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+      gitalk.render('gitalk-container')
+
+    </script>
+  
+
+  
+
+
+
+
+  </body>
+</html>
